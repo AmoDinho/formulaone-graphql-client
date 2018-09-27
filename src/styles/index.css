@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Jura');
+
+
+/*For headings 
+
+font-family: 'Audiowide', cursive;
+
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Jura', sans-serif;
+
+}
+
+input{
+  max-width: 500px;
+
+}
+
+
+.white{
+  color: #ffffff;
+}
+
+.red{
+  background-color: red;
+}
+
+.background-black{
+   background-color: black;
+}
+
+.f11{
+  font-size:11px;
+}
+
+.w85{
+  width: 85%;
+
+}
+
+.button{
+  font-family: 'Jura', sans-serif;
+  font-size: 10pt;
+  background-color: buttonface;
+  text-align: center;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  cursor: pointer;
+  max-width: 250px;
+}
