@@ -10,8 +10,7 @@ const FEED_QUERY = gql`
           drivers{
               id
               name
-              team
-              name
+              
     team
     points
     pictureURL
