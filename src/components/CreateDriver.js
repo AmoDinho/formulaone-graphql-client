@@ -5,33 +5,35 @@ import {Mutation} from 'react-apollo';
 const DRIVER_MUTATION = gql`
  mutation 
  DriverMutation(
- $name:String!,
- $team:String!,
- $points:Int!,
- $pictureURL:String!,
- $country:String!,
- $podiums:Int!,
- $championshipWins:Int!){
+ $name: String!,
+ $team: String!,
+ $points: Int!,
+ $pictureURL: String!,
+ $podiums: Int!,
+ $championshipWins: Int!,
+ $country: String!) {
      driver(
-         name:$name,
-         team:$team,
+         name:  $name,
+         team: $team,
          points: $points,
          pictureURL: $pictureURL,
-         country:$country, 
          podiums: $podiums,
-         championshipWins: $championshipWins
+         championshipWins: $championshipWins,
+         country:$country
          ){
             id
+            createdAt
             name
             team
             points
             pictureURL
-            country
             podiums
             championshipWins
+            country
+            
      }
  }
-`
+`;
 
 
 class CreateDriver extends Component {
@@ -39,11 +41,11 @@ class CreateDriver extends Component {
         
         name: '',
         team: '',
-        points: null,
+        points: 0,
         pictureURL: '',
-        country:'',
-        podiums:null,
-        championshipWins: null
+        podiums:0,
+        championshipWins: 0,
+        country:''
     }
 
     /*
@@ -60,9 +62,9 @@ class CreateDriver extends Component {
             team,
             points,
             pictureURL,
-            country,
             podiums,
-            championshipWins
+            championshipWins,
+            country
         } = this.state
 
         return(
@@ -124,17 +126,18 @@ class CreateDriver extends Component {
                 </div>
                 <Mutation 
             mutation={DRIVER_MUTATION} 
-            valiables={{
+            variables={{
             name,
             team,
             points,
             pictureURL,
-            country,
             podiums,
-            championshipWins}}>
+            championshipWins,
+            country}}>
 
             {driverMutation =>
-                <button onClick={driverMutation}>
+                <button 
+                onClick={driverMutation}>
                 Submit
                 </button> 
             }
