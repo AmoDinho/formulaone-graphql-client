@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
+import {Switch, Route} from 'react-router-dom';
 import DriverList from './DriverList';
 import CreateDriver from './CreateDriver';
-import logo from '../logo.svg';
+import Header from './Header';
 import '../styles/App.css';
 
 class App extends Component {
   render() {
-    return <CreateDriver/>
+    return(
+      <div className="center w85">
+       <Header />
+       <div className="ph3 pv1 background-gray">
+       <Switch>
+         <Route exact path="/" component={DriverList}/>
+         <Route exact path="/create" component={CreateDriver}/>
+
+       </Switch>
+       </div>
+      </div>
+    )
   }
 }
 

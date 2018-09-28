@@ -133,7 +133,9 @@ class CreateDriver extends Component {
             pictureURL,
             podiums,
             championshipWins,
-            country}}>
+            country}}
+            onCompleted={() => this.props.history.push('/')}
+            >
 
             {driverMutation =>
                 <button 
