@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 import {AUTH_TOKEN} from '../constants'
+import Search from './Search';
 
 class Header extends Component{
    render(){
@@ -14,6 +15,10 @@ class Header extends Component{
            <Link to="/" className="ml1 no-underline white">
            new
            </Link>
+           <div className="ml1">|</div>
+           <Link to="/search" className="ml1 no-underline black">
+           Search
+           </Link>
            {authToken &&(
                <div className="flex">
                <div className="ml1">|</div>
@@ -24,6 +29,7 @@ class Header extends Component{
            )}
            
            </div>
+        
            <div className="flex flex-fixed">
              {authToken ? (
                  <div 
