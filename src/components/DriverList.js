@@ -4,7 +4,7 @@ import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
 
 
-const FEED_QUERY = gql`
+export const FEED_QUERY = gql`
   {
       feed{
           drivers{
@@ -48,7 +48,12 @@ class DriverList extends Component {
             <div>
 
             { driversToRender.map((driver,index) => (
-            <Driver key={driver.id} driver={driver} index={index}/>
+            <Driver 
+            key={driver.id} 
+            driver={driver} 
+            index={index}
+            updateStoreAfterBoost={this._updateCacheAfterVote}
+            />
             ))}
 
             </div>
@@ -58,6 +63,20 @@ class DriverList extends Component {
    )
         
     }
+
+    _updateCacheAfterBoost = (store, createBoost, driverId) => {
+        const data = store.readQuery({query: FEED_QUERY})
+
+        const boostedDriver = data.feed.drivers.find(driver => driver.id === driverId)
+        boostedDriver.boosts = createBoost.driver.boosts
+        
+        store.writeQuery({query: FEED_QUERY,data})
+    }
+
+
+
+
+
 }
 
 export default DriverList;

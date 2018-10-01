@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {Mutation} from 'react-apollo';
 import {setContext} from 'apollo-link-context';
+import {FEED_QUERY} from './DriverList';
 
 const DRIVER_MUTATION = gql`
  mutation 
@@ -136,6 +137,14 @@ class CreateDriver extends Component {
             championshipWins,
             country}}
             onCompleted={() => this.props.history.push('/')}
+            update={(store,{data:{driver}}) =>{
+                const data = store.readQuery({query: FEED_QUERY})
+                data.feed.drivers.unshift(driver)
+                store.writeQuery({
+                    query: FEED_QUERY,
+                    data
+                })
+            }}
             >
 
             {driverMutation =>

@@ -16,6 +16,7 @@ const VOTE_MUTATION = gql`
                    }
                }
            }
+
            user{
                id
            }
@@ -35,8 +36,14 @@ class Driver extends Component {
                    <span className="gray">{this.props.index +1}</span>
                    {authToken && (
 
-                       <Mutation mutation={VOTE_MUTATION} 
-                       variables={{driverId:this.props.driver.id}}>
+                       <Mutation 
+                       mutation={VOTE_MUTATION} 
+                       variables={{driverId:this.props.driver.id}}
+                       /*we are updating the cache her*/
+                       update={(store, {data: {boost}}) =>
+                          this.props.updateStoreAfterBoost(store, boost, this.props.driver.id)
+                       }
+                       >
                       {voteMutation => (
                        <div className="ml1 gray f11" 
                        onClick={voteMutation}>
