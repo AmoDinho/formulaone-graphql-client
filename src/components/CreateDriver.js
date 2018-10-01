@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {Mutation} from 'react-apollo';
-import {setContext} from 'apollo-link-context';
 import {FEED_QUERY} from './DriverList';
 
 const DRIVER_MUTATION = gql`
