@@ -9,18 +9,29 @@ const FEED_QUERY = gql`
       feed{
           drivers{
               id
+              createdAt
               name
-              
-    team
-    points
-    pictureURL
-    country
-    podiums
-    championshipWins
+              team
+              points
+              pictureURL
+              country
+              podiums
+              championshipWins
+              postedBy{
+                  id
+                  name
+              }
+              boosts{
+                  id
+                  user{
+                      id
+                  }
+              }
           }
       }
   }
 `
+
 
 class DriverList extends Component {
     render(){
@@ -36,11 +47,12 @@ class DriverList extends Component {
         return(
             <div>
 
-                            { driversToRender.map(driver => <Driver key={driver.id} driver={driver}/>)}
+            { driversToRender.map((driver,index) => (
+            <Driver key={driver.id} driver={driver} index={index}/>
+            ))}
 
             </div>
-      )
-    }}
+      )}}
             </Query>
 
    )
