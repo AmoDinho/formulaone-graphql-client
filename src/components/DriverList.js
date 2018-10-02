@@ -7,6 +7,7 @@ import gql from 'graphql-tag';
 export const FEED_QUERY = gql`
   {
       feed{
+
           drivers{
               id
               createdAt
@@ -28,6 +29,7 @@ export const FEED_QUERY = gql`
                   }
               }
           }
+
       }
   }
 `
@@ -37,6 +39,41 @@ const NEW_DRIVERS_SUBSCRIPTION = gql`
       newDriver{
           node {
               id
+              driver{
+              id
+              createdAt
+              name
+              team
+              points
+              pictureURL
+              country
+              podiums
+              championshipWins
+              postedBy{
+                  id
+                  name
+              }
+              boosts{
+                  id
+                  user{
+                      id
+                  }
+              }
+          }
+
+
+          }
+      }
+  }
+`
+
+const NEW_BOOSTS_SUBCRIPTION = gql`
+ subscription{
+    newBoost{
+          node {
+              id
+             driver{
+            id
               createdAt
               name
               team
@@ -50,19 +87,21 @@ const NEW_DRIVERS_SUBSCRIPTION = gql`
                   name
             
               }
-              boosts
-              {
+              boosts {
                   id
+                  user{
+                      id
+                  }
               }
-              user{
-                  id
-              }
+             }
+            user{
+                id
 
+            }
           }
-      }
-  }
+        }
+     }
 `
-
 
 class DriverList extends Component {
    
@@ -86,7 +125,7 @@ class DriverList extends Component {
 
 */
 
-_subscribeToNewBoosts = subscribeToMore => {
+_subscribeToNewDrivers = subscribeToMore => {
     subscribeToMore({
         //This is the GraphQL query
         document: NEW_DRIVERS_SUBSCRIPTION,
@@ -106,6 +145,15 @@ _subscribeToNewBoosts = subscribeToMore => {
         }
     })
 }
+
+
+//THIS Lets us subscribe to more boosts for Drivers:
+
+_subscribeToNewBoosts = subscribeToMore => {
+    subscribeToMore({
+        document: NEW_BOOSTS_SUBCRIPTION
+    })
+}
    
     render(){
         
@@ -115,7 +163,8 @@ _subscribeToNewBoosts = subscribeToMore => {
         if (loading) return <div>Fetching</div>
         if (error) return <div>Error</div>
 
-        this._subscribeToNewLinks(subscribeToMore)
+        this._subscribeToNewDrivers(subscribeToMore)
+        this._subscribeToNewBoosts(subscribeToMore)
         const driversToRender = data.feed.drivers
        
         return(
@@ -126,7 +175,7 @@ _subscribeToNewBoosts = subscribeToMore => {
             key={driver.id} 
             driver={driver} 
             index={index}
-            updateStoreAfterBoost={this._updateCacheAfterVote}
+            updateStoreAfterBoost={this._updateCacheAfterBoost}
             />
             ))}
 
