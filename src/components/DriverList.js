@@ -39,7 +39,6 @@ const NEW_DRIVERS_SUBSCRIPTION = gql`
      newDriver {
          node {
              id
-             id
               createdAt
               name
               team
