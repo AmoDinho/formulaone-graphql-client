@@ -1,36 +1,39 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Driver from './Driver';
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
+import {LINKS_PER_PAGE} from '../constants';
 
 
 export const FEED_QUERY = gql`
-  {
-      feed{
+  query FeedQuery($first: Int, $skip: Int, $orderBy: DriverOrderByInput){
+    
+    feed (first: $first, skip: $skip,orderBy: $orderBy){
 
-          drivers{
-              id
-              createdAt
-              name
-              team
-              points
-              pictureURL
-              country
-              podiums
-              championshipWins
-              postedBy{
-                  id
-                  name
-              }
-              boosts{
-                  id
-                  user{
-                      id
-                  }
-              }
-          }
+drivers{
+    id
+    createdAt
+    name
+    team
+    points
+    pictureURL
+    country
+    podiums
+    championshipWins
+    postedBy{
+        id
+        name
+    }
+    boosts{
+        id
+        user{
+            id
+        }
+    }
+}
+count
+}
 
-      }
   }
 `
 
@@ -103,7 +106,20 @@ class DriverList extends Component {
 
     //Updating the cache after a fan has voted for a driver.
     _updateCacheAfterBoost = (store, createBoost, driverId) => {
-        const data = store.readQuery({query: FEED_QUERY})
+       const isNewPage = this.props.location.pathname.includes('new');
+       const page = parseInt(this.props.match.params.page, 10)
+
+       const skip = isNewPage ? (page -1) * LINKS_PER_PAGE : 0
+       const first = isNewPage ? LINKS_PER_PAGE : 100 
+       const orderBy = isNewPage ? 'createdAt_DESC': null
+
+      
+        const data = store.readQuery({
+            query: FEED_QUERY,
+            variables: {first,skip,orderBy}
+        })
+
+
 
         const boostedDriver = data.feed.drivers.find(driver => driver.id === driverId)
         boostedDriver.boosts = createBoost.driver.boosts
@@ -149,32 +165,96 @@ _subscribeToNewBoosts = subscribeToMore => {
         document: NEW_BOOSTS_SUBCRIPTION
     })
 }
-   
+
+//This gives us arguments to put into the variable prop 
+//to implement the pagination
+_getQueryVariables = () => {
+    const isNewPage = this.props.location.pathname.includes('new')
+    const page = parseInt(this.props.match.params.page, 10)
+
+    const skip = isNewPage ? (page - 1) * LINKS_PER_PAGE: 0 
+    const first = isNewPage ? LINKS_PER_PAGE : 100
+    const orderBy = isNewPage ? 'createdAt_DESC' : null
+    return {first, skip, orderBy}
+}   
+
+
+
+//This method will help us get the drivers to render
+_getDriversToRender = data => {
+    const isNewPage = this.props.location.pathname.includes('new');
+    if (isNewPage){
+        return data.feed.drivers
+    }
+
+    const rankedDrivers = data.feed.drivers.slice()
+    rankedDrivers.sort((l1, l2) => l2.boosts.length - l1.boosts.length)
+    return rankedDrivers
+}
+
+
+/*the following to methods help us go to 
+the next/previous pages */
+_nextPage = data => {
+    const page = parseInt(this.props.match.params.page, 10)
+    if (page <= data.feed.count / LINKS_PER_PAGE){
+        const nextPage = page + 1
+        this.props.history.push(`/new/${nextPage}`)
+    }
+}
+
+_previousPage = () => {
+    const page = parseInt(this.props.match.params.page, 10)
+    if (page > 1){
+        const previousPage = page - 1
+        this.props.history.push(`/new/${previousPage}`)
+    }
+}
+
+
     render(){
         
    return(
-    <Query query={FEED_QUERY}>
+   <Query 
+   query={FEED_QUERY}
+   variables={this._getQueryVariables()}
+   >
     {({loading, error, data, subscribeToMore}) => {
         if (loading) return <div>Fetching</div>
         if (error) return <div>Error</div>
 
         this._subscribeToNewDrivers(subscribeToMore)
         this._subscribeToNewBoosts(subscribeToMore)
-        const driversToRender = data.feed.drivers
+
+        const driversToRender = this._getDriversToRender(data)
+        const isNewPage = this.props.location.pathname.includes('new');
+        const pageIndex = this.props.match.params.page
+           ? (this.props.match.params.page -1) * LINKS_PER_PAGE
+           : 0 
        
         return(
-            <div>
+            <Fragment>
 
             { driversToRender.map((driver,index) => (
             <Driver 
             key={driver.id} 
             driver={driver} 
-            index={index}
+            index={index + pageIndex}
             updateStoreAfterBoost={this._updateCacheAfterBoost}
             />
             ))}
+            {isNewPage && (
+               <div className="flex ml4 mv3 gray">
+               <div className="pointer mr2" onClick={this._previousPage}>
+                 Previous
+               </div>
+               <div className="pointer" onClick={() => this._nextPage(data)}>
+                 Next
+              </div> 
+               </div>
+            )}
 
-            </div>
+            </Fragment>
       )}}
             </Query>
 
