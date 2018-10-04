@@ -16,6 +16,10 @@ import {getMainDefinition} from 'apollo-utilities';
 
 
 
+//Our URI
+const httpLink = createHttpLink({
+    uri: 'http://localhost:4000'
+})
 
 
 
@@ -30,10 +34,6 @@ const authLink = setContext((_, {headers}) => {
     }
 })
 
-//Our URI
-const httpLink = createHttpLink({
-    uri: 'http://localhost:4000'
-})
 
 
 //Instance of a new WebSocket Connection

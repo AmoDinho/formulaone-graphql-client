@@ -35,12 +35,11 @@ export const FEED_QUERY = gql`
 `
 
 const NEW_DRIVERS_SUBSCRIPTION = gql`
-  subscription {
-      newDriver{
-          node {
-              id
-              driver{
-              id
+ subscription {
+     newDriver {
+         node {
+             id
+             id
               createdAt
               name
               team
@@ -53,18 +52,15 @@ const NEW_DRIVERS_SUBSCRIPTION = gql`
                   id
                   name
               }
-              boosts{
+              boosts {
                   id
-                  user{
+                  user {
                       id
                   }
               }
-          }
-
-
-          }
-      }
-  }
+         }
+     }
+ }
 `
 
 const NEW_BOOSTS_SUBCRIPTION = gql`
@@ -73,7 +69,7 @@ const NEW_BOOSTS_SUBCRIPTION = gql`
           node {
               id
              driver{
-            id
+              id
               createdAt
               name
               team
