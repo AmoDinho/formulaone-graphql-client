@@ -10,23 +10,20 @@ class Header extends Component{
        return (
            <nav className="flex bb justify-between  red">
            <div className="flex flex-fixed white">
-           <div className="fw7 mr1">Forumla One</div>
-           <Link to="/" className="ml1 no-underline white">
-           new
+           <div className="fw7 ml4"><h1>Formula One</h1></div>
+           <Link to="/" className="ml5 no-underline black">
+           <h3>New</h3>
            </Link>
-           <div className="ml1">|</div>
-           <Link to="/top" className="ml1 no-underline white">
-           top
+           <Link to="/top" className="ml3 no-underline black">
+           <h3>Top</h3>
            </Link>
-           <div className="ml1">|</div>
-           <Link to="/search" className="ml1 no-underline black">
-           Search
+           <Link to="/search" className="ml3 no-underline black">
+           <h3>Search</h3>
            </Link>
            {authToken &&(
                <div className="flex">
-               <div className="ml1">|</div>
-               <Link to="/create" className="ml1 no-underline white">
-               submit
+               <Link to="/create" className="ml3 no-underline white">
+               <h3>Submit</h3>
                </Link>
                </div>
            )}
@@ -41,11 +38,11 @@ class Header extends Component{
                      localStorage.removeItem(AUTH_TOKEN)
                      this.props.history.push(`/`)
                  }}>
-                 logout
+                 <h3>Logout</h3>
                  </div>
              ): (
-                <Link to="/login" className="ml1 no-underline white">
-               Login
+                <Link to="/login" className="mr4 no-underline white">
+               <h3>Login</h3>
                </Link>
              )}
            </div>
