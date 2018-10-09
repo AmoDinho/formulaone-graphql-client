@@ -8,7 +8,7 @@ class Header extends Component{
     const authToken = localStorage.getItem(AUTH_TOKEN)
 
        return (
-           <div className="flex pal justify-between nowrap red">
+           <nav className="flex bb justify-between  red">
            <div className="flex flex-fixed white">
            <div className="fw7 mr1">Forumla One</div>
            <Link to="/" className="ml1 no-underline white">
@@ -49,7 +49,7 @@ class Header extends Component{
                </Link>
              )}
            </div>
-           </div>
+           </nav>
        )
    }
 }

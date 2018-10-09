@@ -10,7 +10,7 @@ import '../styles/App.css';
 class App extends Component {
   render() {
     return(
-      <div className="center w85">
+      <div >
        <Header />
        <div className="ph3 pv1 background-gray">
        <Switch>
