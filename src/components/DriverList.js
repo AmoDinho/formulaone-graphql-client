@@ -234,7 +234,7 @@ _previousPage = () => {
        
         return(
             <Fragment>
-
+          
             { driversToRender.map((driver,index) => (
             <Driver 
             key={driver.id} 

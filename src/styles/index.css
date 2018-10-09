@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Jura');
 
 
-/*For headings 
 
-font-family: 'Audiowide', cursive;
-
-*/
 
 body {
   margin: auto;
@@ -14,6 +10,12 @@ body {
 
 }
 
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Audiowide', cursive;
+
+}
+
+
 input{
   max-width: 500px;
 
@@ -21,11 +23,11 @@ input{
 
 
 .white{
-  color: #ffffff;
+  color: #F7F7FF;
 }
 
 .red{
-  background-color: red;
+  background-color: #CC0001;
 }
 
 .background-black{
