@@ -1,0 +1,56 @@
+.menu ul {
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    
+    justify-content: space-around;
+    align-content: end;
+    list-style: none;
+  }
+  
+
+ 
+  
+  [aria-controls="menu-list"] {
+    visibility: hidden;
+
+}
+
+
+  @media (max-width: 1000px) {
+    .menu {
+      order: -1;
+      perspective: 800px;
+    }
+    [aria-controls="menu-list"] {
+      display: block;
+      margin-bottom: 10px;
+      visibility: visible;
+    }
+  
+    .menu ul {
+      max-height: 0;
+      overflow: hidden;
+      transform: rotateX(90deg);
+      transition: all 0.5s;
+    }
+  
+    [aria-expanded="true"] ~ ul {
+      display: grid;
+      max-height: 500px;
+      transform: rotateX(0);
+    }
+  
+    [aria-expanded="false"] .close {
+      display: none;
+    }
+  
+    [aria-expanded="true"] .close {
+      display: inline-block;
+    }
+  
+    [aria-expanded="true"] .open {
+      display: none;
+    }
+  
+  }
