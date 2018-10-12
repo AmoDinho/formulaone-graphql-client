@@ -1,11 +1,12 @@
 .menu ul {
     
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    
-    justify-content: space-around;
-    align-content: end;
+    grid-template-columns: repeat(8, minmax(10px,1fr));
     list-style: none;
+    justify-content: space-around;
+    margin-left: 200px;
+    grid-column-gap: 20px;
+    margin-bottom:-20px;
   }
   
 
@@ -18,6 +19,7 @@
 
 
   @media (max-width: 1000px) {
+
     .menu {
       order: -1;
       perspective: 800px;
@@ -26,12 +28,15 @@
       display: block;
       margin-bottom: 10px;
       visibility: visible;
+
+      
     }
   
     .menu ul {
       max-height: 0;
       overflow: hidden;
       transform: rotateX(90deg);
+      grid-template-rows: repeat(7,1fr);
       transition: all 0.5s;
     }
   

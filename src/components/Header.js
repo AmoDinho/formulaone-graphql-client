@@ -16,15 +16,17 @@ class Header extends Component{
     const authToken = localStorage.getItem(AUTH_TOKEN)
 
        return (
-        <nav className="menu bb  red">
+        <nav className="menu bb red">
+        
+        <div className="flex flex-fixed white">
+
+        <div className="fw7 mr1 ml4 white"><h1>Forumla One</h1>
         <button aria-expanded="false"  onClick={this.toggleNav} aria-controls="menu-list">
           <span className="open">☰</span>
           <span className="close">×</span>
           Menu
         </button>
-        <div className="flex flex-fixed white">
-
-        <div className="fw7 mr1 white"><h1>Forumla One</h1></div>
+        </div>
         <ul id="menu-list">
           <li>
           <Link to="/" 
@@ -34,39 +36,40 @@ class Header extends Component{
           </li>
 
           <li>
-          <Link to="/top" className="ml3 grow dtc no-underline black">
+          <Link to="/top" className=" grow dtc no-underline black">
            <h3>Top</h3>
            </Link>          
            </li>
 
           <li>
-          <Link to="/search" className="mt2 grow  dtc no-underline black">
+          <Link to="/search" className=" grow  dtc no-underline black">
            <h3>Search</h3>
            </Link>
           </li>
 
           <li>
-          <Link to="/Circuits" className="mt2 grow  dtc no-underline black">
+          <Link to="/Circuits" className=" ml7 grow  dtc no-underline black">
            <h3>Circuits</h3>
            </Link>          
            </li>
 
           <li>
-          <Link to="/theatre" className="mt2 grow  dtc no-underline black">
+          <Link to="/theatre" className=" grow  dtc no-underline black">
            <h3>Theatre</h3>
            </Link>          
            </li>
 
            <li>
+             
            {authToken &&(
-               <div className="flex">
-               <Link to="/create" className="ml3 grow mt2 no-underline white">
+              
+               <Link to="/create" className="ml3 grow  no-underline white">
                <h3>Submit</h3>
                </Link>
-               </div>
+               
            )}
            </li>
-
+           <li>
            {authToken ? (
                  <div 
                  className="ml1 mt2 grow pointer red"
@@ -77,20 +80,20 @@ class Header extends Component{
                  <h3>Logout</h3>
                  </div>
              ): (
-                 <li>
-                <Link to="/login" className="mr4 grow mt2 no-underline white">
-               <h3>Login</h3>
-               </Link>
-               </li>
+             <Link to="/login" className=" login ml7 grow dtc grow no-underline white">
+             <h3>Login</h3>
+             </Link>
+                
              )}
+                
+               </li>
+         
         </ul>
         
           </div>
 
 
-         <div className="flex flex-fixed">
-            
-           </div>
+         
       </nav>
        )
    }
