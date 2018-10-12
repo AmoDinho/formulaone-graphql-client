@@ -3,6 +3,7 @@ import { AUTH_TOKEN } from '../constants';
 import {timeDifferenceForDate} from '../utils';
 import {Mutation} from 'react-apollo';
 import gql from 'graphql-tag';
+import '../styles/Driver.css';
 
 const VOTE_MUTATION = gql`
    mutation BoostMutation($driverId: ID!){
@@ -55,11 +56,11 @@ class Driver extends Component {
                    )}
                   
                   </div>
-                  <div className="ml1">
-                   <div>
+                  <div className="ml1 center ">
+                   <div className="card " style={{backgroundImage:`url(${this.props.driver.pictureURL})`}}>
                    {this.props.driver.name} ({this.props.driver.team})
                     {this.props.driver.points} 
-                    <img alt={this.props.driver.name} src={this.props.driver.pictureURL} />
+                    
                     {this.props.driver.country}
                     {this.props.driver.podiums}
                     {this.props.driver.championshipWins} 

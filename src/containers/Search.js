@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withApollo} from 'react-apollo';
 import gql from 'graphql-tag';
-import Driver from './Driver';
+import Driver from '../components/Driver';
 
 const FEED_SEARCH_QUERY = gql`
   query FeedSearchQuery($filter: String!){

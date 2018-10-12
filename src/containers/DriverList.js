@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import Driver from './Driver';
+import Driver from '../components/Driver';
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
 import {LINKS_PER_PAGE} from '../constants';
@@ -234,7 +234,7 @@ _previousPage = () => {
        
         return(
             <Fragment>
-
+                <div class="cf pa2">
             { driversToRender.map((driver,index) => (
             <Driver 
             key={driver.id} 
@@ -253,7 +253,7 @@ _previousPage = () => {
               </div> 
                </div>
             )}
-
+            </div>
             </Fragment>
       )}}
             </Query>
