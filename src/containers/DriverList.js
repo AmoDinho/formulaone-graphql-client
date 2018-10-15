@@ -3,6 +3,7 @@ import Driver from '../components/Driver';
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
 import {LINKS_PER_PAGE} from '../constants';
+import '../styles/DriverList.css';
 
 
 export const FEED_QUERY = gql`
@@ -234,7 +235,7 @@ _previousPage = () => {
        
         return(
             <Fragment>
-                <div class="cf pa2">
+                <div className="driver_list">
             { driversToRender.map((driver,index) => (
             <Driver 
             key={driver.id} 

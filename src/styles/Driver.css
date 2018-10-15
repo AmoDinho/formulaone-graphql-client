@@ -3,4 +3,17 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
+    border-radius: 20px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap:10px;
+    align-items: end;
+
+}
+
+span{
+    color:#ffffff;
+    font-family: 'Audiowide', cursive;
 }

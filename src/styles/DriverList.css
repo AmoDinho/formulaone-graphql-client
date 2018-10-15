@@ -1,0 +1,11 @@
+.driver_list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1000px){
+    .driver_list{
+        
+        grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    }
+}

@@ -58,12 +58,20 @@ class Driver extends Component {
                   </div>
                   <div className="ml1 center ">
                    <div className="card " style={{backgroundImage:`url(${this.props.driver.pictureURL})`}}>
-                   {this.props.driver.name} ({this.props.driver.team})
-                    {this.props.driver.points} 
+                   <div className="card_info mt6">
+                   <div className="number ml2 mt5"> <span>{this.props.driver.points}</span></div>
+                  <div className="name ml2 mt3"><span>{this.props.driver.name}</span></div>
+                  <div className="team ml2 mt3"> <span>{this.props.driver.team}</span></div>
                     
-                    {this.props.driver.country}
-                    {this.props.driver.podiums}
-                    {this.props.driver.championshipWins} 
+                   </div>
+                   
+                   
+                   
+                   
+                    
+                    
+     
+                    
                    </div>
                    <div className="f6 lh-copy gray">
                    {this.props.driver.boosts.length} boosts | by{' '}
