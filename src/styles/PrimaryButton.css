@@ -1,0 +1,15 @@
+.primary{
+    border-radius: 5px;
+    background-color: #CC0001;
+    color: #ffffff;
+    height:35px;
+    width:143px;
+    border:none;
+}
+
+.primary:hover{
+    background-color: #ffffff; 
+    color: #000000;
+    border:2px solid #CC0001;
+
+}

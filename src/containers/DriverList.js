@@ -4,6 +4,8 @@ import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
 import {LINKS_PER_PAGE} from '../constants';
 import '../styles/DriverList.css';
+import PrimaryButton from '../components/PrimaryButton';
+import SecondaryButton from '../components/SecondaryButton';
 
 
 export const FEED_QUERY = gql`
@@ -248,12 +250,18 @@ _previousPage = () => {
             </div>
             {isNewPage && (
                <div className="flex ml4 mv3 center gray">
-               <div className="pointer mr2" onClick={this._previousPage}>
-                 Previous
-               </div>
-               <div className="pointer" onClick={() => this._nextPage(data)}>
-                 Next
-              </div> 
+              <SecondaryButton
+              className={"pointer"}
+               onClick={() => this._previousPage()}
+               text="Back" 
+              />
+
+               
+              <PrimaryButton
+              className={"pointer ml5 primary"}
+              onClick={() => this._nextPage(data)}
+              text="Next"
+              />
                </div>
             )}
             </Fragment>
