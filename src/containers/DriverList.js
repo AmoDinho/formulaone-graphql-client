@@ -244,8 +244,10 @@ _previousPage = () => {
             updateStoreAfterBoost={this._updateCacheAfterBoost}
             />
             ))}
+         
+            </div>
             {isNewPage && (
-               <div className="flex ml4 mv3 gray">
+               <div className="flex ml4 mv3 center gray">
                <div className="pointer mr2" onClick={this._previousPage}>
                  Previous
                </div>
@@ -254,7 +256,6 @@ _previousPage = () => {
               </div> 
                </div>
             )}
-            </div>
             </Fragment>
       )}}
             </Query>

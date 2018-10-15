@@ -35,7 +35,16 @@ class Driver extends Component {
                 <div className="flex mt2 items-start">
                   <div className="flex items-center">
                    <span className="gray">{this.props.index +1}</span>
-                   {authToken && (
+                  
+                  
+                  </div>
+                  <div className="ml1 center ">
+                   <div className="card " style={{backgroundImage:`url(${this.props.driver.pictureURL})`}}>
+                   <div className="card_info mt6 ml3">
+                   <div className="number ml2 mt5"> <span>{this.props.driver.points}</span></div>
+                  <div className="name ml2 mt3"><span>{this.props.driver.name}</span>
+                  
+                  {authToken &&(
 
                        <Mutation 
                        mutation={VOTE_MUTATION} 
@@ -45,22 +54,23 @@ class Driver extends Component {
                           this.props.updateStoreAfterBoost(store, boost, this.props.driver.id)
                        }
                        >
-                      {voteMutation => (
-                       <div className="ml1 gray f11" 
-                       onClick={voteMutation}>
-                        ▲
-                        </div>
-                      )}
+                        {voteMutation => (
+                        <span  onClick={voteMutation}
+                        className=" ml5 pointer white">
+                        ▲ {this.props.driver.boosts.length}
+                        </span>
+                         )}
                       
-                        </Mutation>
-                   )}
+                      </Mutation>
+                  )}
                   
-                  </div>
-                  <div className="ml1 center ">
-                   <div className="card " style={{backgroundImage:`url(${this.props.driver.pictureURL})`}}>
-                   <div className="card_info mt6">
-                   <div className="number ml2 mt5"> <span>{this.props.driver.points}</span></div>
-                  <div className="name ml2 mt3"><span>{this.props.driver.name}</span></div>
+                   
+                   
+                   </div>
+
+
+
+
                   <div className="team ml2 mt3"> <span>{this.props.driver.team}</span></div>
                     
                    </div>
@@ -73,13 +83,7 @@ class Driver extends Component {
      
                     
                    </div>
-                   <div className="f6 lh-copy gray">
-                   {this.props.driver.boosts.length} boosts | by{' '}
-                   {this.props.driver.postedBy
-                   ? this.props.driver.postedBy.name
-                  : 'Unknown'}{' '}
-                  {timeDifferenceForDate(this.props.driver.createdAt)}
-                   </div>
+                  
                 </div>
 
                 </div>

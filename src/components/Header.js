@@ -63,7 +63,7 @@ class Header extends Component{
              
            {authToken &&(
               
-               <Link to="/create" className="ml3 grow  no-underline white">
+               <Link to="/create" className="ml3 grow dtc no-underline black">
                <h3>Submit</h3>
                </Link>
                
@@ -72,7 +72,7 @@ class Header extends Component{
            <li>
            {authToken ? (
                  <div 
-                 className="ml1 mt2 grow pointer red"
+                 className="ml1 mt2 grow pointer white"
                  onClick={() => {
                      localStorage.removeItem(AUTH_TOKEN)
                      this.props.history.push(`/`)
