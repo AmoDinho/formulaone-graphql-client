@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {AUTH_TOKEN} from '../constants';
 import {Mutation} from 'react-apollo';
 import gql from 'graphql-tag';
+import * as Yup from "yup";
+import { withFormik } from "formik";
+
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation($email: String!, $password: String!, $name: String!){
@@ -20,34 +23,65 @@ const LOGIN_MUTATION = gql`
   }
 `
 
+const formikEnhancer = withFormik({
+    validationSchema: Yup.object().shape({
+        email: Yup.string()
+          .email("Invalid Email Address")
+          .required("Email is required"),
+        password: Yup.string()
+           .min(5,"Invalid Password")
+           .required("Password has to be longer than 5 characters"),
+        name: Yup.string()
+         .required("Name is required")
+        
+    })
+})
+
+
 class Login extends Component {
     state = {
         login: true,
         email: '',
         password: '',
-        name:''
+        name:'',
+        values: '',
+        touched:'',
+       
+        errors:''
+
     }
 
     render(){
-        const {login, email, password, name} =this.state
+        const {login, 
+            email, 
+            password, 
+            name,
+            values,
+            touched,
+            dirty,
+            errors
+        } =this.state
         return(
             <div>
             <h4 className="mv3">{login ? 'Login' : 'Sign Up'}</h4>
             <div className="flex flex-column">
             {!login && (
                 <input 
-                value={name}
+                value={values.name}
                 onChange={e => this.setState({name: e.target.value})}
                 type="text"
                 placeholder="Your Name"
                 />
+                
             )}
+           
             <input 
-            value={email}
+            value={values.email}
             onChange={e => this.setState({email: e.target.value})}
             type="email"
             placeholder="Your email"
             />
+            
             <input 
             value={password}
             onChange={e => this.setState({password: e.target.value})}
@@ -101,4 +135,6 @@ class Login extends Component {
     }
 }
 
-export default Login;
+
+const MyEnhanchedForm = formikEnhancer(Login);
+export default MyEnhanchedForm;
