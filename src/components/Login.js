@@ -21,13 +21,21 @@ const LOGIN_MUTATION = gql`
 `
 
 class Login extends Component {
-    state = {
+    constructor(props) {
+        super(props);
+
+    this.state = {
         login: true,
         email: '',
         password: '',
         name:''
     }
+    }
 
+
+    validateForm(){
+        return this.state.email > 0 && this.state.password.length > 0;
+    }
     render(){
         const {login, email, password, name} =this.state
         return(
@@ -47,11 +55,13 @@ class Login extends Component {
             onChange={e => this.setState({email: e.target.value})}
             type="email"
             placeholder="Your email"
+            required
             />
             <input 
             value={password}
             onChange={e => this.setState({password: e.target.value})}
             type="password"
+            required
             placeholder="Choose a safe password"
             />
             
@@ -62,9 +72,13 @@ class Login extends Component {
               variables={{email,password, name}}
               onCompleted={data => this._confirm(data)}>
              {mutation => (
-                <div className="pointer mr2 button" onClick={mutation}>
-                 {login ? 'login' : 'create an account'}
-              </div>
+                
+
+              <button className="pointer mr2 "
+              onClick={mutation}
+              disabled={!this.validateForm()}>
+              {login ? 'login' : 'create an account'}
+              </button>
              )}
              
                  
