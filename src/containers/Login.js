@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {AUTH_TOKEN} from '../constants';
 import {Mutation} from 'react-apollo';
 import gql from 'graphql-tag';
-import * as Yup from "yup";
-import { withFormik } from "formik";
+
 
 
 const SIGNUP_MUTATION = gql`
@@ -23,20 +22,6 @@ const LOGIN_MUTATION = gql`
   }
 `
 
-const formikEnhancer = withFormik({
-    validationSchema: Yup.object().shape({
-        email: Yup.string()
-          .email("Invalid Email Address")
-          .required("Email is required"),
-        password: Yup.string()
-           .min(5,"Invalid Password")
-           .required("Password has to be longer than 5 characters"),
-        name: Yup.string()
-         .required("Name is required")
-        
-    })
-})
-
 
 class Login extends Component {
     state = {
@@ -44,11 +29,7 @@ class Login extends Component {
         email: '',
         password: '',
         name:'',
-        values: '',
-        touched:'',
-       
-        errors:''
-
+      
     }
 
     render(){
@@ -56,10 +37,7 @@ class Login extends Component {
             email, 
             password, 
             name,
-            values,
-            touched,
-            dirty,
-            errors
+         
         } =this.state
         return(
             <div>
@@ -76,14 +54,14 @@ class Login extends Component {
             )}
            
             <input 
-            value={values.email}
+            value={this.state.email}
             onChange={e => this.setState({email: e.target.value})}
             type="email"
             placeholder="Your email"
             />
             
             <input 
-            value={password}
+            value={this.state.password}
             onChange={e => this.setState({password: e.target.value})}
             type="password"
             placeholder="Choose a safe password"
@@ -136,5 +114,5 @@ class Login extends Component {
 }
 
 
-const MyEnhanchedForm = formikEnhancer(Login);
-export default MyEnhanchedForm;
+
+export default Login;
