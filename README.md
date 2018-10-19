@@ -1,4 +1,4 @@
-# Formula One App
+# Formula One App 🏎
 
 
 This is the front-end for a GraphQL Forumla One App. It is written in React and uses Apollo as it's bindings to a GraphQL server.
@@ -32,6 +32,7 @@ $ yarn start
 
 ```
 
+Your backend server should be running on `localhost://300`, create-react-app will default to `localhost://3001` for you.
 
 
 
