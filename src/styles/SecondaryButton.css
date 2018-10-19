@@ -1,0 +1,15 @@
+.secondary{
+    border-radius: 5px;
+    background-color: #ffffff; 
+    color: #000000;
+    height:35px;
+    width:143px;
+    border:2px solid #CC0001;
+}
+
+.secondary:hover{
+    background-color: #CC0001;
+    color: #ffffff;
+    border:none;
+
+}

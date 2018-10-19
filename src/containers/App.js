@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import DriverList from './DriverList';
 import CreateDriver from './CreateDriver';
-import Header from './Header';
+import Header from '../components/Header';
 import Search from './Search';
 import Login from './Login';
 import '../styles/App.css';
@@ -11,8 +11,8 @@ class App extends Component {
   render() {
     return(
       <div >
-       <Header />
-       <div className="ph3 pv1 background-gray">
+       <Header/>
+       <div className="ph3 pv1 background-gray center">
        <Switch>
        <Route exact path="/" render={() => <Redirect to="/new/1"/>} />
        <Route exact path="/create" component={CreateDriver}/>

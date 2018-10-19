@@ -1,8 +1,11 @@
 import React, {Component, Fragment} from 'react';
-import Driver from './Driver';
+import Driver from '../components/Driver';
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
 import {LINKS_PER_PAGE} from '../constants';
+import '../styles/DriverList.css';
+import PrimaryButton from '../components/PrimaryButton';
+import SecondaryButton from '../components/SecondaryButton';
 
 
 export const FEED_QUERY = gql`
@@ -103,6 +106,9 @@ const NEW_BOOSTS_SUBCRIPTION = gql`
 
 class DriverList extends Component {
    
+    state={
+        login: false
+    }
 
     //Updating the cache after a fan has voted for a driver.
     _updateCacheAfterBoost = (store, createBoost, driverId) => {
@@ -213,6 +219,8 @@ _previousPage = () => {
 
 
     render(){
+
+        const {login} = this.state;
         
    return(
    <Query 
@@ -234,7 +242,7 @@ _previousPage = () => {
        
         return(
             <Fragment>
-
+                <div className="driver_list">
             { driversToRender.map((driver,index) => (
             <Driver 
             key={driver.id} 
@@ -243,17 +251,26 @@ _previousPage = () => {
             updateStoreAfterBoost={this._updateCacheAfterBoost}
             />
             ))}
+         
+            </div>
             {isNewPage && (
-               <div className="flex ml4 mv3 gray">
-               <div className="pointer mr2" onClick={this._previousPage}>
-                 Previous
+               <div className="flex ml4 mv3 center gray">
+             
+               <div className="primary button pointer"
+               onClick={() => this._nextPage(data)}
+               >
+               Next
                </div>
-               <div className="pointer" onClick={() => this._nextPage(data)}>
-                 Next
-              </div> 
+               
+               <div className="ml3 secondary button pointer"
+               onClick={() => this._previousPage()}
+               >
+               Previous
+               </div>
+
+             
                </div>
             )}
-
             </Fragment>
       )}}
             </Query>

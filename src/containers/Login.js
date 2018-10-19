@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {AUTH_TOKEN} from '../constants';
 import {Mutation} from 'react-apollo';
 import gql from 'graphql-tag';
+import '../styles/Login.css';
+import PrimaryButton from '../components/PrimaryButton';
+import SecondaryButton from '../components/SecondaryButton';
+
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation($email: String!, $password: String!, $name: String!){
@@ -20,6 +24,7 @@ const LOGIN_MUTATION = gql`
   }
 `
 
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +33,12 @@ class Login extends Component {
         login: true,
         email: '',
         password: '',
-        name:''
+        name:'',
+      
+    }
+
+    validateForm(){
+        return this.state.email > 0 && this.state.password.length > 0;
     }
     }
 
@@ -37,33 +47,54 @@ class Login extends Component {
         return this.state.email > 0 && this.state.password.length > 0;
     }
     render(){
-        const {login, email, password, name} =this.state
+        const {
+            login, 
+            email, 
+            password, 
+            name,
+         
+        } =this.state
         return(
-            <div>
-            <h4 className="mv3">{login ? 'Login' : 'Sign Up'}</h4>
-            <div className="flex flex-column">
+            <div className="login">
+            <h2 className="mv3">{login ? 'Welcome Back!' : 'Sign Up'}</h2>
+            <div className=" login_form flex flex-column">
             {!login && (
+            <label htmlFor="name"> Name
+
                 <input 
-                value={name}
+                value={this.state.name}
                 onChange={e => this.setState({name: e.target.value})}
                 type="text"
                 placeholder="Your Name"
                 />
+                            </label>
+
             )}
+
+        <label htmlFor="email"> Email
+
             <input 
-            value={email}
+            value={this.state.email}
             onChange={e => this.setState({email: e.target.value})}
             type="email"
+<<<<<<< HEAD:src/containers/Login.js
+            placeholder="name@example.io"
+=======
             placeholder="Your email"
             required
+>>>>>>> master:src/components/Login.js
             />
+            </label>
+
+      <label htmlFor="password"> Password
             <input 
-            value={password}
+            value={this.state.password}
             onChange={e => this.setState({password: e.target.value})}
             type="password"
             required
             placeholder="Choose a safe password"
             />
+            </label>
             
             </div>
             <div className="flex mt3">
@@ -72,13 +103,18 @@ class Login extends Component {
               variables={{email,password, name}}
               onCompleted={data => this._confirm(data)}>
              {mutation => (
-                
 
-              <button className="pointer mr2 "
-              onClick={mutation}
-              disabled={!this.validateForm()}>
-              {login ? 'login' : 'create an account'}
-              </button>
+                 <PrimaryButton
+                 className="pointer mr2 "
+                 onClick={mutation}
+               disabled={!this.validateForm()}
+              login={this.state.login}
+               />
+            
+      
+              
+                 
+              
              )}
              
                  
@@ -86,16 +122,12 @@ class Login extends Component {
             
 
             </Mutation>
-            <div 
-            className="pointer button"
+            
+            <SecondaryButton
+            className="pointer"
+            login={this.state.login}
             onClick={() => this.setState({login: !login})}
-            >
-            {login
-                   ? 'need to create an account?'
-                   : 'already have an account?'             
-             }
-            </div>
-
+            />
 
             </div>
             </div>
@@ -114,5 +146,7 @@ class Login extends Component {
         localStorage.setItem(AUTH_TOKEN,token)
     }
 }
+
+
 
 export default Login;
