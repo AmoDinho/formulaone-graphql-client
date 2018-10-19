@@ -3,6 +3,32 @@
 
 This is the front-end for a GraphQL Forumla One App. It is written in React and uses Apollo as it's bindings to a GraphQL server.
 
+The back-end repo is [here](https://github.com/AmoDinho/formulaone-graphql/blob/master/README.md)
+
+# Setup Instructions
+
+First clone the repo
+
+```
+$ git clone __repoURL__ 
+
+```
+
+Then you need to install the modules: 
+
+```
+$ yarn install
+```
+
+
+Then you start the dev server:
+
+```
+$ yarn start
+
+```
+
+# Setup 
 To-do:
 - [ ] Setup instructions
 - [ ] Containerize the app?
