@@ -5,12 +5,16 @@ This is the front-end for a GraphQL Forumla One App. It is written in React and 
 
 The back-end repo is [here](https://github.com/AmoDinho/formulaone-graphql/blob/master/README.md)
 
+
+This project uses yarn which can be downloaded from [here](https://yarnpkg.com/en/).
+
+
 # Setup Instructions
 
 First clone the repo
 
 ```
-$ git clone __repoURL__ 
+$ git clone https://github.com/AmoDinho/formulaone-graphql-client.git 
 
 ```
 
@@ -28,10 +32,7 @@ $ yarn start
 
 ```
 
-# Setup 
-To-do:
-- [ ] Setup instructions
-- [ ] Containerize the app?
-- [ ] Deployment Options? 
 
-The Design System is made of components in [Figma](https://www.figma.com/file/CmYEyRWOtCuT2fgiTZrsNsMp/F1-App?node-id=0%3A1). 
+
+
+The Design System is on [Figma](https://www.figma.com/file/CmYEyRWOtCuT2fgiTZrsNsMp/F1-App?node-id=0%3A1). 
