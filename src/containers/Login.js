@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {AUTH_TOKEN} from '../constants';
 import {Mutation} from 'react-apollo';
 import gql from 'graphql-tag';
-
+import '../styles/Login.css';
+import PrimaryButton from '../components/PrimaryButton';
+import SecondaryButton from '../components/SecondaryButton';
 
 
 const SIGNUP_MUTATION = gql`
@@ -32,40 +34,53 @@ class Login extends Component {
       
     }
 
+    validateForm(){
+        return this.state.email > 0 && this.state.password.length > 0;
+    }
+
     render(){
-        const {login, 
+        const {
+            login, 
             email, 
             password, 
             name,
          
         } =this.state
         return(
-            <div>
-            <h4 className="mv3">{login ? 'Login' : 'Sign Up'}</h4>
-            <div className="flex flex-column">
+            <div className="login">
+            <h2 className="mv3">{login ? 'Welcome Back!' : 'Sign Up'}</h2>
+            <div className=" login_form flex flex-column">
             {!login && (
+            <label htmlFor="name"> Name
+
                 <input 
-                value={values.name}
+                value={this.state.name}
                 onChange={e => this.setState({name: e.target.value})}
                 type="text"
                 placeholder="Your Name"
                 />
-                
+                            </label>
+
             )}
-           
+
+        <label htmlFor="email"> Email
+
             <input 
             value={this.state.email}
             onChange={e => this.setState({email: e.target.value})}
             type="email"
-            placeholder="Your email"
+            placeholder="name@example.io"
             />
-            
+            </label>
+
+      <label htmlFor="password"> Password
             <input 
             value={this.state.password}
             onChange={e => this.setState({password: e.target.value})}
             type="password"
             placeholder="Choose a safe password"
             />
+            </label>
             
             </div>
             <div className="flex mt3">
@@ -74,9 +89,18 @@ class Login extends Component {
               variables={{email,password, name}}
               onCompleted={data => this._confirm(data)}>
              {mutation => (
-                <div className="pointer mr2 button" onClick={mutation}>
-                 {login ? 'login' : 'create an account'}
-              </div>
+
+                 <PrimaryButton
+                 className="pointer mr2 "
+                 onClick={mutation}
+               disabled={!this.validateForm()}
+              login={this.state.login}
+               />
+            
+      
+              
+                 
+              
              )}
              
                  
@@ -84,16 +108,12 @@ class Login extends Component {
             
 
             </Mutation>
-            <div 
-            className="pointer button"
+            
+            <SecondaryButton
+            className="pointer"
+            login={this.state.login}
             onClick={() => this.setState({login: !login})}
-            >
-            {login
-                   ? 'need to create an account?'
-                   : 'already have an account?'             
-             }
-            </div>
-
+            />
 
             </div>
             </div>

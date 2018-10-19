@@ -1,0 +1,30 @@
+.login{
+    margin-left: 500px;
+    align-items: center;
+    align-content: center;
+    margin-top: 150px;
+}
+
+
+
+input{
+    margin-top: 20px;
+}
+
+input[type="email"]{
+    margin-left: 50px;
+}
+
+input[type="password"]{
+    margin-left: 20px;
+}
+
+input[type="text"]{
+    margin-left: 45px;
+}
+
+@media (max-width:1000px){
+    .login{
+        margin-left: 10px;
+    }
+}

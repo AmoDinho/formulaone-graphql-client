@@ -4,10 +4,19 @@ import '../styles/PrimaryButton.css';
 const PrimaryButton = ({
     className = "",
     onClick,
-    text
+    text,
+    disabled = false,
+    login 
 }) => (
-    <button className={`primary  ${className}`} onClick={onClick}>
-        {text}
+    <button 
+    className={`primary  ${className}`} 
+    onClick={onClick}
+    disabled={disabled}
+    >
+        { text}
+        {login ? 'Login' : 'Sign Up'}
+       
+
     </button>
 );
 

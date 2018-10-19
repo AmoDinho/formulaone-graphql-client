@@ -106,6 +106,9 @@ const NEW_BOOSTS_SUBCRIPTION = gql`
 
 class DriverList extends Component {
    
+    state={
+        login: false
+    }
 
     //Updating the cache after a fan has voted for a driver.
     _updateCacheAfterBoost = (store, createBoost, driverId) => {
@@ -216,6 +219,8 @@ _previousPage = () => {
 
 
     render(){
+
+        const {login} = this.state;
         
    return(
    <Query 
@@ -250,18 +255,20 @@ _previousPage = () => {
             </div>
             {isNewPage && (
                <div className="flex ml4 mv3 center gray">
-              <SecondaryButton
-              className={"pointer"}
-               onClick={() => this._previousPage()}
-               text="Back" 
-              />
-
+             
+               <div className="primary button pointer"
+               onClick={() => this._nextPage(data)}
+               >
+               Next
+               </div>
                
-              <PrimaryButton
-              className={"pointer ml5 primary"}
-              onClick={() => this._nextPage(data)}
-              text="Next"
-              />
+               <div className="ml3 secondary button pointer"
+               onClick={() => this._previousPage()}
+               >
+               Previous
+               </div>
+
+             
                </div>
             )}
             </Fragment>

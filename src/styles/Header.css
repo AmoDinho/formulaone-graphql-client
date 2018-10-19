@@ -6,7 +6,12 @@
     justify-content: space-around;
     margin-left: 200px;
     grid-column-gap: 20px;
-    margin-bottom:-20px;
+    
+    
+  }
+
+  .menu{
+    height: 80px;
   }
   
 

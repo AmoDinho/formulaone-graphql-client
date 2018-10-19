@@ -45,18 +45,7 @@ input{
 
 }
 
-.button{
-  font-family: 'Jura', sans-serif;
-  font-size: 10pt;
-  background-color: buttonface;
-  text-align: center;
-  padding: 2px 6px 3px;
-  border-width: 2px;
-  border-style: outset;
-  border-color: buttonface;
-  cursor: pointer;
-  max-width: 250px;
-}
+
 
 .db{display:block;}
 

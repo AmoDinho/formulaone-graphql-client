@@ -4,10 +4,21 @@ import '../styles/SecondaryButton.css';
 const SecondaryButton = ({
     className = "",
     onClick,
-    text
+    text,
+    disabled = false,
+    login
 }) => (
-    <button className={`secondary  ${className}`} onClick={onClick}>
+    <button 
+    className={`secondary  ${className}`} 
+    onClick={onClick}
+    disabled={disabled}
+
+    >
         {text}
+        {login
+                   ? 'Need to sign up?'
+                   : 'Got an account?'             
+             }
     </button>
 );
 
