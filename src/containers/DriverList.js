@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import Driver from '../components/Driver';
 import {Query} from 'react-apollo';
+import {Link} from 'react-router-dom';
 import gql from 'graphql-tag';
 import {LINKS_PER_PAGE} from '../constants';
 import '../styles/DriverList.css';
@@ -244,12 +245,14 @@ _previousPage = () => {
             <Fragment>
                 <div className="driver_list">
             { driversToRender.map((driver,index) => (
+                <Link to={`/driver/${driver.id}`}  key={driver.id} >
             <Driver 
             key={driver.id} 
             driver={driver} 
             index={index + pageIndex}
             updateStoreAfterBoost={this._updateCacheAfterBoost}
             />
+            </Link>
             ))}
          
             </div>
