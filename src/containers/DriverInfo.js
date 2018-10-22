@@ -17,7 +17,7 @@ const DRIVER_QUERY = gql`
  }
 `
 
-class Driver extends Component {
+class DriverInfo extends Component {
     render(){
         const id = this.props.match.params.id;
         return (
@@ -51,4 +51,4 @@ class Driver extends Component {
     }
 }
 
-export default Driver;
+export default DriverInfo;
