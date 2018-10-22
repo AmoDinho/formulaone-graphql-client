@@ -37,9 +37,7 @@ class Login extends Component {
       
     }
 
-    validateForm(){
-        return this.state.email > 0 && this.state.password.length > 0;
-    }
+  
     }
 
 
@@ -77,12 +75,7 @@ class Login extends Component {
             value={this.state.email}
             onChange={e => this.setState({email: e.target.value})}
             type="email"
-<<<<<<< HEAD:src/containers/Login.js
             placeholder="name@example.io"
-=======
-            placeholder="Your email"
-            required
->>>>>>> master:src/components/Login.js
             />
             </label>
 
