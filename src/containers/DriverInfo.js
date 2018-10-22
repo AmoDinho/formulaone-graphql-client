@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {Query} from 'react-apollo';
 
-const DRIVER_QUERY = gql`
+export const DRIVER_QUERY = gql`
  query DRIVER_QUERY($id:ID!){
      driver(id: $id){
          id
