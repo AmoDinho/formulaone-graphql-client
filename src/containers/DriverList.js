@@ -257,7 +257,7 @@ _previousPage = () => {
          
             </div>
             {isNewPage && (
-               <div className="flex ml4 mv3 center gray">
+               <div className="flex ml4 mv3 center gray pagination_container">
              
                <div className="primary button pointer"
                onClick={() => this._nextPage(data)}
