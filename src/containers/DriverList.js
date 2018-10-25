@@ -41,7 +41,7 @@ count
   }
 `
 
-const NEW_DRIVERS_SUBSCRIPTION = gql`
+export const NEW_DRIVERS_SUBSCRIPTION = gql`
  subscription {
      newDriver {
          node {
@@ -69,7 +69,7 @@ const NEW_DRIVERS_SUBSCRIPTION = gql`
  }
 `
 
-const NEW_BOOSTS_SUBCRIPTION = gql`
+export const NEW_BOOSTS_SUBCRIPTION = gql`
  subscription{
     newBoost{
           node {

@@ -6,6 +6,7 @@ const wait = require('waait');
 import 
 DriverInfo, 
 {DRIVER_QUERY} from "../containers/DriverInfo";
+import { WSAEINVALIDPROCTABLE } from 'constants';
 
 const mocks = [
     {
@@ -87,3 +88,25 @@ it('should render the drivers attributes', async () => {
 })
 
 */
+
+
+it('should show error ui', async () => {
+    const driverMock ={
+        request: {
+            query: DRIVER_QUERY,
+            variables: {id: 1234}
+        },
+        error: new Error('aw, mayn'),
+    };
+
+    const component = renderer.create(
+        <MockedProvider mocks={[driverMock]} addTypename={false}>
+        <DriverInfo {...defaultProps}/>
+        </MockedProvider>,
+    );
+
+    await wait(0);
+
+    const tree = component.toJSON();
+    expect(tree.children).toContain('Error');
+});
