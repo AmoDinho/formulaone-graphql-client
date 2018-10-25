@@ -71,7 +71,7 @@ class CreateDriver extends Component {
 
         return(
             <div>
-                <div className="flex flex-column mt3">
+                <div className="mt3 flex flex-column  container">
                 <input 
                   className="mb2"
                   value={name}

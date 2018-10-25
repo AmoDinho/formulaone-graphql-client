@@ -245,7 +245,7 @@ _previousPage = () => {
             <Fragment>
                 <div className="driver_list">
             { driversToRender.map((driver,index) => (
-                <Link to={`/driver/${driver.id}`}  key={driver.id} >
+                <Link className="Link" to={`/driver/${driver.id}`}  key={driver.id} >
             <Driver 
             key={driver.id} 
             driver={driver} 
