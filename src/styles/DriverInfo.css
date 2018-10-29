@@ -11,3 +11,12 @@ img{
     grid-gap: 100px;
     grid-template-columns: 500px 500px;
 }
+
+
+.display-none{
+    display:none;
+}
+
+.display-block{
+    display:block;
+}

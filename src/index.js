@@ -13,6 +13,7 @@ import { AUTH_TOKEN } from './constants';
 import {split} from 'apollo-link';
 import {WebSocketLink} from 'apollo-link-ws';
 import {getMainDefinition} from 'apollo-utilities';
+import { onError } from "apollo-link-error";
 
 
 
@@ -65,7 +66,10 @@ const link = split(
 const client = new ApolloClient({
     link,
     cache: new InMemoryCache(),
-    onError: (e) => {console.log(e.graphQLErrors)}
+    onError: ({ networkError, graphQLErrors }) => {
+        console.log('graphQLErrors', graphQLErrors)
+        console.log('networkError', networkError)
+      }
 })
 
 
