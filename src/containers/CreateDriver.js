@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import {Mutation} from 'react-apollo';
 import {FEED_QUERY} from './DriverList';
 import {LINKS_PER_PAGE} from '../constants';
+import '../styles/CreateDriver.css';
 
 const DRIVER_MUTATION = gql`
  mutation 
@@ -71,61 +72,102 @@ class CreateDriver extends Component {
 
         return(
             <div>
-                <div className="mt3 flex flex-column  container">
+                
+                <div >
+                    <h1  >Create a new Driver</h1>
+                <form className="mt3  container">
+                <div className="form_row">
+                 <label htmlFor="name">Name:
                 <input 
-                  className="mb2"
+                  className=""
                   value={name}
                   onChange={e => this.setState({ name: e.target.value })}
                   type="text"
+                  required
                   placeholder="Name of your driver"
-                  />
+                  /></label>
+                      </div>
+
+                                 <div className="form_row">
+                  <label htmlFor="team"> Team:
                    <input 
-                  className="mb2"
+                  className=""
                   value={team}
+                  required
                   onChange={e => this.setState({ team: e.target.value })}
                   type="text"
                   placeholder="Name of the driver's team"
-                  />
+                  /></label>
+                  </div>
+
+                                    <div className="form_row">
+                  <label htmlFor="points">Points:
                    <input 
-                  className="mb2"
+                  className="points ml7"
                   value={points}
+                  required
                   onChange={e => this.setState({ points: e.target.value })}
                   type="number"
                   placeholder="1"
-                  />
+                  min="0"
+                  /></label>
+                    </div>
+
+                <div className="form_row">
+                  <label htmlFor="picture">Picture:
                     <input 
-                  className="mb2"
+                  className=""
                   value={pictureURL}
+                  required
                   onChange={e => this.setState({ pictureURL: e.target.value })}
                   type="text"
                   placeholder="picture url"
-                  />
+                  /></label>
+                   </div>
 
+                <div className="form_row">
+                   <label htmlFor="country">Country:
                    <input 
-                  className="mb2"
+                  className=""
                   value={country}
+                  required
                   onChange={e => this.setState({ country: e.target.value })}
                   type="text"
                   placeholder="Origin Country"
-                  />
+                  /></label>
+                  </div>
 
+                <div className="form_row">
+                <label htmlFor="podiums">Podiums:
                   <input 
-                  className="mb2"
+                  className="podiums"
                   value={podiums}
+                  required
                   onChange={e => this.setState({ podiums: e.target.value })}
                   type="number"
                   placeholder="1"
-                  />
+                  min="0"
+                  /></label>
+                  </div>
 
-                  
+                <div className="form_row">
+                  <label htmlFor="championships">Championships:
                   <input 
-                  className="mb2"
+                  className="championshipWins"
+                  required
                   value={championshipWins}
                   onChange={e => this.setState({ championshipWins: e.target.value })}
                   type="number"
+                  required
                   placeholder="1"
-                  />
+                  min="0"
+                  /></label>
+                  </div>
+
+                  </form>
                 </div>
+
+
                 <Mutation 
             mutation={DRIVER_MUTATION} 
             variables={{
@@ -155,8 +197,9 @@ class CreateDriver extends Component {
 
             {driverMutation =>
                 <button 
+                className="primary mt5"
                 onClick={driverMutation}>
-                Submit
+                Create New Driver
                 </button> 
             }
                 
