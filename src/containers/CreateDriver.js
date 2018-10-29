@@ -197,7 +197,7 @@ class CreateDriver extends Component {
 
             {driverMutation =>
                 <button 
-                className="primary mt5"
+                className="primary_create mt5"
                 onClick={driverMutation}>
                 Create New Driver
                 </button> 

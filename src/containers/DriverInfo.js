@@ -33,7 +33,7 @@ class DriverInfo extends Component {
 
                 const driver = data.driver;
                 return(
-                    <div className="center mt5">
+                    <div className="driverInfo_container mt5">
                     <div>
                     <img src={driver.pictureURL} alt="driver picture"/>
 
