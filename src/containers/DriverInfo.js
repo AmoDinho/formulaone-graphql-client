@@ -38,7 +38,13 @@ mutation UPDATE_DRIVER_MUTATION($id: ID!,$name:String!,$team:String!,$points:Int
 class DriverInfo extends Component {
     state = {
         show: false,
-        
+        name: '',
+        team: '',
+        points: 0,
+        pictureURL: '',
+        podiums:0,
+        championshipWins: 0,
+        country:''
     }
 
     showModal = () =>{
@@ -72,6 +78,15 @@ class DriverInfo extends Component {
     
     render(){
         const id = this.props.match.params.id;
+        const {
+            name,
+            team,
+            points,
+            pictureURL,
+            podiums,
+            championshipWins,
+            country
+        } = this.state
         return (
             <Query
             query={DRIVER_QUERY}
@@ -83,6 +98,7 @@ class DriverInfo extends Component {
                 if (error) return <div>Error</div>;
 
                 const driver = data.driver;
+                
                 let input;
                 return(
                     <div className="driverInfo_container mt5">
@@ -116,65 +132,52 @@ class DriverInfo extends Component {
                             updateDriver({
                                 variables: 
                                 {id,
-                                team: input.team,
-                                name: input.name,
-                                points: input.points,
-                                pictureURL: input.pictureURL,
-                                podiums: input.podiums,
-                                championshipWins: input.championshipWins,
-                                country: input.country
+                                team,
+                                name,
+                                points,
+                                pictureURL,
+                                podiums,
+                                championshipWins,
+                                country
                                 }
                                 
                             });
-                            input.team = "";
-                            input.name = "";
-                            input.points = 0;
-                            input.pictureURL = "";
-                            input.podiums = 0;
-                            input.championshipWins=0;
-                            input.country="";
+                          
                                
                         }}>
 
                         <label htmlFor="name">Name: 
                             <input 
                             defaultValue={driver.name}
-                            ref={node =>{
-                                input = node;
-                            }}
+                            onChange={e => this.setState({ name: e.target.value })}
                             />
                             </label>
                             <label htmlFor="team">Team: 
                             <input 
                             defaultValue={driver.team}
-                            ref={node =>{
-                                input = node;
-                            }}
+                            onChange={e => this.setState({ team: e.target.value })}
                             /></label>
 
                             <label htmlFor="points">Points: 
                                 <input 
                             defaultValue={driver.points}
-                            ref={node =>{
-                                input = node;
-                            }}
+                            onChange={e => this.setState({ points: e.target.value })}
+
                             /></label>
 
                             <label htmlFor="pictureURL">Picture (URL): 
                               <input 
                             defaultValue={driver.pictureURL}
-                            ref={node =>{
-                                input = node;
-                            }}
+                            onChange={e => this.setState({ pictureURL: e.target.value })}
+
                             /></label>
 
 
                           <label htmlFor="podiums">Podiums: 
                               <input 
                             defaultValue={driver.podiums}
-                            ref={node =>{
-                                input = node;
-                            }}
+                            onChange={e => this.setState({ podiums: e.target.value })}
+
                             /></label>
 
                             <label htmlFor="championshipWins">ChampionshipWins:
@@ -182,18 +185,16 @@ class DriverInfo extends Component {
                             
                               <input 
                             defaultValue={driver.championshipWins}
-                            ref={node =>{
-                                input = node;
-                            }}
+                            onChange={e => this.setState({ championshipWins: e.target.value })}
+
                             />
                             </label>
 
-                             <label htmlFor="championshipWins">ChampionshipWins:
+                             <label htmlFor="country">Country:
                               <input 
                             defaultValue={driver.country}
-                            ref={node =>{
-                                input = node;
-                            }}
+                            onChange={e => this.setState({ country: e.target.value })}
+
                             /></label>
 
                                <button type="submit">Submit</button>
