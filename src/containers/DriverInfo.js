@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {Query} from 'react-apollo';
+import "../styles/DriverInfo.css";
 
 export const DRIVER_QUERY = gql`
  query DRIVER_QUERY($id:ID!){
@@ -32,16 +33,22 @@ class DriverInfo extends Component {
 
                 const driver = data.driver;
                 return(
+                    <div className="center mt5">
                     <div>
-
-
-                          {driver.name}
-                    {driver.team}
-                    {driver.points}
                     <img src={driver.pictureURL} alt="driver picture"/>
-                    {driver.podiums}
-                    {driver.championshipWins}
-                    {driver.country}
+
+                    </div>
+
+
+                      <div className="driver_info">
+                      <h2>{driver.name}</h2>
+                      <p>Team: {driver.team}</p>
+                      <p>Points:  {driver.points}</p>
+                     <p>Podiums:  {driver.podiums} </p>
+                     <p>Championships: {driver.championshipWins}</p>
+                      <p>Country:{driver.country} </p>
+                      </div>
+                        
                     </div>
                   
                 );

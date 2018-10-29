@@ -1,0 +1,15 @@
+img{
+    width: 500px;
+    height: 500px;
+}
+
+.driver_info{
+    
+}
+
+.center{
+    
+    display:grid;
+    grid-gap: 100px;
+    grid-template-columns: 500px 500px;
+}
