@@ -58,6 +58,17 @@ class CreateDriver extends Component {
         });
     } */
 
+
+    validateForm(){
+        return this.state.name.length > 0 
+        && this.state.team.length > 0 
+        && this.state.points > 0
+        && this.state.pictureURL.length > 0
+        && this.state.podiums > 0
+        && this.state.championshipWins > 0
+        && this.state.country.length > 0;
+    }
+
     render (){
 
         const {
@@ -198,7 +209,9 @@ class CreateDriver extends Component {
             {driverMutation =>
                 <button 
                 className="primary_create mt5"
-                onClick={driverMutation}>
+                onClick={driverMutation}
+                disabled={!this.validateForm()}
+                >
                 Create New Driver
                 </button> 
             }

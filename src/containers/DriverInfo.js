@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {Query, Mutation} from 'react-apollo';
+import {AUTH_TOKEN} from '../constants';
 import "../styles/DriverInfo.css";
 
 export const DRIVER_QUERY = gql`
@@ -62,6 +63,17 @@ class DriverInfo extends Component {
         this.setState({[name]:val});
     };
 
+
+    validateForm(){
+        return this.state.name.length > 0 
+        && this.state.team.length > 0 
+        && this.state.points > 0
+        && this.state.pictureURL.length > 0
+        && this.state.podiums > 0
+        && this.state.championshipWins > 0
+        && this.state.country.length > 0;
+    }
+
     /*
     updateDriver = async (e, updateItemMutation) => {
         e.preventDefault();
@@ -78,6 +90,8 @@ class DriverInfo extends Component {
     
     render(){
         const id = this.props.match.params.id;
+        const authToken = localStorage.getItem(AUTH_TOKEN);
+
         const {
             name,
             team,
@@ -197,17 +211,23 @@ class DriverInfo extends Component {
 
                             /></label>
 
-                               <button type="submit">Submit</button>
+                               <button 
+                               disabled={!this.validateForm()}
+                               type="submit">Submit</button>
                         </form>
                         )}
                         </Mutation>
 
                         </Modal>
-                        <button
-                        onClick={this.showModal}
-                        >
-                            Update Driver
-                        </button>
+                        {authToken &&(
+                         
+                         <button
+                         onClick={this.showModal}
+                         >
+                             Update Driver
+                         </button>
+                        )}
+                       
                     </div>
                   
                 );
