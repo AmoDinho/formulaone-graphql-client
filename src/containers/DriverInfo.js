@@ -135,49 +135,66 @@ class DriverInfo extends Component {
                             input.country="";
                                
                         }}>
+
+                        <label htmlFor="name">Name: 
                             <input 
                             defaultValue={driver.name}
                             ref={node =>{
                                 input = node;
                             }}
                             />
+                            </label>
+                            <label htmlFor="team">Team: 
                             <input 
                             defaultValue={driver.team}
                             ref={node =>{
                                 input = node;
                             }}
-                            />
+                            /></label>
+
+                            <label htmlFor="points">Points: 
                                 <input 
                             defaultValue={driver.points}
                             ref={node =>{
                                 input = node;
                             }}
-                            />
+                            /></label>
+
+                            <label htmlFor="pictureURL">Picture (URL): 
                               <input 
                             defaultValue={driver.pictureURL}
                             ref={node =>{
                                 input = node;
                             }}
-                            />
+                            /></label>
 
+
+                          <label htmlFor="podiums">Podiums: 
                               <input 
                             defaultValue={driver.podiums}
                             ref={node =>{
                                 input = node;
                             }}
-                            />
+                            /></label>
+
+                            <label htmlFor="championshipWins">ChampionshipWins:
+                            
+                            
                               <input 
                             defaultValue={driver.championshipWins}
                             ref={node =>{
                                 input = node;
                             }}
                             />
+                            </label>
+
+                             <label htmlFor="championshipWins">ChampionshipWins:
                               <input 
                             defaultValue={driver.country}
                             ref={node =>{
                                 input = node;
                             }}
-                            />
+                            /></label>
 
                                <button type="submit">Submit</button>
                         </form>
