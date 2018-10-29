@@ -115,6 +115,7 @@ class DriverInfo extends Component {
                 
                 let input;
                 return(
+                    <div>
                     <div className="driverInfo_container mt5">
                     <div>
                     <img src={driver.pictureURL} alt="driver picture"/>
@@ -129,19 +130,28 @@ class DriverInfo extends Component {
                      <p>Podiums:  {driver.podiums} </p>
                      <p>Championships: {driver.championshipWins}</p>
                       <p>Country:{driver.country} </p>
+                      {authToken &&(
+                         
+                         <button
+                         onClick={this.showModal}
+                         >
+                             Update Driver
+                         </button>
+                        )}
                       </div>
-                        <Modal  show={this.state.show}
+                      
+                        
+                    </div>
+                         
+                    <Modal  show={this.state.show}
                         handleClose={this.hideModal}
                         >
 
                         <Mutation mutation={UPDATE_DRIVER_MUTATION} key={id}>
                         {updateDriver =>(
 
-
-
-                        
-                        
-                        <form onSubmit={e => {
+                           <div>
+                        <form className="modal_form" onSubmit={e => {
                             e.preventDefault();
                             updateDriver({
                                 variables: 
@@ -210,26 +220,25 @@ class DriverInfo extends Component {
                             onChange={e => this.setState({ country: e.target.value })}
 
                             /></label>
+                           </form>
 
-                               <button 
-                               disabled={!this.validateForm()}
-                               type="submit">Submit</button>
-                        </form>
-                        )}
-                        </Mutation>
+                          
+                                 <button className="modal_button"
+                         disabled={!this.validateForm()}
+                         type="submit">Submit</button>
+                           </div>
+                                )}
+
+                                </Mutation>
+                              
+                               
+                        
+                      
 
                         </Modal>
-                        {authToken &&(
-                         
-                         <button
-                         onClick={this.showModal}
-                         >
-                             Update Driver
-                         </button>
-                        )}
                        
-                    </div>
-                  
+                       
+                  </div>
                 );
             }}
             </Query>
@@ -244,12 +253,15 @@ const Modal = ({handleClose,show,children}) => {
     return(
         <div className={showHideClassName}>
         <section className='modal-main'>
-        {children}
-        <button onClick={handleClose}>
-            close
+        <button className="modal_button_close" onClick={handleClose}>
+            Cancel
         </button>
+        {children}
+        
+        
         </section>
         </div>
     )
 }
+
 export default DriverInfo;

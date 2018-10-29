@@ -20,3 +20,19 @@ img{
 .display-block{
     display:block;
 }
+
+.modal_form{
+    justify-items: center;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+
+.modal_button{
+    width:100px;
+    height:30px;
+}
+
+.modal_button_close{
+    margin-left:1000px;
+}
