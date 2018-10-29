@@ -4,8 +4,7 @@
     grid-template-rows: repeat(7,50px);
     grid-template-columns: 1fr;
     justify-items: center;
-    align-content: space-around;
-
+  
 }
 
 h1{
@@ -16,6 +15,11 @@ text-align: center;
     display: grid;
     grid-template-columns: 1fr;
 }
+
+.form_row_points{
+    margin-left: 200px;
+}
+
 input{
     margin-bottom: 40px;
     padding:0.5rem;
@@ -34,8 +38,8 @@ input[type="text"]{
 
 input[type="number"]{
     width: 50px;
-    margin-left:20px;
-    grid-column-start: 2;
+    
+    
 }
 
 

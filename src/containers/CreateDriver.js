@@ -100,14 +100,14 @@ class CreateDriver extends Component {
                   /></label>
                   </div>
 
-                                    <div className="form_row">
+            <div className="form_row_points ">
                   <label htmlFor="points">Points:
                    <input 
-                  className="points ml7"
+                  className="points  "
                   value={points}
                   required
                   onChange={e => this.setState({ points: e.target.value })}
-                  type="number"
+                  type="text"
                   placeholder="1"
                   min="0"
                   /></label>
@@ -144,7 +144,7 @@ class CreateDriver extends Component {
                   value={podiums}
                   required
                   onChange={e => this.setState({ podiums: e.target.value })}
-                  type="number"
+                  type="text"
                   placeholder="1"
                   min="0"
                   /></label>
@@ -157,7 +157,7 @@ class CreateDriver extends Component {
                   required
                   value={championshipWins}
                   onChange={e => this.setState({ championshipWins: e.target.value })}
-                  type="number"
+                  type="text"
                   required
                   placeholder="1"
                   min="0"
