@@ -22,7 +22,7 @@ export const DRIVER_QUERY = gql`
  }
 `
 
-const UPDATE_DRIVER_MUTATION =gql`
+export const UPDATE_DRIVER_MUTATION =gql`
 mutation UPDATE_DRIVER_MUTATION($id: ID!,$name:String!,$team:String!,$points:Int!,
  $pictureURL:String!,$podiums:Int!,$championshipWins:Int!,$country:String!){
      updateDriver(id:$id,name:$name,team:$team,points:$points,pictureURL:$pictureURL,
@@ -157,7 +157,7 @@ class DriverInfo extends Component {
                         {(updateDriver,{data}) =>{
                         
                         if (data) return <p>Updated!</p>;
-                        
+
                         return (
                             <div>
                             <form className="modal_form" onSubmit={e => {

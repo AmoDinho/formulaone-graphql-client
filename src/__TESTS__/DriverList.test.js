@@ -3,6 +3,7 @@ import {MockedProvider} from "react-apollo/test-utils";
 import renderer from "react-test-renderer";
 import {MemoryRouter } from "react-router-dom";
 const wait = require('waait');
+require('jest-localstorage-mock');
 
 import DriverList,{FEED_QUERY} from '../containers/DriverList';
 

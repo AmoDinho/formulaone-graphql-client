@@ -2,11 +2,11 @@ import React from 'react';
 import {MockedProvider} from "react-apollo/test-utils";
 import renderer from "react-test-renderer";
 const wait = require('waait');
+import localStorage from './localStorage';
 
 import 
 DriverInfo, 
-{DRIVER_QUERY} from "../containers/DriverInfo";
-import { WSAEINVALIDPROCTABLE } from 'constants';
+{DRIVER_QUERY, UPDATE_DRIVER_MUTATION} from "../containers/DriverInfo";
 
 const mocks = [
     {
@@ -36,7 +36,7 @@ const mocks = [
 ];
 
 const defaultProps = {
-    match: {params: {id:1234}}
+    match: {params: {id:1234}},
 };
 
 
@@ -109,4 +109,51 @@ it('should show error ui', async () => {
 
     const tree = component.toJSON();
     expect(tree.children).toContain('Error');
+});
+
+
+it('should update the driver successfully', () =>{
+
+   const deleteDriver = { 
+    id: 1234, 
+    name: 'Amo',
+    team: 'Torro Rosso',
+    points: 20,
+    pictureURL: 'www.cdn.example/drivername',
+    podiums: 5,
+    championshipWins: 2,
+    country: 'South Africa'};
+    const mocks = [
+        {
+            request: {
+                query: UPDATE_DRIVER_MUTATION,
+                variables: {
+                    name: 'Amo',
+                    team: 'Torro Rosso',
+                    points: 20,
+                    pictureURL: 'www.cdn.example/drivername',
+                    podiums: 1,
+                   championshipWins: 0,
+                   country: 'South Africa'
+                }
+            },
+            result: {data: {deleteDriver}},
+        }
+    ];
+
+    beforeEach(() => localStorage.setItem('foo','bar'));
+    const component = renderer.create(
+        <MockedProvider mocks={mocks} addTypename={false}>
+                <DriverInfo {...defaultProps}/>
+
+        </MockedProvider>
+    );
+
+
+    const form = component.root.findByType('form');
+    form.props.onSubmit();
+
+    const tree =  component.toJSON();
+    expect(tree.children).toContain('Updated!');
+
 });
