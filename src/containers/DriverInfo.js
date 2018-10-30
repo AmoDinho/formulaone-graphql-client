@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import {Query, Mutation} from 'react-apollo';
 import {AUTH_TOKEN} from '../constants';
 import * as Icon from 'react-feather';
+import Modal from '../components/Modal';
 import PrimaryButton from '../components/PrimaryButton';
 import "../styles/DriverInfo.css";
 
@@ -74,6 +75,8 @@ class DriverInfo extends Component {
         && this.state.podiums > 0
         && this.state.championshipWins > 0
         && this.state.country.length > 0;
+
+        
     }
 
     /*
@@ -223,16 +226,17 @@ class DriverInfo extends Component {
                             onChange={e => this.setState({ country: e.target.value })}
 
                             /></label>
+                            <PrimaryButton
+                         className="modal_button"
+                         disabled={!this.validateForm()}
+                         text="Update Driver"
+                         />
                            </form>
 
                           
                                 
 
-                         <PrimaryButton
-                         className="modal_button"
-                         disabled={!this.validateForm()}
-                         text="Update Driver"
-                         />
+                         
                            </div>
                                 )}
 
@@ -254,20 +258,6 @@ class DriverInfo extends Component {
 }
 
 
-const Modal = ({handleClose,show,children}) => {
-    const showHideClassName = show ? 'modal display-block':'model display-none';
 
-    return(
-        <div className={showHideClassName}>
-        <section className='modal-main'>
-            <Icon.X className="modal_button_close pointer" onClick={handleClose}/>
-        
-        {children}
-        
-        
-        </section>
-        </div>
-    )
-}
 
 export default DriverInfo;
