@@ -115,7 +115,6 @@ class DriverInfo extends Component {
 
                 const driver = data.driver;
                 
-                let input;
                 return(
                     <div>
                     <div className="driverInfo_container mt5">
@@ -133,12 +132,14 @@ class DriverInfo extends Component {
                      <p>Championships: {driver.championshipWins}</p>
                       <p>Country:{driver.country} </p>
                       {authToken &&(
-                         
-                         <button
-                         onClick={this.showModal}
-                         >
-                             Update Driver
-                         </button>
+                        
+                         <section>
+                           <Icon.Edit className="pointer" onClick={this.showModal}/> Edit Driver
+                           |
+                           <Icon.Trash className="pointer" /> Delete Driver
+                         </section>
+       
+
                         )}
                       </div>
                       
@@ -225,9 +226,7 @@ class DriverInfo extends Component {
                            </form>
 
                           
-                                 <button className="modal_button"
-                         disabled={!this.validateForm()}
-                         type="submit">Submit</button>
+                                
 
                          <PrimaryButton
                          className="modal_button"
