@@ -9,9 +9,14 @@
     width:200px;
 }
 
+.name_input{
+  width:200px;
+}
 
 input{
     margin-top: 20px;
+    width:200px;
+
 }
 
 input[type="email"]{
@@ -24,6 +29,7 @@ input[type="password"]{
 
 input[type="text"]{
     margin-left: 45px;
+
 }
 
 @media (max-width:1000px){

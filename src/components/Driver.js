@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { AUTH_TOKEN } from '../constants';
 import {timeDifferenceForDate} from '../utils';
 import {Mutation} from 'react-apollo';
+import * as Icon from 'react-feather';
 import gql from 'graphql-tag';
 import '../styles/Driver.css';
 
@@ -49,7 +50,7 @@ class Driver extends Component {
                        <Mutation 
                        mutation={VOTE_MUTATION} 
                        variables={{driverId:this.props.driver.id}}
-                       /*we are updating the cache her*/
+                       /*we are updating the cache here*/
                        update={(store, {data: {boost}}) =>
                           this.props.updateStoreAfterBoost(store, boost, this.props.driver.id)
                        }
@@ -57,7 +58,7 @@ class Driver extends Component {
                         {voteMutation => (
                         <span  onClick={voteMutation}
                         className=" ml5 pointer white">
-                        ▲ {this.props.driver.boosts.length}
+                        <Icon.Zap/> {this.props.driver.boosts.length}
                         </span>
                          )}
                       
