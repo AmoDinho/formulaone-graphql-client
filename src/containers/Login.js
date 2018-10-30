@@ -60,6 +60,7 @@ class Login extends Component {
             <label htmlFor="name"> Name
 
                 <input 
+                className="name_input"
                 value={this.state.name}
                 onChange={e => this.setState({name: e.target.value})}
                 type="text"
@@ -102,16 +103,19 @@ class Login extends Component {
                  onClick={mutation}
                disabled={!this.validateForm()}
               login={this.state.login}
+              text={!login ? 'Sign Up' : ''}
                />
+
+             
+                
+               
             
       
               
                  
               
              )}
-             
-                 
-            
+              
             
 
             </Mutation>

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {Query, Mutation} from 'react-apollo';
 import {AUTH_TOKEN} from '../constants';
+import * as Icon from 'react-feather';
+import PrimaryButton from '../components/PrimaryButton';
 import "../styles/DriverInfo.css";
 
 export const DRIVER_QUERY = gql`
@@ -226,6 +228,12 @@ class DriverInfo extends Component {
                                  <button className="modal_button"
                          disabled={!this.validateForm()}
                          type="submit">Submit</button>
+
+                         <PrimaryButton
+                         className="modal_button"
+                         disabled={!this.validateForm()}
+                         text="Update Driver"
+                         />
                            </div>
                                 )}
 
@@ -253,9 +261,8 @@ const Modal = ({handleClose,show,children}) => {
     return(
         <div className={showHideClassName}>
         <section className='modal-main'>
-        <button className="modal_button_close" onClick={handleClose}>
-            Cancel
-        </button>
+            <Icon.X className="modal_button_close pointer" onClick={handleClose}/>
+        
         {children}
         
         
