@@ -154,91 +154,98 @@ class DriverInfo extends Component {
                         >
 
                         <Mutation mutation={UPDATE_DRIVER_MUTATION} key={id}>
-                        {updateDriver =>(
-
-                           <div>
-                        <form className="modal_form" onSubmit={e => {
-                            e.preventDefault();
-                            updateDriver({
-                                variables: 
-                                {id,
-                                team,
-                                name,
-                                points,
-                                pictureURL,
-                                podiums,
-                                championshipWins,
-                                country
-                                }
-                                
-                            });
-                          
-                               
-                        }}>
-
-                        <label htmlFor="name">Name: 
-                            <input 
-                            defaultValue={driver.name}
-                            onChange={e => this.setState({ name: e.target.value })}
-                            />
-                            </label>
-                            <label htmlFor="team">Team: 
-                            <input 
-                            defaultValue={driver.team}
-                            onChange={e => this.setState({ team: e.target.value })}
-                            /></label>
-
-                            <label htmlFor="points">Points: 
+                        {(updateDriver,{data}) =>{
+                        
+                        if (data) return <p>Updated!</p>;
+                        
+                        return (
+                            <div>
+                            <form className="modal_form" onSubmit={e => {
+                                e.preventDefault();
+                                updateDriver({
+                                    variables: 
+                                    {id,
+                                    team,
+                                    name,
+                                    points,
+                                    pictureURL,
+                                    podiums,
+                                    championshipWins,
+                                    country
+                                    }
+                                    
+                                });
+                              
+                                   
+                            }}>
+    
+                            <label htmlFor="name">Name: 
                                 <input 
-                            defaultValue={driver.points}
-                            onChange={e => this.setState({ points: e.target.value })}
-
-                            /></label>
-
-                            <label htmlFor="pictureURL">Picture (URL): 
-                              <input 
-                            defaultValue={driver.pictureURL}
-                            onChange={e => this.setState({ pictureURL: e.target.value })}
-
-                            /></label>
-
-
-                          <label htmlFor="podiums">Podiums: 
-                              <input 
-                            defaultValue={driver.podiums}
-                            onChange={e => this.setState({ podiums: e.target.value })}
-
-                            /></label>
-
-                            <label htmlFor="championshipWins">ChampionshipWins:
-                            
-                            
-                              <input 
-                            defaultValue={driver.championshipWins}
-                            onChange={e => this.setState({ championshipWins: e.target.value })}
-
-                            />
-                            </label>
-
-                             <label htmlFor="country">Country:
-                              <input 
-                            defaultValue={driver.country}
-                            onChange={e => this.setState({ country: e.target.value })}
-
-                            /></label>
-                            <PrimaryButton
-                         className="modal_button"
-                         disabled={!this.validateForm()}
-                         text="Update Driver"
-                         />
-                           </form>
-
-                          
+                                defaultValue={driver.name}
+                                onChange={e => this.setState({ name: e.target.value })}
+                                />
+                                </label>
+                                <label htmlFor="team">Team: 
+                                <input 
+                                defaultValue={driver.team}
+                                onChange={e => this.setState({ team: e.target.value })}
+                                /></label>
+    
+                                <label htmlFor="points">Points: 
+                                    <input 
+                                defaultValue={driver.points}
+                                onChange={e => this.setState({ points: e.target.value })}
+    
+                                /></label>
+    
+                                <label htmlFor="pictureURL">Picture (URL): 
+                                  <input 
+                                defaultValue={driver.pictureURL}
+                                onChange={e => this.setState({ pictureURL: e.target.value })}
+    
+                                /></label>
+    
+    
+                              <label htmlFor="podiums">Podiums: 
+                                  <input 
+                                defaultValue={driver.podiums}
+                                onChange={e => this.setState({ podiums: e.target.value })}
+    
+                                /></label>
+    
+                                <label htmlFor="championshipWins">ChampionshipWins:
                                 
-
-                         
-                           </div>
-                                )}
+                                
+                                  <input 
+                                defaultValue={driver.championshipWins}
+                                onChange={e => this.setState({ championshipWins: e.target.value })}
+    
+                                />
+                                </label>
+    
+                                 <label htmlFor="country">Country:
+                                  <input 
+                                defaultValue={driver.country}
+                                onChange={e => this.setState({ country: e.target.value })}
+    
+                                /></label>
+                                <PrimaryButton
+                             className="modal_button"
+                            // disabled={this.validateForm()}
+                             text="Update Driver"
+                             />
+                               </form>
+    
+                              
+                                    
+    
+                             
+                               </div>
+                       
+                                )
+                            
+                            
+                         } }
 
                                 </Mutation>
                               
