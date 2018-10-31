@@ -6,6 +6,8 @@ import * as Icon from 'react-feather';
 import Modal from '../components/Modal';
 import PrimaryButton from '../components/PrimaryButton';
 import "../styles/DriverInfo.css";
+import ModalPopUp from '../components/ModalPopUp';
+
 
 export const DRIVER_QUERY = gql`
  query DRIVER_QUERY($id:ID!){
