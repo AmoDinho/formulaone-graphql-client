@@ -142,6 +142,8 @@ it('should update the driver successfully', () =>{
         }
     ];
 
+
+    //Need to set a more serious token.
     beforeEach(() => localStorage.setItem('foo','bar'));
     const component = renderer.create(
         <MockedProvider mocks={mocks} addTypename={false}>
