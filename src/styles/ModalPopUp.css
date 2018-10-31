@@ -8,14 +8,22 @@
 }
 
 
+
 .modal-pop-main{
   position: fixed;
   background: white;
-  width:80%;
+  width:500px;
   height:auto;
   top: 50%;
   left:50%;
   transform: translate(-50%,-50%);
+  text-align:center;
+  border-radius: 5px;
+}
+
+.modalPop_button_close{
+   margin-left: 450px;
+   margin-top:10px;
 }
 
 .display-block{
@@ -24,4 +32,8 @@
 
 .display-none{
     display: none;
+}
+
+.primary{
+    margin-bottom:5px;
 }
