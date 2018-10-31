@@ -111,6 +111,7 @@ it('should show error ui', async () => {
     expect(tree.children).toContain('Error');
 });
 
+window.localStorage = localStorage;
 
 it('should update the driver successfully', () =>{
 
@@ -150,9 +151,7 @@ it('should update the driver successfully', () =>{
     );
 
 
-    const form = component.root.findByType('form');
-    form.props.onSubmit();
-
+    component.find('form').simulate('submit', {preventDefault:jest.fn()});
     const tree =  component.toJSON();
     expect(tree.children).toContain('Updated!');
 
