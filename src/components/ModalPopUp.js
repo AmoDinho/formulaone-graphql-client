@@ -7,7 +7,7 @@ import * as Icon from 'react-feather';
     return(
         <div className={showHideClassName}>
         <section className='modal-pop-main'>
-            <Icon.X className="modal_button_close pointer" onClick={handleClose}/>
+            <Icon.X className="modalPop_button_close pointer" onClick={handleClose}/>
         
         {children}
         
