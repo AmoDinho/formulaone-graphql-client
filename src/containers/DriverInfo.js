@@ -101,7 +101,16 @@ class DriverInfo extends Component {
     }
 
  
-
+     update = (cache, payload) => {
+         //Update the cache on the client to match the server
+         //1. Read the cache for drivers we want
+         const data = cache.readQuery({query: FEED_QUERY});
+         console.log(data, payload);
+         //filter deleted driver out of the page
+         data.drivers = data.drivers.filter(driver => driver.id !== payload.data.deleteDriver.id);
+         //put the drivers back
+         cache.writeQuery({query: FEED_QUERY, data});
+     };
 
 
   
@@ -273,7 +282,9 @@ class DriverInfo extends Component {
                        show={this.state.showPop}
                        handleClose={this.hideModalPopUp}>
                              <p>Are you sure you want to delete {driver.name}?</p>
-                             <Mutation key={id}  mutation={DELETE_DRIVER_MUTATION}>
+                             <Mutation key={id}  
+                             mutation={DELETE_DRIVER_MUTATION}
+                             update={this.update}>
                                 {(deleteDriver) =>{
                                     return(
                                         <PrimaryButton
