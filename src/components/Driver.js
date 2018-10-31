@@ -42,8 +42,8 @@ class Driver extends Component {
                   <div className="ml1 center ">
                    <div className="card " style={{backgroundImage:`url(${this.props.driver.pictureURL})`}}>
                    <div className="card_info mt6 ml3">
-                   <div className="number ml2 mt5"> <span>{this.props.driver.points}</span></div>
-                  <div className="name ml2 mt3"><span>{this.props.driver.name}</span>
+                   <div className="number ml2 mt5"> <span></span></div>
+                  <div className="name ml2 mt3 "><span>{this.props.driver.name}</span>
                   
                   {authToken &&(
 

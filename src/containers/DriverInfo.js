@@ -39,6 +39,16 @@ mutation UPDATE_DRIVER_MUTATION($id: ID!,$name:String!,$team:String!,$points:Int
  }
 `
 
+export const DELETE_DRIVER_MUTATION =gql`
+  mutation DELETE_DRIVER_MUTATION($id:ID!){
+      deleteDriver(id:$id){
+          id
+      }
+  }
+`
+
+
+
 class DriverInfo extends Component {
     state = {
         show: false,
