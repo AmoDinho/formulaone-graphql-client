@@ -54,6 +54,7 @@ export const DELETE_DRIVER_MUTATION =gql`
 class DriverInfo extends Component {
     state = {
         show: false,
+        showPop:false,
         name: '',
         team: '',
         points: 0,
@@ -69,6 +70,14 @@ class DriverInfo extends Component {
 
     hideModal = () =>{
         this.setState({show:false});
+    }
+
+    showModalPopUp = () =>{
+        this.setState({showPop:true});
+    }
+
+    hideModalPopUp = () =>{
+        this.setState({showPop:false});
     }
 
 
@@ -151,7 +160,7 @@ class DriverInfo extends Component {
                          <section>
                            <Icon.Edit className="pointer" onClick={this.showModal}/> Edit Driver
                            |
-                           <Icon.Trash className="pointer" /> Delete Driver
+                           <Icon.Trash className="pointer" onClick={this.showModalPopUp}/> Delete Driver
                          </section>
        
 
@@ -267,6 +276,12 @@ class DriverInfo extends Component {
 
                         </Modal>
                        
+
+                       <ModalPopUp
+                       show={this.state.showPop}
+                       handleClose={this.hideModalPopUp}>
+                           <p>We are in business</p>
+                       </ModalPopUp>
                        
                   </div>
                 );

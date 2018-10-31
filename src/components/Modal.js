@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import * as Icon from 'react-feather';
+import '../styles/ModalPopUp.css';
 
  const Modal = ({handleClose,show,children}) => {
     const showHideClassName = show ? 'modal display-block':'model display-none';
