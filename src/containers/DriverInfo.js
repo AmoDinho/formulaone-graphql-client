@@ -8,6 +8,7 @@ import PrimaryButton from '../components/PrimaryButton';
 import "../styles/DriverInfo.css";
 import ModalPopUp from '../components/ModalPopUp';
 import {FEED_QUERY} from '../containers/DriverList';
+import {LINKS_PER_PAGE} from '../constants';
 
 export const DRIVER_QUERY = gql`
  query DRIVER_QUERY($id:ID!){
@@ -25,10 +26,22 @@ export const DRIVER_QUERY = gql`
 `
 
 export const UPDATE_DRIVER_MUTATION =gql`
-mutation UPDATE_DRIVER_MUTATION($id: ID!,$name:String!,$team:String!,$points:Int!,
- $pictureURL:String!,$podiums:Int!,$championshipWins:Int!,$country:String!){
-     updateDriver(id:$id,name:$name,team:$team,points:$points,pictureURL:$pictureURL,
-     podiums:$podiums, championshipWins:$championshipWins,country:$country){
+mutation UPDATE_DRIVER_MUTATION($id: ID!,
+$name:String!,
+$team:String!,
+$points:Int!,
+ $pictureURL:String!,
+ $podiums:Int!,
+ $championshipWins:Int!,
+ $country:String!){
+     updateDriver(id:$id,
+     name:$name,
+     team:$team,
+     points:$points,
+     pictureURL:$pictureURL,
+     podiums:$podiums, 
+     championshipWins:$championshipWins,
+     country:$country){
         id
          name
          team
@@ -104,13 +117,23 @@ class DriverInfo extends Component {
      update = (cache, payload) => {
          //Update the cache on the client to match the server
          //1. Read the cache for drivers we want
-         const data = cache.readQuery({query: FEED_QUERY});
+         const first = LINKS_PER_PAGE
+         const skip = 0
+        const orderBy = 'createdAt_DESC'
+         const data = cache.readQuery({
+             query: FEED_QUERY,
+             variables:{first,skip,orderBy}
+            });
          console.log(data, payload);
          //filter deleted driver out of the page
-         data.drivers = data.drivers.filter(driver => driver.id !== payload.data.deleteDriver.id);
+         data.feed.drivers = data.feed.drivers.filter(driver => driver.id !== payload.data.deleteDriver.id);
          //put the drivers back
-         cache.writeQuery({query: FEED_QUERY, data});
-     };
+         cache.writeQuery({
+             query: FEED_QUERY,
+             data,
+             variables:{first,skip,orderBy}}
+            );
+        };
 
 
   
