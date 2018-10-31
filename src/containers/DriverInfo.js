@@ -7,7 +7,7 @@ import Modal from '../components/Modal';
 import PrimaryButton from '../components/PrimaryButton';
 import "../styles/DriverInfo.css";
 import ModalPopUp from '../components/ModalPopUp';
-
+import {FEED_QUERY} from '../containers/DriverList';
 
 export const DRIVER_QUERY = gql`
  query DRIVER_QUERY($id:ID!){
@@ -100,18 +100,10 @@ class DriverInfo extends Component {
         
     }
 
-    /*
-    updateDriver = async (e, updateItemMutation) => {
-        e.preventDefault();
+ 
 
-        const res = await updateItemMutation({
-            variables:{
-                id: this.props.id,
-                ...this.state
-            }
-        });
-    }
-*/
+
+
   
     
     render(){
@@ -280,7 +272,25 @@ class DriverInfo extends Component {
                        <ModalPopUp
                        show={this.state.showPop}
                        handleClose={this.hideModalPopUp}>
-                           <p>We are in business</p>
+                             
+                             <Mutation key={id}  mutation={DELETE_DRIVER_MUTATION}>
+                                {(deleteDriver) =>{
+                                    return(
+                                    <button
+                                    onClick={ ()=> {
+                                        deleteDriver({
+                                        variables:{id}})
+                                        this.props.history.push('/new/1')
+                                    }
+                                        
+                                    }
+                                   
+                                    >Delete</button>
+                                )
+                                }}
+                             </Mutation>
+
+                           <p>Are you sure you want to delete?</p>
                        </ModalPopUp>
                        
                   </div>
