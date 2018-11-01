@@ -179,10 +179,11 @@ class DriverInfo extends Component {
                      <p>Podiums:  {driver.podiums} </p>
                      <p>Championships: {driver.championshipWins}</p>
                       <p>Country:{driver.country} </p>
+                      <button className="button_click">Click me</button>
                       {authToken &&(
                         
                          <section>
-                           <Icon.Edit className="pointer" onClick={this.showModal}/> Edit Driver
+                           <Icon.Edit className="pointer edit" onClick={this.showModal}/> Edit Driver
                            |
                            <Icon.Trash className="pointer" onClick={this.showModalPopUp}/> Delete Driver
                          </section>
@@ -226,18 +227,21 @@ class DriverInfo extends Component {
     
                             <label htmlFor="name">Name: 
                                 <input 
-                                defaultValue={driver.name}
+                                id="name"
+                               defaultValue={driver.name}
                                 onChange={e => this.setState({ name: e.target.value })}
                                 />
                                 </label>
                                 <label htmlFor="team">Team: 
                                 <input 
+                                id="team"
                                 defaultValue={driver.team}
                                 onChange={e => this.setState({ team: e.target.value })}
                                 /></label>
     
                                 <label htmlFor="points">Points: 
-                                    <input 
+                                    <input
+                                    id="points" 
                                 defaultValue={driver.points}
                                 onChange={e => this.setState({ points: e.target.value })}
     
@@ -245,6 +249,7 @@ class DriverInfo extends Component {
     
                                 <label htmlFor="pictureURL">Picture (URL): 
                                   <input 
+                                  id="pictureURL"
                                 defaultValue={driver.pictureURL}
                                 onChange={e => this.setState({ pictureURL: e.target.value })}
     
@@ -253,6 +258,7 @@ class DriverInfo extends Component {
     
                               <label htmlFor="podiums">Podiums: 
                                   <input 
+                                  id="podiums"
                                 defaultValue={driver.podiums}
                                 onChange={e => this.setState({ podiums: e.target.value })}
     
@@ -262,6 +268,7 @@ class DriverInfo extends Component {
                                 
                                 
                                   <input 
+                                  id="championshipWins"
                                 defaultValue={driver.championshipWins}
                                 onChange={e => this.setState({ championshipWins: e.target.value })}
     
@@ -270,6 +277,7 @@ class DriverInfo extends Component {
     
                                  <label htmlFor="country">Country:
                                   <input 
+                                  id="country"
                                 defaultValue={driver.country}
                                 onChange={e => this.setState({ country: e.target.value })}
     
