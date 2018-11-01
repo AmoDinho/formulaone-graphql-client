@@ -7,19 +7,36 @@ const SecondaryButton = ({
     text,
     disabled = false,
     login
-}) => (
-    <button 
-    className={`secondary  ${className}`} 
-    onClick={onClick}
-    disabled={disabled}
-
-    >
-        {text}
-        {login
-                   ? 'Need to sign up?'
-                   : 'Got an account?'             
-             }
-    </button>
-);
+}) =>{
+    if (login){
+        return (
+            <button 
+            className={`secondary  ${className}`} 
+            onClick={onClick}
+            disabled={disabled}
+        
+            >
+                {text}
+                {login
+                           ? 'Need to sign up?'
+                           : 'Got an account?'             
+                     }
+            </button>
+        )
+    }
+    else {
+        return (
+            <button 
+            className={`secondary  ${className}`} 
+            onClick={onClick}
+            disabled={disabled}
+        
+            >
+                {text}
+                
+            </button>
+        )
+    }
+}
 
 export default SecondaryButton;

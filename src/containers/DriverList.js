@@ -115,8 +115,10 @@ class DriverList extends Component {
     _updateCacheAfterBoost = (store, createBoost, driverId) => {
        const isNewPage = this.props.location.pathname.includes('new');
        const page = parseInt(this.props.match.params.page, 10)
-
+        
+       //this is the start index
        const skip = isNewPage ? (page -1) * LINKS_PER_PAGE : 0
+       //this is the limit, which grabbs the 1st x elements  after skip
        const first = isNewPage ? LINKS_PER_PAGE : 100 
        const orderBy = isNewPage ? 'createdAt_DESC': null
 
@@ -259,17 +261,20 @@ _previousPage = () => {
             {isNewPage && (
                <div className="flex ml4 mv3 center gray pagination_container">
              
-               <div className="primary button pointer"
-               onClick={() => this._nextPage(data)}
-               >
-               Next
-               </div>
+
+              
+
+             <SecondaryButton
+              onClick={() => this._previousPage()}
+              text="Previous"
+              className="pointer"
+             />
                
-               <div className="ml3 secondary button pointer"
-               onClick={() => this._previousPage()}
-               >
-               Previous
-               </div>
+              <PrimaryButton
+              className="pointer ml2"
+              text="Next"
+                onClick={() => this._nextPage(data)}
+              />
 
              
                </div>

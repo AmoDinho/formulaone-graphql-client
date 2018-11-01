@@ -164,6 +164,7 @@ describe('<DriverInfo/>', () => {
         
          
        console.log(wrapper.debug);
+
      
         wrapper.find('Modal');
         wrapper.find('button_click').simulate('click');
