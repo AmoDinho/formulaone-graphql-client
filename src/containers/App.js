@@ -3,6 +3,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import DriverList from './DriverList';
 import CreateDriver from './CreateDriver';
 import Header from '../components/Header';
+import NotFound from './NotFound';
 import DriverInfo from './DriverInfo';
 import Search from './Search';
 import Login from './Login';
@@ -22,6 +23,7 @@ class App extends Component {
          <Route exact path="/top" component={DriverList}/>
          <Route exact path="/driver/:id" component={DriverInfo}/>
          <Route exact path="/new/:page" component={DriverList}/>
+         <Route component={NotFound}/>
        </Switch>
        </div>
       </div>

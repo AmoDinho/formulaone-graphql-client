@@ -48,7 +48,7 @@ class Header extends Component{
           </li>
 
           <li>
-          <Link to="/Circuits" className=" ml7 grow  dtc no-underline black">
+          <Link to="/circuits" className=" ml7 grow  dtc no-underline black">
            <h3>Circuits</h3>
            </Link>          
            </li>
@@ -64,7 +64,7 @@ class Header extends Component{
            {authToken &&(
               
                <Link to="/create" className="ml3 grow dtc no-underline black">
-               <h3>Submit</h3>
+               <h3>Create</h3>
                </Link>
                
            )}
