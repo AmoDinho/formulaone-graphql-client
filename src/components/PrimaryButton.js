@@ -3,7 +3,7 @@ import '../styles/PrimaryButton.css';
 import PropTypes from 'prop-types';
 
 
-static propTypes ={
+const propTypes ={
     className: PropTypes.string,
     onClick: PropTypes.func,
     text: PropTypes.string,

@@ -3,7 +3,7 @@ import * as Icon from 'react-feather';
 import PropTypes from 'prop-types';
 
 
-static propTypes = {
+const propTypes = {
     handleClose: PropTypes.func,
     show: PropTypes.bool,
     children: PropTypes.element

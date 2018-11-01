@@ -1,8 +1,9 @@
 import React from 'react';
 import '../styles/SecondaryButton.css';
+import PropTypes from 'prop-types';
 
 
-static propTypes ={
+const propTypes ={
     className: PropTypes.string,
     onClick: PropTypes.func,
     text: PropTypes.string,
