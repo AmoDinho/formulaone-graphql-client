@@ -4,6 +4,7 @@ import {timeDifferenceForDate} from '../utils';
 import {Mutation} from 'react-apollo';
 import * as Icon from 'react-feather';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types'
 import '../styles/Driver.css';
 
 const VOTE_MUTATION = gql`
@@ -27,6 +28,16 @@ const VOTE_MUTATION = gql`
 `
 
 class Driver extends Component {
+
+    static propTypes = {
+      name: PropTypes.string,
+      pictureURL: PropTypes.string,
+      id: PropTypes.number,
+      index: PropTypes.number,
+      boosts: PropTypes.number,
+      team: PropTypes.string
+    };
+
     render(){
         const authToken = localStorage.getItem(AUTH_TOKEN)
         return(

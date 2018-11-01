@@ -1,5 +1,16 @@
 import React from 'react';
 import '../styles/PrimaryButton.css';
+import PropTypes from 'prop-types';
+
+
+static propTypes ={
+    className: PropTypes.string,
+    onClick: PropTypes.func,
+    text: PropTypes.string,
+    disabled: PropTypes.bool,
+    login:PropTypes.bool
+}
+
 
 const PrimaryButton = ({
     className = "",
@@ -41,4 +52,6 @@ if(login){
 }
 ;
 
+
+PrimaryButton.propTypes = propTypes;
 export default PrimaryButton;

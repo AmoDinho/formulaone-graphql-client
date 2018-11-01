@@ -167,7 +167,7 @@ class DriverInfo extends Component {
                     <div>
                     <div className="driverInfo_container mt5">
                     <div>
-                    <img src={driver.pictureURL} alt="driver picture"/>
+                    <img className="pictureURL" src={driver.pictureURL} alt="driver picture"/>
 
                     </div>
 

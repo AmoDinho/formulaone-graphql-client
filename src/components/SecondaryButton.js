@@ -1,6 +1,16 @@
 import React from 'react';
 import '../styles/SecondaryButton.css';
 
+
+static propTypes ={
+    className: PropTypes.string,
+    onClick: PropTypes.func,
+    text: PropTypes.string,
+    disabled: PropTypes.bool,
+    login:PropTypes.bool
+}
+
+
 const SecondaryButton = ({
     className = "",
     onClick,
@@ -38,5 +48,7 @@ const SecondaryButton = ({
         )
     }
 }
+
+SecondaryButton.propTypes = propTypes;
 
 export default SecondaryButton;
