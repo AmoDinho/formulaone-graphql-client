@@ -186,23 +186,26 @@ class DriverInfo extends Component {
                     </div>
 
 
-                      <div className="driver_info">
+                      <div className="driverInfo_container_content">
+                      <div className="driverInfo_container_content_text" >
                       <h2>{driver.name}</h2>
-                      <p>Team: {driver.team}</p>
-                      <p>Points:  {driver.points}</p>
-                     <p>Podiums:  {driver.podiums} </p>
-                     <p>Championships: {driver.championshipWins}</p>
-                      <p>Country:{driver.country} </p>
+                      <p><strong>Team:</strong> {driver.team}</p>
+                      <p><strong>Points:</strong>  {driver.points}</p>
+                     <p><strong>Podiums: </strong> {driver.podiums} </p>
+                     <p><strong>Championships:</strong> {driver.championshipWins}</p>
+                      <p><strong>Country:</strong> {driver.country} </p>
                       {authToken &&(
                         
                          <section>
                            <Icon.Edit className="pointer edit" onClick={this.showModal}/> Edit Driver
                            |
-                           <Icon.Trash className="pointer" onClick={this.showModalPopUp}/> Delete Driver
+                           <Icon.Trash className="pointer delete" onClick={this.showModalPopUp}/> Delete Driver
                          </section>
        
   
                         )}
+                      </div>
+                   
                       </div>
                       
                         
