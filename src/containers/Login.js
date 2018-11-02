@@ -106,20 +106,9 @@ class Login extends Component {
               text={!login ? 'Sign Up' : ''}
                />
 
-             
-                
-               
-            
-      
-              
-                 
-              
              )}
               
-            
-
             </Mutation>
-            
             <SecondaryButton
             className="pointer secondary_button"
             login={this.state.login}

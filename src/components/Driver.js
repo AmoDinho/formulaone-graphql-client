@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { AUTH_TOKEN } from '../constants';
-import {timeDifferenceForDate} from '../utils';
 import {Mutation} from 'react-apollo';
 import * as Icon from 'react-feather';
 import gql from 'graphql-tag';

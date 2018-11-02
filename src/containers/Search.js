@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import {withApollo} from 'react-apollo';
 import gql from 'graphql-tag';
 import Driver from '../components/Driver';
+import PropTypes from 'prop-types'
 
+
+const propTypes = {
+    _executeSearch: PropTypes.func
+}
 const FEED_SEARCH_QUERY = gql`
   query FeedSearchQuery($filter: String!){
       feed(filter: $filter){
@@ -67,5 +72,5 @@ class Search extends Component {
     }
 }
 
-
+Search.propTypes = propTypes;
 export default withApollo(Search);

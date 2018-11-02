@@ -3,7 +3,21 @@ import gql from 'graphql-tag';
 import {Mutation} from 'react-apollo';
 import {FEED_QUERY} from './DriverList';
 import {LINKS_PER_PAGE} from '../constants';
+import PropTypes from 'prop-types';
 import '../styles/CreateDriver.css';
+
+
+const propTypes = {
+    driver: PropTypes.shape({
+        name: PropTypes.string,
+        team: PropTypes.string,
+        podiums: PropTypes.number,
+        pictureURL: PropTypes.string,
+        points: PropTypes.number,
+        championshipWins: PropTypes.number,
+        country: PropTypes.string
+    })
+}
 
 const DRIVER_MUTATION = gql`
  mutation 
@@ -68,6 +82,26 @@ class CreateDriver extends Component {
         && this.state.championshipWins > 0
         && this.state.country.length > 0;
     }
+
+    update = (store, {data:{driver}}) =>{
+
+
+        const first = LINKS_PER_PAGE
+        const skip = 0
+        const orderBy = 'createdAt_DESC'
+
+        const data = store.readQuery({
+            query: FEED_QUERY,
+        variables: {first, skip, orderBy}})
+        data.feed.drivers.unshift(driver)
+        store.writeQuery({
+            query: FEED_QUERY,
+            data,
+            variables: {first, skip, orderBy}
+        })
+    }
+
+
 
     render (){
 
@@ -165,7 +199,6 @@ class CreateDriver extends Component {
                   <label htmlFor="championships">Championships:
                   <input 
                   className="championshipWins"
-                  required
                   value={championshipWins}
                   onChange={e => this.setState({ championshipWins: e.target.value })}
                   type="text"
@@ -190,20 +223,7 @@ class CreateDriver extends Component {
             championshipWins,
             country}}
             onCompleted={() => this.props.history.push('/new/1')}
-            update={(store,{data:{driver}}) =>{
-                const first = LINKS_PER_PAGE
-                const skip = 0
-                const orderBy = 'createdAt_DESC'
-                const data = store.readQuery({
-                    query: FEED_QUERY,
-                variables: {first, skip, orderBy}})
-                data.feed.drivers.unshift(driver)
-                store.writeQuery({
-                    query: FEED_QUERY,
-                    data,
-                    variables: {first, skip, orderBy}
-                })
-            }}
+            update={this.update}
             >
 
             {driverMutation =>
@@ -222,5 +242,5 @@ class CreateDriver extends Component {
     }
 }
 
-
+CreateDriver.propTypes = propTypes;
 export default CreateDriver;

@@ -9,6 +9,20 @@ import "../styles/DriverInfo.css";
 import ModalPopUp from '../components/ModalPopUp';
 import {FEED_QUERY} from '../containers/DriverList';
 import {LINKS_PER_PAGE} from '../constants';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+    driver: PropTypes.shape({
+        name: PropTypes.string,
+        team: PropTypes.string,
+        podiums: PropTypes.number,
+        pictureURL: PropTypes.string,
+        points: PropTypes.number,
+        championshipWins: PropTypes.number,
+        country: PropTypes.string
+    })
+}
+
 
 export const DRIVER_QUERY = gql`
  query DRIVER_QUERY($id:ID!){
@@ -167,7 +181,7 @@ class DriverInfo extends Component {
                     <div>
                     <div className="driverInfo_container mt5">
                     <div>
-                    <img className="pictureURL" src={driver.pictureURL} alt="driver picture"/>
+                    <img className="pictureURL" src={driver.pictureURL} alt={`${driver.name}`}/>
 
                     </div>
 
@@ -179,7 +193,6 @@ class DriverInfo extends Component {
                      <p>Podiums:  {driver.podiums} </p>
                      <p>Championships: {driver.championshipWins}</p>
                       <p>Country:{driver.country} </p>
-                      <button className="button_click">Click me</button>
                       {authToken &&(
                         
                          <section>
@@ -188,7 +201,7 @@ class DriverInfo extends Component {
                            <Icon.Trash className="pointer" onClick={this.showModalPopUp}/> Delete Driver
                          </section>
        
-
+  
                         )}
                       </div>
                       
@@ -342,7 +355,7 @@ class DriverInfo extends Component {
     }
 }
 
-
+DriverInfo.propTypes = propTypes;
 
 
 export default DriverInfo;

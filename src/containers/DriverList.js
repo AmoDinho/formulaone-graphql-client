@@ -7,6 +7,21 @@ import {LINKS_PER_PAGE} from '../constants';
 import '../styles/DriverList.css';
 import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+    _updateCacheAfterBoost: PropTypes.func, 
+    _subscribeToNewDrivers: PropTypes.func,
+    _subscribeToNewBoosts: PropTypes.func,
+    _getQueryVariables: PropTypes.func,
+    _getDriversToRender: PropTypes.func,
+    _nextPage: PropTypes.func,
+    _previousPage: PropTypes.func
+
+}
+
+
+
 
 
 export const FEED_QUERY = gql`
@@ -107,10 +122,7 @@ export const NEW_BOOSTS_SUBCRIPTION = gql`
 
 class DriverList extends Component {
    
-    state={
-        login: false
-    }
-
+    
     //Updating the cache after a fan has voted for a driver.
     _updateCacheAfterBoost = (store, createBoost, driverId) => {
        const isNewPage = this.props.location.pathname.includes('new');
@@ -223,7 +235,6 @@ _previousPage = () => {
 
     render(){
 
-        const {login} = this.state;
         
    return(
    <Query 
@@ -294,4 +305,5 @@ _previousPage = () => {
 
 }
 
+DriverList.propTypes = propTypes;
 export default DriverList;

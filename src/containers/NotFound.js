@@ -6,17 +6,16 @@ const url = 'https://www.formula1.com/content/dam/fom-website/manual/Misc/HAM_ch
 const imgStyles = {
     width:'1500px',
     height:'500px',
-    borderRadius: '5px'
 }
 
 
 
 export default () => 
  <div className="not_found">
-     <h1 style={{}}>Congrats you've found nothing!
+     <h1>Congrats you've found nothing!
          <span aria-label="emoji" role="img">
-        
+         🤩
          </span>
     </h1>
-     <img src={url} style={{imgStyles}}/>
+     <img src={url} style={{imgStyles}} alt="404"/>
  </div>
