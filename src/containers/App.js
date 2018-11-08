@@ -7,7 +7,11 @@ import NotFound from './NotFound';
 import DriverInfo from './DriverInfo';
 import Search from './Search';
 import Login from './Login';
+import Settings from './Settings';
 import '../styles/App.css';
+import RequestReset from './RequestReset';
+import ResetPassword from './ResetPassword';
+
 
 class App extends Component {
   render() {
@@ -23,6 +27,10 @@ class App extends Component {
          <Route exact path="/top" component={DriverList}/>
          <Route exact path="/driver/:id" component={DriverInfo}/>
          <Route exact path="/new/:page" component={DriverList}/>
+         <Route exact path="/requestReset" component={RequestReset}/>
+         <Route exact path="/resetPassword" component={ResetPassword}/>
+         <Route exact path="/settings" component={Settings}/>
+
          <Route component={NotFound}/>
        </Switch>
        </div>

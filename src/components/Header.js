@@ -20,7 +20,7 @@ class Header extends Component{
         
         <div className="flex flex-fixed white">
 
-        <div className="fw7 mr1 ml4 white"><h1>Forumla One</h1>
+        <div className="fw7 mr1 ml4 white"><h1>FanBoost</h1>
         <button aria-expanded="false"  onClick={this.toggleNav} aria-controls="menu-list">
           <span className="open">☰</span>
           <span className="close">×</span>
