@@ -69,20 +69,20 @@ it('successfully sends a reset', async () =>{
 });
 
 it('it does not send email if the email does not exist', async () =>{
-    const wrapper = mount(
+    const wrapper_error = mount(
         <MockedProvider mocks={mocksError}>
          <RequestReset/>
         </MockedProvider>
     );
  
-    wrapper
+    wrapper_error
   .find('input')
   .simulate('change',{target: {name:'email',value:'baz@interstellar.io'}});
 
-  wrapper.find('PrimaryButton').simulate('click');
+  wrapper_error.find('PrimaryButton').simulate('click');
   await wait();
-  wrapper.update();
-  expect(wrapper.find('p').text()).toContain('That email does not exist on our side.');
+  wrapper_error.update();
+  expect(wrapper_error.find('h1').text()).toMatch('That email does not exist on our side.');
 
 });
 
