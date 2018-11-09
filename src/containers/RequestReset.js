@@ -2,6 +2,7 @@ import React from 'react'
 import gql from 'graphql-tag';
 import { Mutation} from 'react-apollo';
 import PrimaryButton from "../components/PrimaryButton"
+
 export const REQUEST_RESET_MUTATION = gql`
  mutation REQUEST_RESET_MUTATION($email:String!){
      requestReset(email:$email){
@@ -28,7 +29,8 @@ class RequestReset extends React.Component{
                <form method="post"
                >
                {!error && !loading && called && <p>Check your email for a link!</p>}
-               {error && !loading && !called && <p>That email does not exist on our side.</p>}
+               
+               {error && <h1>That email does not exist on our side.</h1>}
                <label htmlFor="email">
                Email
                <input
