@@ -54,7 +54,7 @@ class Login extends Component {
         } =this.state
         return(
             <div className="login">
-            <h2 className="mv3">{login ? 'Welcome Back!' : 'Sign Up'}</h2>
+            <h2 className="mv3 mr7 heading">{login ? 'Welcome Back!' : 'Sign Up'}</h2>
             <div className=" login_form flex flex-column">
             {!login && (
             <label htmlFor="name"> Name
