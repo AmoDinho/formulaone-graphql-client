@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Component} from 'react'
 import gql from 'graphql-tag';
 import { Mutation} from 'react-apollo';
 import PrimaryButton from "../components/PrimaryButton"
@@ -6,19 +6,23 @@ import PrimaryButton from "../components/PrimaryButton"
 export const REQUEST_RESET_MUTATION = gql`
  mutation REQUEST_RESET_MUTATION($email:String!){
      requestReset(email:$email){
-        SuccessMessage
+        message
      }
  }
 `
 
-class RequestReset extends React.Component{
+class RequestReset extends Component{
   state = {
       email: ''
   };
 
-  saveToState = e => {
-      this.setState({[e.target.name]: e.target.value});
-  };
+  //e => this.setState({email: e.target.value})
+
+  saveToState = event => {
+      this.setState({
+          [event.target.name]: event.target.value
+      });
+    }
 
     render(){
         return(
@@ -37,7 +41,7 @@ class RequestReset extends React.Component{
                type="email"
                placeholder="email"
                value={this.state.email}
-               onChange={this.saveToState}
+               onChange={e => this.setState({email: e.target.value})}
                />
                </label>
              
@@ -66,4 +70,4 @@ class RequestReset extends React.Component{
 
 }
 
-export default RequestReset
+export default RequestReset;

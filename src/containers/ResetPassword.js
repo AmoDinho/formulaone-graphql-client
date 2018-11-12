@@ -7,7 +7,7 @@ const queryString = require('query-string');
 
 export const RESET_PASSWORD_MUTATION = gql`
  mutation RESET_PASSWORD_MUTATION($resetToken:String!, $password:String!,$confirmPassword:String!){
-     requestReset(resetToken:$resetToken,password:$password,confirmPassword:$confirmPassword){
+    resetPassword(resetToken:$resetToken,password:$password,confirmPassword:$confirmPassword){
          id
          email
          name
@@ -70,7 +70,7 @@ class ResetPassword extends React.Component {
                type="password"
                placeholder="password"
                value={this.state.password}
-               onChange={this.saveToState}
+               onChange={e => this.setState({password: e.target.value})}
                />
                </label>
 
@@ -80,7 +80,7 @@ class ResetPassword extends React.Component {
                type="password"
                placeholder="Confirm Password"
                value={this.state.confirmPassword}
-               onChange={this.saveToState}
+               onChange={e => this.setState({confirmPassword: e.target.value})}
                />
                </label>
 
