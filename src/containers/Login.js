@@ -113,6 +113,7 @@ class Login extends Component {
             className="pointer secondary_button"
             login={this.state.login}
             onClick={() => this.setState({login: !login})}
+            text={!login ? 'Have an Account?': ''}
             />
 
             </div>

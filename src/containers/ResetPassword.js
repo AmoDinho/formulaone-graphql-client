@@ -3,7 +3,9 @@ import gql from 'graphql-tag';
 import { Mutation} from 'react-apollo';
 import PrimaryButton from "../components/PrimaryButton"
 import {AUTH_TOKEN } from "../constants";
+import '../styles/ResetPassword.css';
 const queryString = require('query-string');
+
 
 export const RESET_PASSWORD_MUTATION = gql`
  mutation RESET_PASSWORD_MUTATION($resetToken:String!, $password:String!,$confirmPassword:String!){
@@ -45,6 +47,10 @@ class ResetPassword extends React.Component {
         };
     }
 
+    validateForm(){
+        return this.state.password.length > 0 && this.state.confirmPassword.length > 0;
+    }
+
     
     render(){
         return(
@@ -70,6 +76,7 @@ class ResetPassword extends React.Component {
                type="password"
                placeholder="password"
                value={this.state.password}
+               className="ml7"
                onChange={e => this.setState({password: e.target.value})}
                />
                </label>
@@ -87,6 +94,7 @@ class ResetPassword extends React.Component {
 
                  <PrimaryButton
             text="Reset Password"
+            className="form_submit"
             onClick={async e => {
                 e.preventDefault();
                 if (this.state.password !== this.state.confirmPassword){
@@ -96,6 +104,7 @@ class ResetPassword extends React.Component {
                 await reset();
                 this.setState({email: '',confirmPassword:''});
             }}
+            disabled={!this.validateForm()}
             />
                     </form>
                 )}

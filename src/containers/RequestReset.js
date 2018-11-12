@@ -2,6 +2,8 @@ import React,{Component} from 'react'
 import gql from 'graphql-tag';
 import { Mutation} from 'react-apollo';
 import PrimaryButton from "../components/PrimaryButton"
+import '../styles/RequestReset.css';
+
 
 export const REQUEST_RESET_MUTATION = gql`
  mutation REQUEST_RESET_MUTATION($email:String!){
@@ -10,6 +12,7 @@ export const REQUEST_RESET_MUTATION = gql`
      }
  }
 `
+
 
 class RequestReset extends Component{
   state = {
@@ -24,6 +27,10 @@ class RequestReset extends Component{
       });
     }
 
+    validateForm(){
+        return this.state.email.length > 0;
+    }
+
     render(){
         return(
             <div>
@@ -31,10 +38,23 @@ class RequestReset extends Component{
             <Mutation mutation={REQUEST_RESET_MUTATION} variables={this.state}>
               {(reset, {error,loading,called}) => (
                <form method="post"
+              
                >
-               {!error && !loading && called && <p>Check your email for a link!</p>}
+               {!error && !loading && called && 
+              <div className="form_alert mr7">
+              <p className="mt4">Check your email for a link!</p>
+           </div>
+               }
                
-               {error && <h1>That email does not exist on our side.</h1>}
+               {error && 
+               <div className="form_error">
+                   
+               <p>That email does not exist on our side.</p>
+               </div>
+               }
+
+            
+               
                <label htmlFor="email">
                Email
                <input
@@ -53,6 +73,8 @@ class RequestReset extends Component{
                 await reset();
                 this.setState({email: ''});
             }}
+            className="ml5"
+            disabled={!this.validateForm()}
             />
                </form>
 
