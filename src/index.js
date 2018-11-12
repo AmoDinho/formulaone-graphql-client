@@ -14,6 +14,7 @@ import {split} from 'apollo-link';
 import {WebSocketLink} from 'apollo-link-ws';
 import {getMainDefinition} from 'apollo-utilities';
 //import { onError } from "apollo-link-error";
+require('dotenv').config({ path: '.env' });
 
 
 

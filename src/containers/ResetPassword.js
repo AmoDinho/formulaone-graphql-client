@@ -36,6 +36,7 @@ class ResetPassword extends React.Component {
 
     saveUserData = token => {
         localStorage.setItem(AUTH_TOKEN, token);
+        this.props.history.push('/');
     }
 
     componentDidMount(){

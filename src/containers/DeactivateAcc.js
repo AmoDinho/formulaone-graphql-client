@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import { Mutation} from 'react-apollo';
 import PrimaryButton from "../components/PrimaryButton";
+import {AUTH_TOKEN} from '../constants'
+const jwt = require('jsonwebtoken');
+
 
 export const DELETE_USER_MUTATION = gql`
- mutation DELETE_USER_MUTATION($id:String!,$password:String!){
+ mutation DELETE_USER_MUTATION($id:ID!,$password:String!){
      deleteUser(id:$id,password:$password){
          id
      }
@@ -13,19 +16,29 @@ export const DELETE_USER_MUTATION = gql`
 
 
 class DeactivateAcc extends Component {
-    state={
+    state = {
         password: ''
     }
 
 
     validateForm(){
-        return this.state.password.length > 0 && this.state.confirmPassword.length > 0;
+        return this.state.password.length > 0;
     }
 
+
+
+    componentWillUnmount(){
+        this.setState({password: ''});
+        localStorage.removeItem(AUTH_TOKEN);
+    }
     
 
 
     render(){
+        
+        const authToken = localStorage.getItem(AUTH_TOKEN)
+        const secert = process.env.REACT_APP_SECRET_CODE
+        const {userId} = jwt.verify(authToken,secert)
         
         return(
             <div>
@@ -36,8 +49,11 @@ class DeactivateAcc extends Component {
               <p>To continue Please enter your password.</p>
                <Mutation
                 mutation={DELETE_USER_MUTATION}
-                variables={ this.state}
-                
+                variables={{
+                password:this.state.password,
+                id:userId
+                }}
+                onCompleted={() => this.props.history.push('/')}
                 >
                 {(deactivate, {error, loading, called}) => (
                     <form
@@ -63,7 +79,7 @@ class DeactivateAcc extends Component {
                 e.preventDefault();
                 
                 await deactivate();
-                this.setState({email: ''});
+                
             }}
             disabled={!this.validateForm()}
             />
