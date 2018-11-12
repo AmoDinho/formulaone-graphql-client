@@ -28,7 +28,7 @@ class App extends Component {
          <Route exact path="/driver/:id" component={DriverInfo}/>
          <Route exact path="/new/:page" component={DriverList}/>
          <Route exact path="/requestReset" component={RequestReset}/>
-         <Route exact path="/resetPassword" component={ResetPassword}/>
+         <Route exact path="/resetPassword/:resetURL" component={ResetPassword}/>
          <Route exact path="/settings" component={Settings}/>
 
          <Route component={NotFound}/>
