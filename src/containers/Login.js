@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {AUTH_TOKEN} from '../constants';
 import {Mutation} from 'react-apollo';
+import {Link} from 'react-router-dom';
 import gql from 'graphql-tag';
 import '../styles/Login.css';
 import PrimaryButton from '../components/PrimaryButton';
@@ -91,7 +92,15 @@ class Login extends Component {
             </label>
             
             </div>
+            {login &&(
+                   <Link to="/requestReset" className="mr7 grow dtc underline ">
+                   <a>Forgot Password</a>
+                      </Link>
+            )}
+           
             <div className="flex mt3">
+           
+            
             <Mutation
               mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
               variables={{email,password, name}}

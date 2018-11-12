@@ -41,3 +41,7 @@ input[type="text"]{
 .heading{
     margin-right: 450px;
 }
+
+a{
+    color: red;
+}
