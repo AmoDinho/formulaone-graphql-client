@@ -11,6 +11,7 @@ import Settings from './Settings';
 import '../styles/App.css';
 import RequestReset from './RequestReset';
 import ResetPassword from './ResetPassword';
+import DeactivateAcc from './DeactivateAcc';
 
 
 class App extends Component {
@@ -30,7 +31,7 @@ class App extends Component {
          <Route exact path="/requestReset" component={RequestReset}/>
          <Route exact path="/resetPassword/:resetURL" component={ResetPassword}/>
          <Route exact path="/settings" component={Settings}/>
-
+         <Route exact path="/deactivate" component={DeactivateAcc}/>
          <Route component={NotFound}/>
        </Switch>
        </div>

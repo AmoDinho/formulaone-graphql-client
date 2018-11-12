@@ -63,7 +63,7 @@ h2{
     margin-left:1000px;
 }
 
-input{
+:local(input){
     border-radius: 8px;
     border: 2px solid #C4C4C4;
     margin-left:5px;
