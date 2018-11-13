@@ -11,6 +11,21 @@ import ResetPassword, {RESET_PASSWORD_MUTATION} from '../containers/ResetPasswor
 
 configure({adapter: new Adapter()});
 
+
+const mocks = [
+    {
+        request: {
+            query: RESET_PASSWORD_MUTATION,
+            variables: {
+                resetToken: "1234",
+                password: 'S0ny!',
+                confirmPassword:'S0ny!'
+            }
+        }
+    }
+]
+
+
 it('loads the page',() =>{
 
 });
