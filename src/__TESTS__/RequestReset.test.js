@@ -82,7 +82,7 @@ it('it does not send email if the email does not exist', async () =>{
   wrapper_error.find('PrimaryButton').simulate('click');
   await wait();
   wrapper_error.update();
-  expect(wrapper_error.find('h1').text()).toMatch('That email does not exist on our side.');
+  expect(wrapper_error.find('#error').text()).toMatch('That email does not exist on our side.');
 
 });
 
