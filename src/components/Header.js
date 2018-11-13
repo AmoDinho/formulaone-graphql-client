@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import * as Icon from 'react-feather';
 import {withRouter} from 'react-router';
 import {AUTH_TOKEN} from '../constants'
 import '../styles/Header.css';
@@ -20,7 +21,7 @@ class Header extends Component{
         
         <div className="flex flex-fixed white">
 
-        <div className="fw7 mr1 ml4 white"><h1>FanBoost</h1>
+        <div className="fw7 mr1 ml4 white"> <Link className="no-underline white" to="/"><h1>FanBoost</h1></Link>
         <button aria-expanded="false"  onClick={this.toggleNav} aria-controls="menu-list">
           <span className="open">☰</span>
           <span className="close">×</span>
@@ -69,16 +70,34 @@ class Header extends Component{
                
            )}
            </li>
-           <li>
+
+           <li className="menu_right">
+          
            {authToken ? (
-                 <div 
-                 className="ml1 mt2 grow pointer white"
+               
+               <li>
+                   <h3 className="grow pointer">
+          <Icon.User className="pointer "/> 
+          </h3>
+               
+               <ul className="dropdown">
+                   <Link to="/deactivate" className="no-underline black">
+                     <h3>Deactivate</h3>
+                     </Link>
+                   <div 
+                 className="ml1 mt2 grow pointer black"
                  onClick={() => {
                      localStorage.removeItem(AUTH_TOKEN)
                      this.props.history.push(`/`)
                  }}>
                  <h3>Logout</h3>
                  </div>
+                 
+
+
+               </ul>
+               </li>
+                 
              ): (
              <Link to="/login" className=" login ml7 grow dtc grow no-underline white">
              <h3>Login</h3>

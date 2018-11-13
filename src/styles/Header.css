@@ -1,7 +1,7 @@
 .menu ul {
     
     display: grid;
-    grid-template-columns: repeat(8, minmax(10px,1fr));
+    grid-template-columns: repeat(7, minmax(10px,1fr));
     list-style: none;
     justify-content: space-around;
     margin-left: 200px;
@@ -12,11 +12,59 @@
 
   .menu{
     height: 80px;
+  }
+
+
+  .menu ul li{
+    position: relative;
+    float: left;
+  
+    padding:0;
     
   }
   
+  .menu ul ul {
+    display: none;
+    position: absolute;
+    top:60%;
+    left:-200px;
+  
 
+  }
+
+  .menu ul ul li {
+    float:none;
+    width:200px;
+  }
+
+
+  .menu ul ul h3 {
+    line-height: 120%;
+    padding: 10px 15px;
+  }
+
+  .menu ul ul ul {
+    top:0;
+    left:100%;
+  }
+  .menu ul li:hover > ul,
+  ul li ul:hover{
+    visibility: visible;
+    display:block;
+  }
  
+  .dropdown{
+    background-color: #ffffff;
+    border: 2px solid #cc0001;
+    margin-right:200px;
+    border-radius: 5px;
+  }
+
+  .menu_right{
+    margin-left:45px;
+  }
+
+  
   
   [aria-controls="menu-list"] {
     visibility: hidden;
