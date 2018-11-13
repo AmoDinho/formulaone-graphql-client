@@ -37,7 +37,7 @@ class DeactivateAcc extends Component {
     render(){
         
         const authToken = localStorage.getItem(AUTH_TOKEN)
-        const secert = process.env.REACT_APP_SECRET_CODE
+        const secert = process.env.local.REACT_APP_SECRET_CODE
         const {userId} = jwt.verify(authToken,secert)
         
         return(
