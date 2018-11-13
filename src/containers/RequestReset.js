@@ -49,7 +49,7 @@ class RequestReset extends Component{
                {error && 
                <div className="form_error">
                    
-               <p>That email does not exist on our side.</p>
+               <p id="error">That email does not exist on our side.</p>
                </div>
                }
 
