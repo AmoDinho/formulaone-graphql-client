@@ -15,6 +15,7 @@ export const TRACK_QUERY =gql`
             id
           name
           country
+          trackImage
          }
       }
   }
