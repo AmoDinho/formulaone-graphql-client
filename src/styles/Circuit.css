@@ -1,0 +1,28 @@
+.circuit{
+    width: 900px;
+    height:200px;
+    border-top-left-radius: 80px;
+    border-bottom-right-radius: 80px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
+    border: 5px solid red;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.circuit_hero{}
+
+.circuit_thumbnail{
+ width: 450px;
+ height:200px;
+ border-top-left-radius: 80px;
+
+}
+
+.circuit_details{}
+
+.circuit_details_name{}
+
+.circuit_details_emoji{
+    width: 80px;
+    height:80px;
+}
