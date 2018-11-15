@@ -37,10 +37,24 @@ it('renders the loading page',() =>{
 
 
 it('renders the circuits',() =>{
-    
+    const wrapper = mount(
+        <MockedProvider mocks={mocks}>
+        <CircuitList/>
+        </MockedProvider>
+    )
+
+   expect( wrapper.find('p').text()).toContain('track name - country')
 
 });
 
 it('renders an error UI',() =>{
 
+    const component = renderer.create(
+        <MockedProvider  mocks={[]}>
+    <CircuitList/>
+  </MockedProvider>
+    );
+
+    const tree = component.toJSON();
+    expect(tree.children).toContain("something went wrong");
 });

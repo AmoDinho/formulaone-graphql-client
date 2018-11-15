@@ -35,7 +35,12 @@ class CircuitList extends Component {
                  console.log(circuitsToRender)
                  return (
                     <div>
-                                         {circuitsToRender.map(circuit => <Circuit key={circuit.id} circuit={circuit}/>)}
+                  {circuitsToRender.map(circuit => (
+                  <Link to={`/circuit/${circuit.id}`} key={circuit.id}>
+                  <Circuit key={circuit.id} circuit={circuit}/>
+                </Link>
+                
+                ))}
 
                     </div>
                  )
