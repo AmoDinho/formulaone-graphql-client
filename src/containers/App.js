@@ -20,7 +20,7 @@ class App extends Component {
     return(
       <div >
        <Header/>
-       <div className="ph3 pv1 background-gray center">
+       <div className=" background-gray  app ">
        <Switch>
        <Route exact path="/" render={() => <Redirect to="/new/1"/>} />
        <Route exact path="/create" component={CreateDriver}/>

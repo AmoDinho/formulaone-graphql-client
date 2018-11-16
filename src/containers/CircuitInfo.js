@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {Query, Mutation} from 'react-apollo';
 import '../styles/CircuitInfo.css';
+import {Tab,Tabs,TabList, TabPanel} from 'react-tabs';
+//import 'react-tabs/style/react-tabs.css';
 
 export const CIRCUIT_QUERY = gql`
   query CIRCUIT_QUERY($id:ID!){
       circuit(id:$id){
           id
           name
-        
     country
     numOfLaps
     description
@@ -45,12 +46,24 @@ class CircuitInfo extends Component{
                         const circuit = data.circuit;
 
                         return(
-                            <div>
-                                <p>{circuit.name}</p>
+                            <div className="circuit_Info">
+                          <div className="circuit_Info_Header" style={{backgroundImage:`url(${circuit.trackImage})`}}>
+                            <h1 className="black circuit_Info_Header_Title">{circuit.name}</h1>
+                            <h3 className="circuit_Info_Header_Sub_Title">{circuit.country}</h3>
+                            </div>
+                           <Tabs>
 
-                                <img src={circuit.trackMap} alt="circuit" />
-                                <img src={circuit.trackImage} alt="circuit" />
-                                <p>{circuit.country}</p>
+                               <TabList>
+                                   <Tab>Info</Tab>
+                                   <Tab>Map</Tab>
+                               </TabList>
+                               <TabPanel>
+                              
+                                <div className="circuit_Info_container">
+                                <img className="circuit_Info_container_Image" src={circuit.trackMap} alt="circuit" />
+                                
+                                <div className="circuit_Info_container_inner">
+                               
                                 <p>{circuit.description}</p>
                             <p>{circuit.numOfLaps}</p>
                               <p>{circuit.raceDistance}</p> 
@@ -60,6 +73,17 @@ class CircuitInfo extends Component{
                              <p>{circuit.longitude}</p>
                              <p>{circuit.latitude}</p>
                               <p>{circuit.flyAway}</p>
+                                
+                                </div>
+                                
+                                </div>
+                               </TabPanel>
+                               <TabPanel>
+                                   <h1>Map!</h1>
+                               </TabPanel>
+                           </Tabs>
+
+                             
     
                             </div>
                         )
