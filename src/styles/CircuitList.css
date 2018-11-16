@@ -1,0 +1,9 @@
+.circuit_list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-Gap:20px;
+    justify-items: center;
+    margin-top: 30px;
+
+}
+

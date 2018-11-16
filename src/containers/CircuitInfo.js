@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {Query, Mutation} from 'react-apollo';
-
+import '../styles/CircuitInfo.css';
 
 export const CIRCUIT_QUERY = gql`
   query CIRCUIT_QUERY($id:ID!){

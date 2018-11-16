@@ -17,5 +17,5 @@ export default () =>
          🤩
          </span>
     </h1>
-     <img src={url} style={{imgStyles}} alt="404"/>
+     <img src={url} className="not_found_img" style={{imgStyles}} alt="404"/>
  </div>
