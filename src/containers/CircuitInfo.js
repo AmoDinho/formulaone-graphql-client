@@ -64,18 +64,21 @@ class CircuitInfo extends Component{
                                 
                                 <div className="circuit_Info_container_inner">
                                
-                                <p>{circuit.description}</p>
-                            <p>{circuit.numOfLaps}</p>
+                                <div className="circuit_Info_container_inner_card">
+                                <p>{circuit.numOfLaps}</p>
+                                </div>
+                                <div className="circuit_Info_container_inner_card">
+                                </div>
+                            
                               <p>{circuit.raceDistance}</p> 
                               <p>{circuit.circuitLength}</p> 
                             <p>{circuit.lapRecord}</p>
                             <p>{circuit.address}</p>
-                             <p>{circuit.longitude}</p>
-                             <p>{circuit.latitude}</p>
+                             
                               <p>{circuit.flyAway}</p>
                                 
                                 </div>
-                                
+                                <p >{circuit.description}</p>
                                 </div>
                                </TabPanel>
                                <TabPanel>

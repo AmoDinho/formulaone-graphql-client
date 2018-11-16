@@ -15,6 +15,23 @@
    padding: 90px;
 }
 
+.circuit_Info_container_Image{
+  margin-left: 150px;
+}
+
+
+.circuit_Info_container_inner{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.circuit_Info_container_inner_card{
+  border-bottom-right-radius: 40px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
+  width: 400px;
+
+}
 .circuit_Info_Header_Sub_Title{
 }
 
