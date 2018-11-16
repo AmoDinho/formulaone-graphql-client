@@ -25,7 +25,7 @@ function lookUpURL(country, prop){
             </div>
             
             <div className='circuit_details'>
-            <p className='circuit_details_name'>{circuit.name}</p>
+            <h3 className='circuit_details_name'>{circuit.name}</h3>
           
            
              <img src={lookUpURL(circuit.country, 'url')} className='circuit_details_emoji'  alt="ha"/>

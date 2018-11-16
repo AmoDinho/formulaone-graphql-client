@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import gql from 'graphql-tag';
 import {LINKS_PER_PAGE} from '../constants';
 import Circuit from '../components/Circuit';
-
+import '../styles/CircuitList.css';
 
 
 export const TRACK_QUERY =gql`
@@ -21,6 +21,7 @@ export const TRACK_QUERY =gql`
   }
 `
 
+
 class CircuitList extends Component {
     render(){
 
@@ -35,9 +36,9 @@ class CircuitList extends Component {
                  const circuitsToRender = data.tracks.circuits
                  console.log(circuitsToRender)
                  return (
-                    <div>
+                    <div className="circuit_list" >
                   {circuitsToRender.map(circuit => (
-                  <Link to={`/circuit/${circuit.id}`} key={circuit.id}>
+                  <Link className="Link black" to={`/circuit/${circuit.id}`} key={circuit.id}>
                   <Circuit key={circuit.id} circuit={circuit}/>
                 </Link>
                 
