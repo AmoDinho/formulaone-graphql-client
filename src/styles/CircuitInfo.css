@@ -23,6 +23,7 @@
 .circuit_Info_container_inner{
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
   justify-items: center;
 }
 
@@ -33,7 +34,11 @@
   height:150px;
   align-content: center;
   text-align: center;
-  padding: 50px;
+  padding: 20px;
+}
+
+.icon{
+  
 }
 .circuit_Info_Header_Sub_Title{
 }
@@ -41,6 +46,7 @@
 
 .circuit_Info_container{
   color: none;
+  text-align: center;
 }
 
 .react-tabs {

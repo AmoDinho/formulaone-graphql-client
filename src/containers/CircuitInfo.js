@@ -77,29 +77,48 @@ class CircuitInfo extends Component{
                                 <div className="circuit_Info_container_inner">
                                
                                 <div className="circuit_Info_container_inner_card">
-                                <Icon.Activity/> Number of Laps: {circuit.numOfLaps}
+                                <div>
+                                <Icon.Activity size={48}/>
+                                </div>
+                                 Number of Laps: {circuit.numOfLaps}
                                 </div>
                                 <div className="circuit_Info_container_inner_card">
-                                <Icon.Watch/> Lap Record: {circuit.lapRecord}
+                                <div>
+                                <Icon.Watch size={48}/>
+                                </div>
+                                 Lap Record: {circuit.lapRecord}
                                 </div>
 
                                 <div className="circuit_Info_container_inner_card">
-                                 <Icon.Home/> Address : {circuit.address}
+                                 <div>
+                                 <Icon.Home size={48}/>
+                                 </div>
+                                 Address : {circuit.address}
                                 </div>
                                  
                                 <div className="circuit_Info_container_inner_card">
-                                <p>{circuit.raceDistance}</p> 
+                                <div>
+                                    <Icon.Clock size={48}/>
+                                </div>
+                                <p>Race Distance: {circuit.raceDistance}</p> 
                                 </div>
 
                                  <div className="circuit_Info_container_inner_card">
-                                 <p>{circuit.circuitLength}</p> 
+                                 <div>
+                                     <Icon.Compass size={48}/>
+                                 </div>
+                                 <p>Circuit Length: {circuit.circuitLength}</p> 
                                 </div>
 
                                  <div className="circuit_Info_container_inner_card">
+                                 <div>
                                  {circuit.flyAway ? (
-                                    <span className="circuit_Info_container"><Icon.Calendar/> Fly-Away</span>
-                                 ):(<span className="circuit_Info_container"><Icon.Calendar/>European Race</span>)}
+                                     <span>
+                                    <Icon.Calendar className="icon" size={48}/> Fly-Away</span>
+                                 ):(<span ><Icon.Calendar size={48}/>European Race</span>)}
                                 </div>
+                                </div>
+                                                                
 
                                 </div>
                                 <div className="circuit_Info_container">
