@@ -34,7 +34,6 @@ class CircuitList extends Component {
                  if (error) return <div>Something went wrong</div>
 
                  const circuitsToRender = data.tracks.circuits
-                 console.log(circuitsToRender)
                  return (
                     <div className="circuit_list" >
                   {circuitsToRender.map(circuit => (

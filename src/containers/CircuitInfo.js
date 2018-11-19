@@ -4,6 +4,10 @@ import {Query, Mutation} from 'react-apollo';
 import '../styles/CircuitInfo.css';
 import {Tab,Tabs,TabList, TabPanel} from 'react-tabs';
 //import 'react-tabs/style/react-tabs.css';
+import GoogleMapReact from 'google-map-react';
+
+
+
 
 export const CIRCUIT_QUERY = gql`
   query CIRCUIT_QUERY($id:ID!){
@@ -27,7 +31,12 @@ export const CIRCUIT_QUERY = gql`
 `
 
 
+
+
 class CircuitInfo extends Component{
+   state={
+       zoom: 13
+   }
     render(){
         const id = this.props.match.params.id;
         return(
@@ -44,7 +53,9 @@ class CircuitInfo extends Component{
                         if (error) return <div>Error</div>;
 
                         const circuit = data.circuit;
-
+                        const {longitude,latitude} = data.circuit
+                      console.log(longitude,latitude)
+                      const position = [latitude,longitude]
                         return(
                             <div className="circuit_Info">
                           <div className="circuit_Info_Header" style={{backgroundImage:`url(${circuit.trackImage})`}}>
@@ -81,8 +92,31 @@ class CircuitInfo extends Component{
                                 <p >{circuit.description}</p>
                                 </div>
                                </TabPanel>
+
+
+
                                <TabPanel>
                                    <h1>Map!</h1>
+                                   <div style={{height: '100vh',width:'100%'}}>
+                                        <GoogleMapReact
+                                        bootstrapURLKeys={{
+                                            key: process.env.REACT_APP_MAP_KEY,
+                                        language: 'gb',
+                                        region: 'gb'}}
+                                        defaultCenter={position}
+                                        defaultZoom={this.state.zoom}
+                                        >
+                                      <span
+                                      lat={latitude}
+                                      lng={longitude}
+                                      >
+                                          Hello
+                                          </span>
+                 
+                                        </GoogleMapReact>    
+                                  </div>
+
+                    
                                </TabPanel>
                            </Tabs>
 
