@@ -5,6 +5,7 @@ import '../styles/CircuitInfo.css';
 import {Tab,Tabs,TabList, TabPanel} from 'react-tabs';
 //import 'react-tabs/style/react-tabs.css';
 import GoogleMapReact from 'google-map-react';
+import * as Icon from 'react-feather';
 
 
 
@@ -35,7 +36,7 @@ export const CIRCUIT_QUERY = gql`
 
 class CircuitInfo extends Component{
    state={
-       zoom: 13
+       zoom: 16
    }
     render(){
         const id = this.props.match.params.id;
@@ -54,7 +55,7 @@ class CircuitInfo extends Component{
 
                         const circuit = data.circuit;
                         const {longitude,latitude} = data.circuit
-                      console.log(longitude,latitude)
+                      console.log(circuit.flyAway)
                       const position = [latitude,longitude]
                         return(
                             <div className="circuit_Info">
@@ -76,20 +77,35 @@ class CircuitInfo extends Component{
                                 <div className="circuit_Info_container_inner">
                                
                                 <div className="circuit_Info_container_inner_card">
-                                <p>{circuit.numOfLaps}</p>
+                                <Icon.Activity/> Number of Laps: {circuit.numOfLaps}
                                 </div>
                                 <div className="circuit_Info_container_inner_card">
+                                <Icon.Watch/> Lap Record: {circuit.lapRecord}
                                 </div>
-                            
-                              <p>{circuit.raceDistance}</p> 
-                              <p>{circuit.circuitLength}</p> 
-                            <p>{circuit.lapRecord}</p>
-                            <p>{circuit.address}</p>
-                             
-                              <p>{circuit.flyAway}</p>
-                                
+
+                                <div className="circuit_Info_container_inner_card">
+                                 <Icon.Home/> Address : {circuit.address}
                                 </div>
-                                <p >{circuit.description}</p>
+                                 
+                                <div className="circuit_Info_container_inner_card">
+                                <p>{circuit.raceDistance}</p> 
+                                </div>
+
+                                 <div className="circuit_Info_container_inner_card">
+                                 <p>{circuit.circuitLength}</p> 
+                                </div>
+
+                                 <div className="circuit_Info_container_inner_card">
+                                 {circuit.flyAway ? (
+                                    <span className="circuit_Info_container"><Icon.Calendar/> Fly-Away</span>
+                                 ):(<span className="circuit_Info_container"><Icon.Calendar/>European Race</span>)}
+                                </div>
+
+                                </div>
+                                <div className="circuit_Info_container">
+                                     <h3>All About {circuit.name}</h3>
+                                    <p >{circuit.description}</p>
+                                </div>
                                 </div>
                                </TabPanel>
 
@@ -106,12 +122,14 @@ class CircuitInfo extends Component{
                                         defaultCenter={position}
                                         defaultZoom={this.state.zoom}
                                         >
-                                      <span
-                                      lat={latitude}
-                                      lng={longitude}
-                                      >
-                                          Hello
-                                          </span>
+                                     <span>
+                                   <Icon.MapPin 
+                                    lat={latitude}
+                                    lng={longitude}
+                                    style={{color:'#cc0001'}}
+                                   /> <h3 className="black">{circuit.name}</h3>
+                                 </span>
+                                          
                  
                                         </GoogleMapReact>    
                                   </div>
