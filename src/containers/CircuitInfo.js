@@ -55,7 +55,8 @@ class CircuitInfo extends Component{
 
                         const circuit = data.circuit;
                         const {longitude,latitude} = data.circuit
-                      console.log(circuit.flyAway)
+                    
+                   
                       const position = [latitude,longitude]
                         return(
                             <div className="circuit_Info">
