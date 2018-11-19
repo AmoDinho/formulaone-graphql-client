@@ -45,7 +45,7 @@ class Driver extends Component {
 
                 <div className="flex mt2 items-start">
                   <div className="flex items-center">
-                   <span className="gray">{this.props.index +1}</span>
+                   <span className="driver_span gray">{this.props.index +1}</span>
                   
                   
                   </div>
@@ -53,7 +53,7 @@ class Driver extends Component {
                    <div className="card " style={{backgroundImage:`url(${this.props.driver.pictureURL})`}}>
                    <div className="card_info mt6 ml3">
                    <div className="number ml2 mt5"> <span></span></div>
-                  <div className="name ml2 mt3 "><span>{this.props.driver.name}</span>
+                  <div className="name ml2 mt3 "><span className="driver_span">{this.props.driver.name}</span>
                   
                   {authToken &&(
 
