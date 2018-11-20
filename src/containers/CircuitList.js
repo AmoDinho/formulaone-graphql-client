@@ -1,11 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import Driver from '../components/Driver';
-import {Query} from 'react-apollo';
+import {Query, ApolloConsumer,withApollo} from 'react-apollo';
 import {Link} from 'react-router-dom';
 import gql from 'graphql-tag';
 import {LINKS_PER_PAGE} from '../constants';
 import Circuit from '../components/Circuit';
-import {withApollo} from 'react-apollo';
+import Downshift from 'downshift';
 import '../styles/CircuitList.css';
 
 
@@ -23,34 +23,111 @@ export const TRACK_QUERY =gql`
 `
 export const TRACK_SEARCH_QUERY = gql`
  query TRACK_SEARCH_QUERY($filter:String!){
-     circuits{
+     tracks(filter:$filter){
+        circuits{
           id
           name
           country
           trackImage
      }
+     }
  }
 `
+function routeToCircuit(){
 
+}
 
 class CircuitList extends Component {
 
     state={
    filter: '',
-   circuitsToRender: []
+   circuits:[],
+   loading:false
+    };
+
+    _search = async (e, client) => {
+        const {filter} = this.state
+        this.setState({loading:true});
+
+        const result = await this.props.client.query({
+            query: TRACK_SEARCH_QUERY,
+            variables: {filter: e.target.value}
+        });
+
+        console.log(result);
+         this.setState({
+             circuits: result.data.tracks.circuits,
+            loading:false,
+         });
     }
+
     render(){
 
         return(
            
             <div>
+
+                 <Downshift
+                 onChange={Selection => alert(`${Selection.value}`)}
+                 itemToString={item => (item ? item.name : '')}
+                 >
+                 {({
+                     getInputProps,
+                     getItemProps,
+                     isOpen,
+                     inputValue,
+                     highlightedIndex
+
+                 }) =>
                 <div>
-                    Search <input
-                    type="text"
-                    onChange={e => this.setState({filter: e.target.value})}
-                    />
-                    <button onClick={() => this._search()}>Ok</button>
+                    <ApolloConsumer>
+                        {client => (
+                             <input
+                            {...getInputProps({
+                                type: "search",
+                            placeholder: 'Search for a Cirucit',
+                            id: 'search',
+                            className: this.state.loading ? 'loading': '',
+
+                            onChange: e => {
+                                e.persist();
+                                this._search(e,client);
+                            }
+                            })
+
+                            }
+                            />
+
+                        )}
+                    </ApolloConsumer>
+                    {isOpen && (
+                    <ul>
+                        {this.state.circuits.map((item,index) => (
+                             <li
+                             {...getItemProps({
+                                 key:item.value,
+                                 index,
+                                 item
+                             })}
+                             >
+                                 {item.value}
+                             </li>
+                        ))}
+                   
+                    </ul>
+                    )}
                 </div>
+                
+                
+                }
+
+
+                 </Downshift>
+
+
+                
+
+
                 <Query query={TRACK_QUERY}>
                 {({loading, error, data }) =>{
                  if (loading) return <div>Fetching...</div>
@@ -78,15 +155,7 @@ class CircuitList extends Component {
         )
     }
 
-    _search = async () => {
-        const {filter} = this.state
-        const result = await this.props.client.query({
-            query: TRACK_SEARCH_QUERY,
-            variables: {filter}
-        })
-        const circuitsToRender = result.data.tracks.circuits
-        this.setState({circuitsToRender})
-    }
+  
 }
 
 
