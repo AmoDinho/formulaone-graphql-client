@@ -33,9 +33,7 @@ export const TRACK_SEARCH_QUERY = gql`
      }
  }
 `
-function routeToCircuit(){
 
-}
 
 class CircuitList extends Component {
 
@@ -105,12 +103,22 @@ class CircuitList extends Component {
                         {this.state.circuits.map((item,index) => (
                              <li
                              {...getItemProps({
-                                 key:item.value,
+                                 key:item.id,
                                  index,
-                                 item
+                                 item,
+                                 className: 'downshift'
+                                 
+
                              })}
+                            
+                             > 
+                             <Link
+                             className="Link black"
+                              to={`/circuit/${item.id}`} 
+                              key={item.id}
                              >
-                                 {item.value}
+                                 {item.name}
+                                 </Link>
                              </li>
                         ))}
                    

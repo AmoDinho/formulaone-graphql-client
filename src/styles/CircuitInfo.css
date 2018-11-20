@@ -49,6 +49,12 @@
   text-align: center;
 }
 
+.downshift{
+  color: black;
+
+  
+}
+
 .react-tabs {
     -webkit-tap-highlight-color: transparent;
   }
