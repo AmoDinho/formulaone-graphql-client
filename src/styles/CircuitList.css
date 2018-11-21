@@ -7,3 +7,28 @@
 
 }
 
+
+.search_input{
+    width:1000px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    
+  }
+  
+  .search_dropdown{
+    
+    
+  }
+  
+  .search_dropdown_item{
+    color: black;
+    text-decoration: none;
+    padding: 20px;
+    margin-bottom: 20px;
+   
+  
+  }
+
+  ul,li{
+      list-style-type: none;
+  }

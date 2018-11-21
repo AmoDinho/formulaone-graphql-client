@@ -112,6 +112,7 @@ class CircuitList extends Component {
                              })}
                             
                              > 
+                             
                              <Link
                              className="Link black"
                               to={`/circuit/${item.id}`} 
@@ -119,6 +120,7 @@ class CircuitList extends Component {
                              >
                                  {item.name}
                                  </Link>
+                               
                              </li>
                         ))}
                    
@@ -133,7 +135,7 @@ class CircuitList extends Component {
                  </Downshift>
 
 
-                
+              
 
 
                 <Query query={TRACK_QUERY}>
