@@ -77,7 +77,7 @@ class CircuitList extends Component {
                      highlightedIndex
 
                  }) =>
-                <div>
+                <div className="circuit_list_search">
                     <ApolloConsumer>
                         {client => (
                              <input
@@ -85,7 +85,7 @@ class CircuitList extends Component {
                                 type: "search",
                             placeholder: 'Search for a Cirucit',
                             id: 'search',
-                            className: this.state.loading ? 'loading': '',
+                            className: this.state.loading ? 'loading search_input': 'search_input',
 
                             onChange: e => {
                                 e.persist();
@@ -99,14 +99,14 @@ class CircuitList extends Component {
                         )}
                     </ApolloConsumer>
                     {isOpen && (
-                    <ul>
+                    <ul className="search_dropdown">
                         {this.state.circuits.map((item,index) => (
                              <li
                              {...getItemProps({
                                  key:item.id,
                                  index,
                                  item,
-                                 className: 'downshift'
+                                 className: 'search_dropdown_item'
                                  
 
                              })}

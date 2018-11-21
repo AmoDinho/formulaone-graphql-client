@@ -49,11 +49,34 @@
   text-align: center;
 }
 
-.downshift{
-  color: black;
 
+
+.search_input{
+  width:100%;
+  margin-bottom: 20px;
+  margin-left: 450px;
   
 }
+
+.search_dropdown{
+  width:auto;
+  position: absolute
+}
+
+.search_dropdown_item{
+  color: black;
+  text-decoration: none;
+  border: 2px solid black;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: wheat;
+
+}
+
+ul,li {
+  text-decoration: none;
+}
+
 
 .react-tabs {
     -webkit-tap-highlight-color: transparent;

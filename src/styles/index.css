@@ -4,6 +4,10 @@
 /*For headings 
 
 font-family: 'Audiowide', cursive;
+input{
+  max-width: 200px;
+
+}
 
 */
 
@@ -18,10 +22,7 @@ h1,h2,h4,h5,h6{
 
 }
 
-input{
-  max-width: 200px;
 
-}
 
 
 .white{
