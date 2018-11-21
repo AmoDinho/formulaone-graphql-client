@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import Driver from '../components/Driver';
-import {Query} from 'react-apollo';
+import {Query, ApolloConsumer,withApollo} from 'react-apollo';
 import {Link} from 'react-router-dom';
 import gql from 'graphql-tag';
 import {LINKS_PER_PAGE} from '../constants';
@@ -8,6 +8,7 @@ import '../styles/DriverList.css';
 import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
 import PropTypes from 'prop-types';
+import Downshift from 'downshift';
 
 const propTypes = {
     _updateCacheAfterBoost: PropTypes.func, 
@@ -20,7 +21,33 @@ const propTypes = {
 
 }
 
-
+const FEED_SEARCH_QUERY = gql`
+  query FeedSearchQuery($filter: String!){
+      feed(filter: $filter){
+          drivers{
+            id
+            createdAt
+            name
+            team
+            points
+            pictureURL
+            podiums
+            championshipWins
+            country
+            postedBy{
+                id
+                name
+            }
+            boosts{
+                id
+                user{
+                    id
+                }
+            }
+          }
+      }
+  }
+`
 
 
 
@@ -121,7 +148,12 @@ export const NEW_BOOSTS_SUBCRIPTION = gql`
 `
 
 class DriverList extends Component {
-   
+    state = {
+        drivers: [],
+        filter: '',
+        loading: false
+    }
+
     
     //Updating the cache after a fan has voted for a driver.
     _updateCacheAfterBoost = (store, createBoost, driverId) => {
@@ -232,11 +264,98 @@ _previousPage = () => {
     }
 }
 
+//search
+_search = async (e, client) => {
+    const {filter} = this.state
+    this.setState({loading:true});
+
+    const result = await this.props.client.query({
+        query: FEED_SEARCH_QUERY,
+        variables: {filter: e.target.value}
+    });
+
+    console.log(result);
+     this.setState({
+         drivers: result.data.feed.drivers,
+        loading:false,
+     });
+}
 
     render(){
 
         
    return(
+       <div>
+
+            <Downshift
+                 onChange={Selection => alert(`${Selection.value}`)}
+                 itemToString={item => (item ? item.name : '')}
+                 >
+                 {({
+                     getInputProps,
+                     getItemProps,
+                     isOpen,
+                     inputValue,
+                     highlightedIndex
+
+                 }) =>
+                <div className="circuit_list_search">
+                    <ApolloConsumer>
+                        {client => (
+                             <input
+                            {...getInputProps({
+                                type: "search",
+                            placeholder: 'Search for a Driver',
+                            id: 'search',
+                            className: this.state.loading ? 'loading search_input': 'search_input',
+
+                            onChange: e => {
+                                e.persist();
+                                this._search(e,client);
+                            }
+                            })
+
+                            }
+                            />
+
+                        )}
+                    </ApolloConsumer>
+                    {isOpen && (
+                    <ul className="search_dropdown">
+                        {this.state.drivers.map((item,index) => (
+                             <li
+                             {...getItemProps({
+                                 key:item.id,
+                                 index,
+                                 item,
+                                 className: 'search_dropdown_item'
+                                 
+
+                             })}
+                            
+                             > 
+                             
+                             <Link
+                             className="Link black"
+                              to={`/driver/${item.id}`} 
+                              key={item.id}
+                             >
+                                 {item.name}
+                                 </Link>
+                               
+                             </li>
+                        ))}
+                   
+                    </ul>
+                    )}
+                </div>
+                
+                
+                }
+
+
+                 </Downshift>
+    
    <Query 
    query={FEED_QUERY}
    variables={this._getQueryVariables()}
@@ -293,6 +412,7 @@ _previousPage = () => {
             </Fragment>
       )}}
             </Query>
+            </div>
 
    )
         
@@ -306,4 +426,4 @@ _previousPage = () => {
 }
 
 DriverList.propTypes = propTypes;
-export default DriverList;
+export default withApollo(DriverList);
