@@ -18,7 +18,7 @@ $ git clone https://github.com/AmoDinho/formulaone-graphql-client.git
 
 ```
 
-Then you need to install the modules: 
+Then you need to install the dependancies: 
 
 ```
 $ yarn install
@@ -32,7 +32,7 @@ $ yarn start
 
 ```
 
-Your backend server should be running on `localhost://300`, create-react-app will default to `localhost://3001` for you.
+Your backend server should be running on `localhost://3000`, create-react-app will default to `localhost://3001` for you.
 
 
 
