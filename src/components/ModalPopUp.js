@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
     handleClose: PropTypes.func,
     show: PropTypes.bool,
-    children: PropTypes.element
+    children: PropTypes.array
 }
 
  const ModalPopUp = ({

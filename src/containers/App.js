@@ -5,7 +5,6 @@ import CreateDriver from './CreateDriver';
 import Header from '../components/Header';
 import NotFound from './NotFound';
 import DriverInfo from './DriverInfo';
-import Search from './Search';
 import Login from './Login';
 import '../styles/App.css';
 import RequestReset from './RequestReset';
@@ -25,7 +24,6 @@ class App extends Component {
        <Route exact path="/" render={() => <Redirect to="/new/1"/>} />
        <Route exact path="/create" component={CreateDriver}/>
          <Route exact path="/login" component={Login}/>
-         <Route exact path="/search" component={Search}/>
          <Route exact path="/top" component={DriverList}/>
          <Route exact path="/driver/:id" component={DriverInfo}/>
          <Route exact path="/new/:page" component={DriverList}/>

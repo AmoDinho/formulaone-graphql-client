@@ -42,13 +42,7 @@ class Header extends Component{
            </Link>          
            </li>
 
-          <li>
-          <Link to="/search" className=" grow  dtc no-underline black">
-           <h3>Search</h3>
-           </Link>
-          </li>
-
-          <li>
+                  <li>
           <Link to="/circuits" className=" ml7 grow  dtc no-underline black">
            <h3>Circuits</h3>
            </Link>          
