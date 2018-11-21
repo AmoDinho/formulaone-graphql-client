@@ -3,6 +3,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import DriverList from './DriverList';
 import CreateDriver from './CreateDriver';
 import Header from '../components/Header';
+import Create from '../components/Create';
 import NotFound from './NotFound';
 import DriverInfo from './DriverInfo';
 import Login from './Login';
@@ -12,6 +13,7 @@ import ResetPassword from './ResetPassword';
 import DeactivateAcc from './DeactivateAcc';
 import CircuitList from './CircuitList';
 import CircuitInfo from './CircuitInfo';
+import CreateCircuit from './CreateCircuit';
 
 
 class App extends Component {
@@ -22,7 +24,7 @@ class App extends Component {
        <div className=" background-gray  app ">
        <Switch>
        <Route exact path="/" render={() => <Redirect to="/new/1"/>} />
-       <Route exact path="/create" component={CreateDriver}/>
+       <Route exact path="/create-driver" component={CreateDriver}/>
          <Route exact path="/login" component={Login}/>
          <Route exact path="/top" component={DriverList}/>
          <Route exact path="/driver/:id" component={DriverInfo}/>
@@ -32,6 +34,9 @@ class App extends Component {
          <Route exact path="/deactivate" component={DeactivateAcc}/>
          <Route exact path="/circuits" component={CircuitList}/>
          <Route exact path="/circuit/:id" component={CircuitInfo}/>
+         <Route exact path="/create" component={Create}/>
+         <Route exact path="/create-circuit" component={CreateCircuit}/>
+
          <Route component={NotFound}/>
        </Switch>
        </div>

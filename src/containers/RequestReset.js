@@ -38,7 +38,7 @@ class RequestReset extends Component{
             <Mutation mutation={REQUEST_RESET_MUTATION} variables={this.state}>
               {(reset, {error,loading,called}) => (
                <form method="post"
-              
+              className="reset_form"
                >
                {!error && !loading && called && 
               <div className="form_alert mr7">
