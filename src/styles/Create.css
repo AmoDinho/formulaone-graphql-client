@@ -1,0 +1,41 @@
+.create_container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 80px;
+    
+}
+
+
+.create_container_card{
+    height: 300px;
+   width: 500px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
+    border-radius: 20px;
+}
+
+
+.create_container_card_img{
+    border-radius: 20px;
+    height: 300px;
+    width: 500px;
+}
+
+
+@media (max-width: 1000px){
+    .create_container{
+        grid-template-columns: 1fr;
+        grid-gap:40px;
+       
+    }
+
+    .create_container_card{
+        width: 200px;
+       
+
+    }
+    
+}
+
+a.Link:link{
+    text-decoration: none;
+}
