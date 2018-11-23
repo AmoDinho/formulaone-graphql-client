@@ -74,6 +74,14 @@ export const UPDATE_CIRCUIT_MUTATION = gql`
  }
 `
 
+export const DELETE_CIRCUIT_MUTATION = gql`
+  mutation DELETE_CIRCUIT_MUTATION($id:ID!){
+      deleteCircuit(id:$id){
+          id
+      }
+  }
+`
+
 
 class CircuitInfo extends Component{
    state={
@@ -194,6 +202,9 @@ validateForm(){
                                    <Tab>Map</Tab>
                                    {authToken &&(
                                       <Tab>Update</Tab>
+                                   )}
+                                   {authToken &&(
+                                       <Tab>Delete</Tab>
                                    )}
                                </TabList>
                                <TabPanel>
@@ -483,6 +494,25 @@ onCompleted={()=> this.props.history.push('/circuits')}
     
 </Mutation>
                                    
+                               </TabPanel>
+                               <TabPanel>
+                                   <h1>Delete {circuit.name}</h1>
+                                  
+                                  <Mutation
+                                  mutation={DELETE_CIRCUIT_MUTATION}
+                                  variables={{id}}
+                                  onCompleted={()=> this.props.history.push('/circuits')}
+                                  >
+                                  {deleteMutation => 
+                                  
+                                  <PrimaryButton
+                                  text={`Delete ${circuit.name}`}
+                                  onClick={deleteMutation}
+                                  />
+                                }
+                                  
+                                  </Mutation>
+                                  
                                </TabPanel>
                            </Tabs>
 
