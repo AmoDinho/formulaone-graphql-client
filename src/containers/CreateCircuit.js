@@ -78,6 +78,23 @@ handleFlyChange = (flyAway) => {
     console.log(`option:`,flyAway);
 }
 
+validateForm(){
+    return 
+     this.state.name.length > 0  
+    && this.state.description.length > 0
+    && this.state.raceDistance>0
+    && this.state.country.length > 0
+    && this.state.numOfLaps>0
+    && this.state.circuitLength>0
+    && this.state.lapRecord >0
+    && this.state.address.length > 0
+    && this.state.longitude>0
+    && this.state.latitude>0
+    && this.state.flyAway > 0
+    && this.state.trackMap.length > 0
+    && this.state.trackImage.length > 0;
+}
+
 
     render(){
 
@@ -295,12 +312,19 @@ handleFlyChange = (flyAway) => {
              variables={this.state}
              onCompleted={()=> this.props.history.push('/circuits')}
              >
-                 {circuitMutation => 
-                 <PrimaryButton
-                 text="Create"
-                 className="create-circuit__primary"
-                 onClick={circuitMutation}
-                 />
+                 {({circuitMutation, error}) => 
+                 {
+                    if (error) return <p>{error}</p>
+                 
+                 return(
+                    <PrimaryButton
+                    text="Create"
+                    className="create-circuit__primary"
+                    disabled={!this.validateForm()}
+                    onClick={circuitMutation}
+                    />
+                 )
+                }
                      
                  }
                  
