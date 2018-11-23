@@ -4,8 +4,12 @@ import {Query, Mutation} from 'react-apollo';
 import '../styles/CircuitInfo.css';
 import {Tab,Tabs,TabList, TabPanel} from 'react-tabs';
 //import 'react-tabs/style/react-tabs.css';
+import {AUTH_TOKEN} from '../constants';
 import GoogleMapReact from 'google-map-react';
+import Select from 'react-select';
+import {countries} from '../constants';
 import * as Icon from 'react-feather';
+import PrimaryButton from '../components/PrimaryButton';
 
 
 
@@ -13,39 +17,158 @@ import * as Icon from 'react-feather';
 export const CIRCUIT_QUERY = gql`
   query CIRCUIT_QUERY($id:ID!){
       circuit(id:$id){
-          id
-          name
-    country
-    numOfLaps
-    description
-    raceDistance
-    circuitLength
-    lapRecord
-    address
-    longitude
-    latitude
-    flyAway
-    trackMap
-    trackImage
+           id
+           name
+           country
+           numOfLaps
+           description
+           raceDistance
+           circuitLength
+           lapRecord
+           address
+           longitude
+           latitude
+           flyAway
+           trackMap
+           trackImage
       }
   }
 `
 
-
+export const UPDATE_CIRCUIT_MUTATION = gql`
+ mutation 
+ UPDATE_CIRCUIT_MUTATION(
+     $id:ID!,
+    $name:String!,
+    $description: String!,
+    $raceDistance: Float!,
+    $country: String!,
+    $numOfLaps:Int!,
+    $circuitLength:Float!,
+    $lapRecord: Float!,
+    $address: String!,
+    $longitude:Float!, 
+    $latitude:Float! ,
+    $flyAway: Boolean!,
+    $trackMap:String!,
+    $trackImage:String!
+ ){
+     updateCircuit(
+    id:$id,
+    name:$name,
+    description: $description,
+    raceDistance: $raceDistance,
+    country:$country,
+    numOfLaps:$numOfLaps,
+    circuitLength:$circuitLength,
+    lapRecord:$lapRecord ,
+    address:$address,
+    longitude:$longitude, 
+    latitude:$latitude ,
+    flyAway:$flyAway ,
+    trackMap:$trackMap,
+    trackImage:$trackImage
+     ){
+          id
+     }
+ }
+`
 
 
 class CircuitInfo extends Component{
    state={
-       zoom: 16
+    zoom: 16,
+    name:'',
+    description: '',
+    raceDistance: 0,
+    country: null,
+    numOfLaps:0,
+    circuitLength:0,
+    lapRecord:0 ,
+    address:'',
+    longitude:0, 
+    latitude:0 ,
+    flyAway:false ,
+    trackMap:'',
+    trackImage:'',
    }
+
+   handleCountryChange = (country) => {
+    this.setState({country: country.value });
+    console.log(`option:`, country.value);
+}
+
+
+handleFlyChange = (flyAway) => {
+    this.setState({flyAway});
+    console.log(`option:`,flyAway);
+}
+
+validateForm(){
+    return this.state.name.length > 0  
+    && this.state.description.length > 0
+    && this.state.raceDistance >0
+    && this.state.country.length > 0
+    && this.state.numOfLaps > 0
+    && this.state.circuitLength>0
+    && this.state.lapRecord >0
+    && this.state.address.length > 0
+    && this.state.longitude >0
+    && this.state.latitude >0
+    && this.state.flyAway > 0
+    && this.state.trackMap.length > 0
+    && this.state.trackImage.length > 0;
+}
+
     render(){
         const id = this.props.match.params.id;
+        const authToken = localStorage.getItem(AUTH_TOKEN)
+        Object.keys(countries).map(
+            (object) => {
+             countries[object]['label'] = `${countries[object].value}`;
+            }) 
+
+        const options = countries;
+        
+        const flyAwayOptions = [
+            {value: true,label:'Yes'},
+            {value: false,label:'No'}
+        ]
+        const {
+            name,
+            description,
+            raceDistance,
+            country,
+            numOfLaps,
+            circuitLength,
+            lapRecord ,
+            address,
+            longitude, 
+            latitude,
+            flyAway,
+            trackMap,
+            trackImage
+            
+           } = this.state
         return(
             <div>
                 <Query
                 query={CIRCUIT_QUERY}
                 variables={{
-                    id
+                    id,
+                    name,
+                    description,
+                    raceDistance,
+                    country,
+                    numOfLaps,
+                    circuitLength,
+                    lapRecord ,
+                    address,
+                    longitude, 
+                    latitude,
+                    flyAway,
+                    trackMap,
+                    trackImage
                 }}
                 >
                     
@@ -69,7 +192,9 @@ class CircuitInfo extends Component{
                                <TabList>
                                    <Tab>Info</Tab>
                                    <Tab>Map</Tab>
-                                   <Tab>Update</Tab>
+                                   {authToken &&(
+                                      <Tab>Update</Tab>
+                                   )}
                                </TabList>
                                <TabPanel>
                               
@@ -157,7 +282,206 @@ class CircuitInfo extends Component{
 
                     
                                </TabPanel>
+
                                <TabPanel>
+                                   <h1>Update {circuit.name}</h1>
+                                   <form className="update__circuit-form">
+
+<div className="update__circuit-form_row">
+<label htmlFor="name">
+Name:  </label><input 
+type="text"
+onChange={e => this.setState({name: e.target.value})}
+
+defaultValue={circuit.name}
+placeholder="Name of the circuit"/>
+
+</div>
+
+<div className="update__circuit-form_row">
+ <label htmlFor="country">
+ Country:</label>
+ <Select 
+ options={options}  
+ defaultValue={circuit.country}
+ classNamePrefix="select"
+ onChange={this.handleCountryChange}
+/>
+ 
+</div>
+
+     <div className="update__circuit-form_row">
+     <label htmlFor="numOfLaps">
+     Number of Laps: 
+     </label>
+     <input 
+     type="number"
+     placeholder="Laps"
+     className="create__nummber-input"
+     defaultValue={circuit.numOfLaps}
+     onChange={e => this.setState({numOfLaps: e.target.value})}
+     />
+
+     
+     </div>
+
+     <div className="update__circuit-form_row">
+     <label htmlFor="description">
+     Description:</label>
+     <textarea 
+ defaultValue={circuit.description}
+className="create__textbox"
+     placeholder="Describe the track"
+     onChange={e => this.setState({description:e.target.value})}
+     />
+     </div>
+
+     <div className="update__circuit-form_row">
+     <label htmlFor="raceDistance">
+     Race Distance: </label>
+     <input 
+     type="number"
+     defaultValue={circuit.raceDistance}
+     placeholder="eg: 140.987 secs:mill secs"
+     onChange={e => this.setState({raceDistance:e.target.value})}
+     />
+     </div>
+
+    <div className="update__circuit-form_row">
+     <label html="lapRecord"> Lap Record:
+     </label>
+     <input 
+ defaultValue={circuit.lapRecord}
+ type="number"
+     placeholder="eg: 103.764 secs:mill secs"
+     onChange={e => this.setState({lapRecord:e.target.value})}
+     />
+     </div>
+
+
+     <div className="update__circuit-form_row">
+     <label html="circuitLength"> 
+     Circuit Length
+     </label>
+     <input 
+     type="number"
+     defaultValue={circuit.circuitLength}
+     placeholder="How long is it in kms?"
+     onChange={e => this.setState({circuitLength:e.target.value})}
+     />
+     </div>
+
+     <div className="update__circuit-form_row">
+     <label htmlFor="address">
+     Address:
+     </label>
+     <textarea 
+ defaultValue={circuit.address}
+ className="create__textbox"
+     placeholder="Street Address"
+     onChange={e => this.setState({address:e.target.value})}
+     />
+     </div>
+
+
+     <div className="update__circuit-form_row">
+     <label html="latitude"> Latitude:
+     </label>
+     <input 
+ defaultValue={circuit.latitude}
+ type="number"
+     placeholder="eg: 47.219722"
+     onChange={e => this.setState({latitude:e.target.value})}
+     />
+     </div>
+
+     <div className="update__circuit-form_row">
+     <label html="longitude"> Longitude:
+     </label>
+     <input 
+ defaultValue={circuit.longitude}
+ type="number"
+     placeholder="eg: 14.764722"
+     onChange={e => this.setState({longitude:e.target.value})}
+     />
+     </div>
+
+   
+
+     <div className="update__circuit-form_row">
+     <label htmlFor="country">
+Fly Away Race:</label>
+ <Select className="select" 
+ defaultValue={circuit.flyAway}
+ options={flyAwayOptions} 
+onChange={this.handleFlyChange}
+/>
+ 
+     </div>
+
+
+     <div className="update__circuit-form_row">
+     <label html="trackMap"> Track Map:
+     </label>
+     <input 
+ defaultValue={circuit.trackMap}
+ type="text"
+     placeholder="Image URL"
+     onChange={e => this.setState({trackMap:e.target.value})}
+     />
+     </div>
+
+     <div className="update__circuit-form_row">
+     <label html="trackImage"> Track Iamge:
+     </label>
+     <input 
+ defaultValue={circuit.trackImage}
+ type="text"
+     placeholder="Image URL"
+     onChange={e => this.setState({trackImage:e.target.value})}
+     />
+     </div>
+
+    
+
+
+
+
+
+</form>
+<Mutation
+mutation={UPDATE_CIRCUIT_MUTATION}
+variables={{
+    id,
+    name,
+    description,
+    raceDistance,
+    country,
+    numOfLaps,
+    circuitLength,
+    lapRecord ,
+    address,
+    longitude, 
+    latitude,
+    flyAway,
+    trackMap,
+    trackImage
+}}
+onCompleted={()=> this.props.history.push('/circuits')}
+>
+    {circuitMutation  => 
+  
+       <PrimaryButton
+       text="Update Circuit"
+       className="update-circuit__primary"
+       onClick={circuitMutation}
+       />
+    
+   }
+        
+    
+    
+</Mutation>
                                    
                                </TabPanel>
                            </Tabs>
