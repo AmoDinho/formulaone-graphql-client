@@ -21,7 +21,7 @@ export const emojis= [
 
 export const countries = [
     {
-    value: "Afghanistan",label:"Afghanistan"
+    value: "Afghanistan"
   },
   {
     value: "Albania"

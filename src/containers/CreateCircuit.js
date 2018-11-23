@@ -54,7 +54,7 @@ class CreateCircuit extends Component {
     name:'',
     description: '',
     raceDistance: 0,
-    country: '',
+    country: null,
     numOfLaps:0,
     circuitLength:0,
     lapRecord:0 ,
@@ -63,12 +63,13 @@ class CreateCircuit extends Component {
     latitude:0 ,
     flyAway:false ,
     trackMap:'',
-    trackImage:''
+    trackImage:'',
+    value:''
    }
     
-   handleCountryChange = (country) => {
-    this.setState({country});
-    console.log(`option:`, country);
+   handleCountryChange = (country,options) => {
+    this.setState({country: country.value });
+    console.log(`option:`, country.value);
 }
 
 
@@ -87,6 +88,7 @@ handleFlyChange = (flyAway) => {
                }) 
 
            const options = countries;
+           console.log(options);
            const flyAwayOptions = [
                {value: true,label:'Yes'},
                {value: false,label:'No'}
@@ -106,7 +108,8 @@ handleFlyChange = (flyAway) => {
             latitude,
             flyAway,
             trackMap,
-            trackImage
+            trackImage,
+            values
            } = this.state
          
          
@@ -129,10 +132,12 @@ handleFlyChange = (flyAway) => {
              <div className="create__circuit-form_row">
               <label htmlFor="country">
               Country:
-              <Select className="select" 
+              <Select className="select"
+              options={options}  
               value={country}
-            options={options} 
-            onChange={this.handleCountryChange}
+             getOptionLabel={({label}) =>label}
+             getOptionValue={({value}) => value}
+              onChange={this.handleCountryChange}
             />
               </label>
              </div>
@@ -242,7 +247,7 @@ handleFlyChange = (flyAway) => {
                   <label html="trackMap"> Track Map:
                   <input 
                   value={trackMap}
-                  type="number"
+                  type="text"
                   placeholder="Image URL"
                   onChange={e => this.setState({trackMap:e.target.value})}
                   /></label>
@@ -252,7 +257,7 @@ handleFlyChange = (flyAway) => {
                   <label html="trackImage"> Track Iamge:
                   <input 
                   value={trackImage}
-                  type="number"
+                  type="text"
                   placeholder="Image URL"
                   onChange={e => this.setState({trackImage:e.target.value})}
                   /></label>
