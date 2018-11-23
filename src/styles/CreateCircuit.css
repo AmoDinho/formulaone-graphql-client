@@ -1,4 +1,46 @@
+
+/*
+.css-2o5izw{
+    height:10px;
+    width:400px;
+
+
+}
+
+
+
 .css-vj8t7z{
     width:400px;
-    height:10px;
+    text-align: center;
 }
+
+
+
+*/
+
+.create__textbox{
+  margin-bottom: 20px;
+  margin-top:20px;
+  height: 150px;
+  width: 300px;
+  border-radius: 8px;
+  border: 2px solid #C4C4C4;
+}
+
+.select__control,.select__menu{
+    width: 500px;
+    height: 20px;
+}
+
+.select__menu-list,.select__option{
+    height:100px;
+    width:500px;
+}
+.create__circuit-form{
+    text-align: center;
+}
+
+.create-circuit__primary{
+    margin-left: 550px;
+}
+

@@ -112,6 +112,16 @@ handleFlyChange = (flyAway) => {
             values
            } = this.state
          
+           const customStyles = {
+            control
+            : () => ({
+                   color:'red',
+                   border: '2px solid red',
+                   width:500,
+                   height:50
+                   
+               })
+           }
          
         return(
             
@@ -121,150 +131,159 @@ handleFlyChange = (flyAway) => {
 
              <div className="create__circuit-form_row">
              <label htmlFor="name">
-             Name:<input 
+             Name:  </label><input 
              type="text"
              onChange={e => this.setState({name: e.target.value})}
              value={name}
              placeholder="Name of the circuit"/>
-             </label>
+           
              </div>
 
              <div className="create__circuit-form_row">
               <label htmlFor="country">
-              Country:
-              <Select className="select"
+              Country:</label>
+              <Select 
               options={options}  
               value={country}
-             getOptionLabel={({label}) =>label}
-             getOptionValue={({value}) => value}
+              classNamePrefix="select"
               onChange={this.handleCountryChange}
             />
-              </label>
+              
              </div>
 
                   <div className="create__circuit-form_row">
                   <label htmlFor="numOfLaps">
-                  Number of Laps: <input 
+                  Number of Laps: 
+                  </label>
+                  <input 
                   type="number"
                   placeholder="Laps"
+                  className="create__nummber-input"
                   value={numOfLaps}
                   onChange={e => this.setState({numOfLaps: e.target.value})}
                   />
   
-                  </label>
+                  
                   </div>
 
                   <div className="create__circuit-form_row">
                   <label htmlFor="description">
-                  Description:
+                  Description:</label>
                   <textarea 
                   value={description}
+                  className="create__textbox"
                   placeholder="Describe the track"
                   onChange={e => this.setState({description:e.target.value})}
                   />
-                  </label>
                   </div>
 
                   <div className="create__circuit-form_row">
-                  <label htmlFor="raceDistance">Race Distance: 
+                  <label htmlFor="raceDistance">
+                  Race Distance: </label>
                   <input 
-                  type="text"
+                  type="number"
                   value={raceDistance}
                   placeholder="eg: 140.987 secs:mill secs"
                   onChange={e => this.setState({raceDistance:e.target.value})}
                   />
-                  </label>
                   </div>
 
                  <div className="create__circuit-form_row">
                   <label html="lapRecord"> Lap Record:
+                  </label>
                   <input 
                   value={lapRecord}
                   type="number"
                   placeholder="eg: 103.764 secs:mill secs"
                   onChange={e => this.setState({lapRecord:e.target.value})}
-                  /></label>
+                  />
                   </div>
 
 
                   <div className="create__circuit-form_row">
-                  <label html="circuitLength"> Circuit Length
+                  <label html="circuitLength"> 
+                  Circuit Length
+                  </label>
                   <input 
                   type="number"
                   value={circuitLength}
                   placeholder="How long is it in kms?"
                   onChange={e => this.setState({circuitLength:e.target.value})}
-                  /></label>
+                  />
                   </div>
 
                   <div className="create__circuit-form_row">
                   <label htmlFor="address">
                   Address:
+                  </label>
                   <textarea 
                   value={address}
+                  className="create__textbox"
                   placeholder="Street Address"
                   onChange={e => this.setState({address:e.target.value})}
                   />
-                  </label>
                   </div>
 
 
                   <div className="create__circuit-form_row">
                   <label html="latitude"> Latitude:
+                  </label>
                   <input 
                   value={latitude}
                   type="number"
                   placeholder="eg: 47.219722"
                   onChange={e => this.setState({latitude:e.target.value})}
-                  /></label>
+                  />
                   </div>
 
                   <div className="create__circuit-form_row">
                   <label html="longitude"> Longitude:
+                  </label>
                   <input 
                   value={longitude}
                   type="number"
                   placeholder="eg: 14.764722"
                   onChange={e => this.setState({longitude:e.target.value})}
-                  /></label>
+                  />
                   </div>
 
                 
 
                   <div className="create__circuit-form_row">
                   <label htmlFor="country">
-            Fly Away Race:
+            Fly Away Race:</label>
               <Select className="select" 
               value={flyAway}
             options={flyAwayOptions} 
             onChange={this.handleFlyChange}
             />
-              </label>
+              
                   </div>
 
 
                   <div className="create__circuit-form_row">
                   <label html="trackMap"> Track Map:
+                  </label>
                   <input 
                   value={trackMap}
                   type="text"
                   placeholder="Image URL"
                   onChange={e => this.setState({trackMap:e.target.value})}
-                  /></label>
+                  />
                   </div>
 
                   <div className="create__circuit-form_row">
                   <label html="trackImage"> Track Iamge:
+                  </label>
                   <input 
                   value={trackImage}
                   type="text"
                   placeholder="Image URL"
                   onChange={e => this.setState({trackImage:e.target.value})}
-                  /></label>
+                  />
                   </div>
 
-                  <div className="create__circuit-form_row">
-                  </div>
+                 
 
 
              
@@ -279,6 +298,7 @@ handleFlyChange = (flyAway) => {
                  {circuitMutation => 
                  <PrimaryButton
                  text="Create"
+                 className="create-circuit__primary"
                  onClick={circuitMutation}
                  />
                      
