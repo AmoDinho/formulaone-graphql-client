@@ -69,6 +69,7 @@ class CircuitInfo extends Component{
                                <TabList>
                                    <Tab>Info</Tab>
                                    <Tab>Map</Tab>
+                                   <Tab>Update</Tab>
                                </TabList>
                                <TabPanel>
                               
@@ -155,6 +156,9 @@ class CircuitInfo extends Component{
                                   </div>
 
                     
+                               </TabPanel>
+                               <TabPanel>
+                                   
                                </TabPanel>
                            </Tabs>
 
