@@ -129,16 +129,7 @@ validateForm(){
             values
            } = this.state
          
-           const customStyles = {
-            control
-            : () => ({
-                   color:'red',
-                   border: '2px solid red',
-                   width:500,
-                   height:50
-                   
-               })
-           }
+          
          
         return(
             
@@ -175,6 +166,7 @@ validateForm(){
                   <input 
                   type="number"
                   placeholder="Laps"
+                  min="0"
                   className="create__nummber-input"
                   value={numOfLaps}
                   onChange={e => this.setState({numOfLaps: e.target.value})}
@@ -200,6 +192,7 @@ validateForm(){
                   <input 
                   type="number"
                   value={raceDistance}
+                  min="0"
                   placeholder="eg: 140.987 secs:mill secs"
                   onChange={e => this.setState({raceDistance:e.target.value})}
                   />
@@ -210,6 +203,7 @@ validateForm(){
                   </label>
                   <input 
                   value={lapRecord}
+                  min="0"
                   type="number"
                   placeholder="eg: 103.764 secs:mill secs"
                   onChange={e => this.setState({lapRecord:e.target.value})}
@@ -223,6 +217,7 @@ validateForm(){
                   </label>
                   <input 
                   type="number"
+                  min="0"
                   value={circuitLength}
                   placeholder="How long is it in kms?"
                   onChange={e => this.setState({circuitLength:e.target.value})}
@@ -269,9 +264,10 @@ validateForm(){
                   <div className="create__circuit-form_row">
                   <label htmlFor="country">
             Fly Away Race:</label>
-              <Select className="select" 
+              <Select 
               value={flyAway}
             options={flyAwayOptions} 
+            classNamePrefix="select"
             onChange={this.handleFlyChange}
             />
               
@@ -290,7 +286,7 @@ validateForm(){
                   </div>
 
                   <div className="create__circuit-form_row">
-                  <label html="trackImage"> Track Iamge:
+                  <label html="trackImage"> Track Image:
                   </label>
                   <input 
                   value={trackImage}

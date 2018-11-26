@@ -4,13 +4,13 @@ import {Query, Mutation} from 'react-apollo';
 import '../styles/CircuitInfo.css';
 import {Tab,Tabs,TabList, TabPanel} from 'react-tabs';
 //import 'react-tabs/style/react-tabs.css';
-import {AUTH_TOKEN} from '../constants';
+import {AUTH_TOKEN, LINKS_PER_PAGE} from '../constants';
 import GoogleMapReact from 'google-map-react';
 import Select from 'react-select';
 import {countries} from '../constants';
 import * as Icon from 'react-feather';
 import PrimaryButton from '../components/PrimaryButton';
-
+import TRACK_QUERY from './CircuitInfo';
 
 
 
@@ -127,6 +127,26 @@ validateForm(){
     && this.state.trackMap.length > 0
     && this.state.trackImage.length > 0;
 }
+
+
+
+    update = (cache, payload) => {
+       const first = LINKS_PER_PAGE
+       const skip = 0 
+       const orderBy = 'createdAt_DESC'
+       const data = cache.readQuery({
+           query: TRACK_QUERY,
+           variables: {first,skip,orderBy}
+       });
+
+       data.tracks.circuits = data.tracks.circuit.filter(circuit => circuit.id !== payload.data.deleteCitcuit.id)
+       cache.writeQuery({
+           query: TRACK_QUERY,
+           data,
+           variables: {first,skip,orderBy}
+       });
+    }
+
 
     render(){
         const id = this.props.match.params.id;
@@ -478,6 +498,7 @@ variables={{
     trackMap,
     trackImage
 }}
+update={this.update}
 onCompleted={()=> this.props.history.push('/circuits')}
 >
     {circuitMutation  => 
