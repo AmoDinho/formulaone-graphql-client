@@ -37,11 +37,6 @@
   padding: 20px;
 }
 
-.icon{
-  
-}
-.circuit_Info_Header_Sub_Title{
-}
 
 
 .circuit_Info_container{
@@ -55,6 +50,48 @@
 a.Link:link {
   text-decoration: none;
 }
+
+.update__circuit-form{
+  text-align: center;
+}
+
+.update-circuit__primary{
+  margin-left: 550px;
+}
+
+.select__control,.select__menu{
+  width: 500px;
+  height: 20px;
+  margin-left:400px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+
+
+
+.select__menu-list,.select__option{
+  height:50px;
+  width:500px;
+}
+
+
+.update-circuit__primary{
+  width: 200px;
+}
+.delete__primary-button{
+  width:400px;
+  margin-left: 400px;
+}
+
+.delete__details{
+  text-align: center;
+}
+
+
+
+
+
 
 
 .react-tabs {

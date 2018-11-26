@@ -442,9 +442,10 @@ className="create__textbox"
      <div className="update__circuit-form_row">
      <label htmlFor="country">
 Fly Away Race:</label>
- <Select className="select" 
+ <Select 
  defaultValue={circuit.flyAway}
  options={flyAwayOptions} 
+ classNamePrefix="select"
 onChange={this.handleFlyChange}
 />
  
@@ -517,8 +518,7 @@ onCompleted={()=> this.props.history.push('/circuits')}
                                    
                                </TabPanel>
                                <TabPanel>
-                                   <h1>Delete {circuit.name}</h1>
-                                  
+                                   <p className="delete__details">Once you this circuit has been deleted it cannot be recovered. Are you sure you want to delete it?</p>
                                   <Mutation
                                   mutation={DELETE_CIRCUIT_MUTATION}
                                   variables={{id}}
@@ -528,6 +528,7 @@ onCompleted={()=> this.props.history.push('/circuits')}
                                   
                                   <PrimaryButton
                                   text={`Delete ${circuit.name}`}
+                                  className="delete__primary-button"
                                   onClick={deleteMutation}
                                   />
                                 }
