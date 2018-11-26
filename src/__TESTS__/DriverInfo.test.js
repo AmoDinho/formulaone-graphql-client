@@ -45,8 +45,12 @@ const defaultProps = {
     match: {params: {id:1234}},
 };
 
+describe('<DriverInfo/>', () => {
 
-it('renders without error', () =>{
+beforeEach(() => localStorage.setItem('foo','bar'));
+
+
+ it('renders without error', () =>{
     renderer.create(
         <MockedProvider mocks={[]} >
         <DriverInfo {...defaultProps} />
@@ -119,57 +123,54 @@ it('should show error ui', async () => {
 
 window.localStorage = localStorage;
 
+it('should update the driver successfully', () =>{
+
+    const updateDriver = { 
+     id: 1234, 
+     name: 'Amo',
+     team: 'Torro Rosso',
+     points: 20,
+     pictureURL: 'www.cdn.example/drivername',
+     podiums: 5,
+     championshipWins: 2,
+     country: 'South Africa'
+    };
+
+     const mocks = [
+         {
+             request: {
+                 query: UPDATE_DRIVER_MUTATION,
+                 variables: {
+                     name: 'Amo',
+                     team: 'Torro Rosso',
+                     points: 20,
+                     pictureURL: 'www.cdn.example/drivername',
+                     podiums: 1,
+                    championshipWins: 0,
+                    country: 'South Africa'
+                 }
+             },
+             result: {data: {updateDriver}},
+         }
+     ];
+ 
+ 
+     //Need to set a more serious token.
+    const wrapper = mount(
+        <MockedProvider mocks={mocks} addTypename={false}>
+        <DriverInfo {...defaultProps}/>
+
+       </MockedProvider>
+    );
+    
+    expect(wrapper.find('Modal'));
+    wrapper.find('#modal_form').first().simulate('submit');
+    wrapper.find('#name').simulate('change',{target: {value: 'Tash',name: 'name'}})
+    wrapper.debug();
+ });
 
 
-describe('<DriverInfo/>', () => {
 
-    it('should update the driver successfully', () =>{
-
-        const deleteDriver = { 
-         id: 1234, 
-         name: 'Amo',
-         team: 'Torro Rosso',
-         points: 20,
-         pictureURL: 'www.cdn.example/drivername',
-         podiums: 5,
-         championshipWins: 2,
-         country: 'South Africa'};
-         const mocks = [
-             {
-                 request: {
-                     query: UPDATE_DRIVER_MUTATION,
-                     variables: {
-                         name: 'Amo',
-                         team: 'Torro Rosso',
-                         points: 20,
-                         pictureURL: 'www.cdn.example/drivername',
-                         podiums: 1,
-                        championshipWins: 0,
-                        country: 'South Africa'
-                     }
-                 },
-                 result: {data: {deleteDriver}},
-             }
-         ];
-     
-     
-         //Need to set a more serious token.
-         beforeEach(() => localStorage.setItem('foo','bar'));
-        const wrapper = mount(
-            <MockedProvider mocks={mocks} addTypename={false}>
-            <DriverInfo {...defaultProps}/>
-
-           </MockedProvider>
-        );
-        
-         
-       console.log(wrapper.debug);
-
-     
-        wrapper.find('Modal');
-        wrapper.find('button_click').simulate('click');
-        wrapper.find('#name').simulate('change',{target: {value: 'Amo', name: 'name'}});
-        
-     });
+  
 
 })

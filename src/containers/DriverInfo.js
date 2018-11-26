@@ -222,7 +222,7 @@ class DriverInfo extends Component {
 
                         return (
                             <div>
-                            <form className="modal_form" onSubmit={e => {
+                            <form id="modal_form" className="modal_form" onSubmit={e => {
                                 e.preventDefault();
                                 updateDriver({
                                     variables: 
