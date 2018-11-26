@@ -154,6 +154,7 @@ validateForm(){
         Object.keys(countries).map(
             (object) => {
              countries[object]['label'] = `${countries[object].value}`;
+             return countries;
             }) 
 
         const options = countries;

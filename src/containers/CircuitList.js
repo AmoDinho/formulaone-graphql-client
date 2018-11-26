@@ -1,10 +1,11 @@
-import React, {Component, Fragment} from 'react';
-import Driver from '../components/Driver';
+import React, {Component} from 'react';
 import {Query, ApolloConsumer,withApollo} from 'react-apollo';
 import {Link} from 'react-router-dom';
 import gql from 'graphql-tag';
 import {LINKS_PER_PAGE} from '../constants';
 import Circuit from '../components/Circuit';
+import PrimaryButton from '../components/PrimaryButton';
+import SecondaryButton from '../components/SecondaryButton';
 import Downshift from 'downshift';
 import '../styles/CircuitList.css';
 
@@ -21,6 +22,7 @@ export const TRACK_QUERY =gql`
       }
   }
 `
+
 export const TRACK_SEARCH_QUERY = gql`
  query TRACK_SEARCH_QUERY($filter:String!){
      tracks(filter:$filter){
@@ -33,6 +35,23 @@ export const TRACK_SEARCH_QUERY = gql`
      }
  }
 `
+
+export const NEW_CIRCUIT_SUBSCRIPTION = gql`
+ subscription{
+    newCircuit{
+    node{
+      id
+      name
+      country
+      postedBy{
+        id
+        name
+      }
+    }
+    
+  }
+ }
+` 
 
 
 class CircuitList extends Component {
@@ -58,6 +77,59 @@ class CircuitList extends Component {
             loading:false,
          });
     }
+
+    //This lets us listen to new circuits
+    _subscribeToNewCircuits = subscribeToMore => {
+        subscribeToMore({
+            document: NEW_CIRCUIT_SUBSCRIPTION,
+            updateQuery: (prev, {subscriptionData}) => {
+                if (!subscriptionData.data) return prev 
+                const newCircuit = subscriptionData.data.newCircuit.node
+
+                return Object.assign({},prev, {
+                    tracks:{
+                        circuits: [newCircuit, ...prev.feed.drivers],
+                        count: prev.feed.drivers.length +1,
+                        __typename: prev.feed.__typename
+                    }
+                })
+            }
+        })
+    }
+
+
+    //the query variables that allow for pagination
+    _getQueryVariables = data => {
+        const isCircuitPage = this.props.location.pathname.includes('circuits')
+        const page = parseInt(this.props.match.params.page, 10)
+        console.log(`many ${page}`)
+        const first = isCircuitPage ? LINKS_PER_PAGE : 100
+        const skip = isCircuitPage ? (page - 1) * LINKS_PER_PAGE : 0
+        const orderBy = isCircuitPage ? 'createdAt_DESC' : null 
+        return {first,skip,orderBy}   
+    }
+
+    /*the following to methods help us go to 
+the next/previous pages */
+_nextPage = data => {
+    const page = parseInt(this.props.match.params.page, 10)
+    console.log(page)
+    if (page <= data.tracks.count / LINKS_PER_PAGE){
+        const nextPage = page + 1
+        this.props.history.push(`/circuits/${nextPage}`)
+    }
+}
+
+_previousPage = () => {
+    const page = parseInt(this.props.match.params.page, 10)
+    console.log(page)
+    if (page > 1){
+        const previousPage = page - 1
+        this.props.history.push(`/circuits/${previousPage}`)
+    }
+}
+
+
 
     render(){
 
@@ -138,28 +210,67 @@ class CircuitList extends Component {
               
 
 
-                <Query query={TRACK_QUERY}>
-                {({loading, error, data }) =>{
+                <Query 
+                query={TRACK_QUERY}
+                variables={this._getQueryVariables()}
+                >
+                {({loading, error, data, subscribeToMore }) =>{
                  if (loading) return <div>Fetching...</div>
                  if (error) return <div>Something went wrong</div>
+                 
+                 this._subscribeToNewCircuits(subscribeToMore)
 
                  const circuitsToRender = data.tracks.circuits
-                 
-                 return (
+                 const isCircuitPage = this.props.location.pathname.includes('circuits')
+                 const pageIndex = this.props.match.params.page
+                   ? (this.props.match.params.page -1) * LINKS_PER_PAGE : 0
+                 console.log(`this is ${pageIndex}`)
+                   return (
                     <div className="circuit_list" >
-                  {circuitsToRender.map(circuit => (
-                  <Link className="Link black" to={`/circuit/${circuit.id}`} key={circuit.id}>
-                  <Circuit key={circuit.id} circuit={circuit}/>
+                  {circuitsToRender.map((circuit,index) => (
+                  <Link 
+                  className="Link black"
+                   to={`/circuit/${circuit.id}`} 
+                   key={circuit.id}>
+                  <Circuit 
+                  key={circuit.id} 
+                  circuit={circuit}
+                  index={index + pageIndex}
+                  />
                 </Link>
                 
                 ))}
+                    {isCircuitPage && (
+               <div className="flex ml4 mv3 center gray pagination_container">
+             
+
+              
+
+             <SecondaryButton
+              onClick={() => this._previousPage()}
+              text="Previous"
+              className="pointer"
+             />
+               
+              <PrimaryButton
+              className="pointer ml2"
+              text="Next"
+                onClick={() => this._nextPage(data)}
+              />
+
+             
+               </div>
+                )}
 
                     </div>
-                 )
-
-                }}
+                    
+                    
+                    
+                 )}}
+                
                 
                 </Query>
+            
             </div>
             
         )

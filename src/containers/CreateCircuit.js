@@ -78,9 +78,26 @@ handleFlyChange = (flyAway) => {
     console.log(`option:`,flyAway);
 }
 
+
+update = (store,{data:{circuit}}) => {
+    const first = LINKS_PER_PAGE
+    const skip = 0
+    const orderBy = 'createdAt_DESC'
+
+    const data = store.readQuery({
+        query: TRACK_QUERY,
+        variables: {first,skip,orderBy}
+    })
+    data.tracks.circuits.unshift(circuit)
+    store.writeQuery({
+        query: TRACK_QUERY,
+        data,
+        variables: {first,skip,orderBy}
+    })
+}
+
 validateForm(){
-    return 
-     this.state.name.length > 0  
+    return  this.state.name.length > 0  
     && this.state.description.length > 0
     && this.state.raceDistance>0
     && this.state.country.length > 0
@@ -102,6 +119,7 @@ validateForm(){
             Object.keys(countries).map(
                (object) => {
                 countries[object]['label'] = `${countries[object].value}`;
+                return countries;
                }) 
 
            const options = countries;
@@ -125,8 +143,7 @@ validateForm(){
             latitude,
             flyAway,
             trackMap,
-            trackImage,
-            values
+            trackImage
            } = this.state
          
           
@@ -306,23 +323,22 @@ validateForm(){
              <Mutation
              mutation={CREATE_CIRCUIT_MUTATION}
              variables={this.state}
+             update={this.update}
              onCompleted={()=> this.props.history.push('/circuits')}
              >
-                 {({circuitMutation, error}) => 
-                 {
-                    if (error) return <p>{error}</p>
+                 {circuitMutation => 
                  
-                 return(
+                   
                     <PrimaryButton
                     text="Create"
                     className="create-circuit__primary"
-                    disabled={!this.validateForm()}
+                    //disabled={!this.validateForm()}
                     onClick={circuitMutation}
                     />
-                 )
+                 
                 }
                      
-                 }
+                 
                  
              </Mutation>
             
