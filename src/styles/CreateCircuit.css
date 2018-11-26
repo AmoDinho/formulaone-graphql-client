@@ -1,22 +1,4 @@
 
-/*
-.css-2o5izw{
-    height:10px;
-    width:400px;
-
-
-}
-
-
-
-.css-vj8t7z{
-    width:400px;
-    text-align: center;
-}
-
-
-
-*/
 
 .create__textbox{
   margin-bottom: 20px;
@@ -30,10 +12,16 @@
 .select__control,.select__menu{
     width: 500px;
     height: 20px;
+    margin-left:400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 }
 
+
+
 .select__menu-list,.select__option{
-    height:100px;
+    height:50px;
     width:500px;
 }
 .create__circuit-form{
