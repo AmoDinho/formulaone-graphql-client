@@ -8,7 +8,7 @@ import localStorage from './localStorage';
 
 import 
 DriverInfo, 
-{DRIVER_QUERY, UPDATE_DRIVER_MUTATION} from "../containers/DriverInfo";
+{DRIVER_QUERY, UPDATE_DRIVER_MUTATION,DELETE_DRIVER_MUTATION} from "../containers/DriverInfo";
 import { wrap } from 'module';
 
 //Configure Enzyme Adpater
@@ -164,13 +164,55 @@ it('should update the driver successfully', () =>{
     );
     
     expect(wrapper.find('Modal'));
-    wrapper.find('#modal_form').first().simulate('submit');
-    wrapper.find('#name').simulate('change',{target: {value: 'Tash',name: 'name'}})
-    wrapper.debug();
+    wrapper.find('#modal_form');
+    wrapper.find('#name').simulate('change',{target:{value:updateDriver.name, name: 'title'}});
+    //expect(wrapper.text()).toContain('Updated');
+    console.log(wrapper.debug());
  });
 
 
+ it('deletes the driver', ()=>{
+    const deletedDriver = { 
+        id: 1234, 
+        name: 'Amo',
+        team: 'Torro Rosso',
+        points: 20,
+        pictureURL: 'www.cdn.example/drivername',
+        podiums: 5,
+        championshipWins: 2,
+        country: 'South Africa'
+       };
 
-  
 
+       const mocks = [
+        {
+            request: {
+                query: DELETE_DRIVER_MUTATION,
+                variables: {
+                    name: 'Amo',
+                    team: 'Torro Rosso',
+                    points: 20,
+                    pictureURL: 'www.cdn.example/drivername',
+                    podiums: 1,
+                   championshipWins: 0,
+                   country: 'South Africa'
+                }
+            },
+            result: {data: {deletedDriver}},
+        }
+    ];
+
+    const wrapper = mount(
+        <MockedProvider mocks={mocks} addTypename={false}>
+        <DriverInfo {...defaultProps}/>
+
+       </MockedProvider>
+    );
+
+    expect(wrapper.find('ModalPopUp'));
+    expect(wrapper.find('PrimaryButton').simulate('click'));
+
+
+    
+ });
 })

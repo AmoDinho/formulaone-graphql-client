@@ -211,22 +211,27 @@ class DriverInfo extends Component {
                         
                     </div>
                          
-                    <Modal  show={this.state.show}
-                        handleClose={this.hideModal}
-                        >
+                    <Modal  
+                    show={this.state.show}
+                    handleClose={this.hideModal}
+                    >
 
-                        <Mutation mutation={UPDATE_DRIVER_MUTATION} key={id}>
-                        {(updateDriver,{data}) =>{
+                    <Mutation mutation={UPDATE_DRIVER_MUTATION} key={id}>
+                    {(updateDriver,{data}) =>{
                         
-                        if (data) return <p>Updated!</p>;
+                    if (data) return <p>Updated!</p>;
 
                         return (
                             <div>
-                            <form id="modal_form" className="modal_form" onSubmit={e => {
+                            <form 
+                            id="modal_form" 
+                            className="modal_form"
+                             onSubmit={e => {
                                 e.preventDefault();
                                 updateDriver({
                                     variables: 
-                                    {id,
+                                    {
+                                    id,
                                     team,
                                     name,
                                     points,
