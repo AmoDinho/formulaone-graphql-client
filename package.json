@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@u-wave/react-youtube": "^0.6.0",
     "apollo-boost": "^0.1.16",
     "apollo-link-context": "^1.0.9",
     "apollo-link-ws": "^1.0.9",
@@ -23,6 +24,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "react-select": "^2.1.2",
+    "react-slick": "^0.23.2",
     "react-tabs": "^2.3.0",
     "react-test-renderer": "^16.5.2",
     "subscriptions-transport-ws": "^0.9.15",
