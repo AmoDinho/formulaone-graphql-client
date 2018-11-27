@@ -14,7 +14,7 @@ import DeactivateAcc from './DeactivateAcc';
 import CircuitList from './CircuitList';
 import CircuitInfo from './CircuitInfo';
 import CreateCircuit from './CreateCircuit';
-
+import Theatre from './Theatre';
 
 class App extends Component {
   render() {
@@ -37,7 +37,7 @@ class App extends Component {
          <Route exact path="/circuit/:id" component={CircuitInfo}/>
          <Route exact path="/create" component={Create}/>
          <Route exact path="/create-circuit" component={CreateCircuit}/>
-
+         <Route exact path="/Theatre" component={Theatre}/>
          <Route component={NotFound}/>
        </Switch>
        </div>
