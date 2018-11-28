@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import YouTube from '@u-wave/react-youtube';
+import Iframe from '../components/Iframe';
 import Slider from 'react-slick';
 import '../styles/Theatre.css';
 
-const PATH_BASE = 'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&';
+const PATH_BASE = 'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails,snippet&';
 const PLAYLIST = 'playlistId=PLfoNZDHitwjXFH-NLpwL8eXzmxzJTUV2A&';
 const HIGHLIGHTS = 'playlistId=PLfoNZDHitwjUUrM4dYe542iCcRpEzS_RX';
 const GUIDES = 'playlistId=PL2vgf11SN4RhB3Lz-eaREjLNERKAqVtoZ'
 const KEY = `key=${process.env.REACT_APP_YOUTUBE_KEY}`
+const KEY_II = `key=${process.env.REACT_APP_YOUTUBE_KEY_II}`
 
 class Theatre extends Component {
  constructor(props){
@@ -24,20 +25,21 @@ class Theatre extends Component {
     this.fetchGuides = this.fetchGuides.bind(this);
    
  }
+
  fetchPlaylists(playlists){
     fetch(`${PATH_BASE}${PLAYLIST}${KEY}`)
     .then(response => response.json())
-    .then(result => this.setState({playlists: result.items}))
-    //.then(result => console.log(result))
+    //.then(result => this.setState({playlists: result.items}))
+    .then(result => console.log(result))
     .catch(error => error)
 
 }
 
 fetchGuides(guides){
-    fetch(`${PATH_BASE}${GUIDES}${KEY}`)
+    fetch(`${PATH_BASE}${GUIDES}${KEY_II}`)
     .then(response => response.json())
-    .then(result => this.setState({guides: result.items}))
-    //.then(result => console.log(result))
+    //.then(result => this.setState({guides: result.items}))
+    .then(data => console.log(data))
     .catch(error => error)
 
 }
@@ -45,8 +47,8 @@ fetchGuides(guides){
 fetchHighlights(highlights){
     fetch(`${PATH_BASE}${HIGHLIGHTS}${KEY}`)
     .then(response => response.json())
-    .then(result => this.setState({highlights: result.items}))
-    //.then(result => console.log(result))
+    //.then(result => this.setState({highlights: result.items}))
+    .then(result => console.log(result))
     .catch(error => error)
 
 }
@@ -54,8 +56,8 @@ fetchHighlights(highlights){
 componentDidMount(){
 
    this.fetchPlaylists();
-   this.fetchGuides();
-   this.fetchHighlights();
+   //this.fetchGuides();
+  // this.fetchHighlights();
 }
 
     render(){
@@ -80,11 +82,16 @@ componentDidMount(){
                 {
                 playlists.map(items =>
                     <div className="theatre__video" key={items.id}>
-                    <YouTube
+                    <p>{items.snippet.title}</p>
+                   
                     
-                    video={items.contentDetails.videoId}
                     
-                    />
+                    <Iframe
+                    title='Test'
+                    src={items.contentDetails.videoId}
+                    allowFullScreen
+                     />
+                    
                    </div>
     
     
@@ -93,6 +100,8 @@ componentDidMount(){
                </Slider>
                 </div>
                 <div className="theatre__race-highlights">
+              
+                
                 </div>
                 <div className="theatre__circuit-guide">
                 </div>

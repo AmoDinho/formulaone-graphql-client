@@ -98,13 +98,6 @@
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.0.tgz#8b63ab7f1aa5321248aad5ac890a485656dcea4d"
 
-"@u-wave/react-youtube@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@u-wave/react-youtube/-/react-youtube-0.6.0.tgz#6de3c8b7268a4873cd28f25c3998e602a5b1129e"
-  dependencies:
-    load-script2 "^1.0.1"
-    prop-types "^15.6.1"
-
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -5049,10 +5042,6 @@ load-json-file@^2.0.0:
     parse-json "^2.2.0"
     pify "^2.0.0"
     strip-bom "^3.0.0"
-
-load-script2@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/load-script2/-/load-script2-1.0.1.tgz#fd7d75987d0a7dbeab5b11f93581b9154a04eac1"
 
 loader-fs-cache@^1.0.0:
   version "1.0.1"
