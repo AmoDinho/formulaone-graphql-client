@@ -209,7 +209,12 @@ it('should update the driver successfully', () =>{
     );
 
     expect(wrapper.find('ModalPopUp'));
-    expect(wrapper.find('.delete_button').simulate('click'));
+    const dom = wrapper.find('.delete_button');
+    expect(dom.length).toBe(1);
+
+    dom.simulate('click');
+    
+
 
 
     
