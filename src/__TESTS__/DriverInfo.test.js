@@ -51,11 +51,14 @@ beforeEach(() => localStorage.setItem('foo','bar'));
 
 
  it('renders without error', () =>{
-    renderer.create(
+    const component = renderer.create(
         <MockedProvider mocks={[]} >
         <DriverInfo {...defaultProps} />
         </MockedProvider>
     )
+
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 })
 
 
@@ -66,6 +69,7 @@ it('renders the data without errors', () => {
         </MockedProvider>
     );
 });
+
 
 it('should render loading state initially', () =>{
  const component = renderer.create(
@@ -189,13 +193,8 @@ it('should update the driver successfully', () =>{
             request: {
                 query: DELETE_DRIVER_MUTATION,
                 variables: {
-                    name: 'Amo',
-                    team: 'Torro Rosso',
-                    points: 20,
-                    pictureURL: 'www.cdn.example/drivername',
-                    podiums: 1,
-                   championshipWins: 0,
-                   country: 'South Africa'
+                    id:1234
+                    
                 }
             },
             result: {data: {deletedDriver}},
@@ -210,7 +209,7 @@ it('should update the driver successfully', () =>{
     );
 
     expect(wrapper.find('ModalPopUp'));
-    expect(wrapper.find('PrimaryButton').simulate('click'));
+    expect(wrapper.find('.delete_button').simulate('click'));
 
 
     

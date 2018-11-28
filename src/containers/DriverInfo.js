@@ -334,19 +334,22 @@ class DriverInfo extends Component {
                        show={this.state.showPop}
                        handleClose={this.hideModalPopUp}>
                              <p>Are you sure you want to delete {driver.name}?</p>
-                             <Mutation key={id}  
+                             <Mutation 
+                             key={id}  
                              mutation={DELETE_DRIVER_MUTATION}
-                             update={this.update}>
+                             update={this.update}
+                             variables={id}
+                             onCompleted={() => this.props.history.push('/new/1')}
+                             >
                                 {(deleteDriver) =>{
                                     return(
-                                        <PrimaryButton
-                                        onClick={ ()=> {
-                                            deleteDriver({
-                                            variables:{id}})
-                                            this.props.history.push('/new/1')
-                                        }}
-                                        text="Delete Driver"
-                                    />
+                                       
+                                        <button 
+                                        className="delete_button"
+                                        onClick={deleteDriver}
+                                        >
+                                        Delete
+                                        </button> 
                                     
                                 )
                                 }}

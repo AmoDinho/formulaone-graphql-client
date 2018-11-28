@@ -35,6 +35,7 @@ class Login extends Component {
         email: '',
         password: '',
         name:'',
+        isLoading: false
       
     }
 
@@ -51,8 +52,11 @@ class Login extends Component {
             email, 
             password, 
             name,
+            isLoading
          
         } =this.state
+
+        
         return(
             <div className="login">
             <h2 className="mv3 mr7 heading">{login ? 'Welcome Back!' : 'Sign Up'}</h2>
@@ -133,6 +137,7 @@ class Login extends Component {
 
     _confirm = async data => {
         const {token} = this.state.login ? data.login : data.signup
+        this.setState({isLoading: true})
         this._saveUserData(token)
         this.props.history.push(`/`)
 
