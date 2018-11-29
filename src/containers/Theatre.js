@@ -29,8 +29,8 @@ class Theatre extends Component {
  fetchPlaylists(playlists){
     fetch(`${PATH_BASE}${PLAYLIST}${KEY}`)
     .then(response => response.json())
-    //.then(result => this.setState({playlists: result.items}))
-    .then(result => console.log(result))
+    .then(result => this.setState({playlists: result.items}))
+    //.then(result => console.log(result))
     .catch(error => error)
 
 }
@@ -56,7 +56,7 @@ fetchHighlights(highlights){
 componentDidMount(){
 
    this.fetchPlaylists();
-   //this.fetchGuides();
+   this.fetchGuides();
   // this.fetchHighlights();
 }
 
@@ -65,12 +65,13 @@ componentDidMount(){
         const {playlists} = this.state;
         console.log(playlists)
         const settings = {
-            dots: true,
+            dots: false,
             infinite: true,
             speed: 500,
-            slidesToShow: 3,
+            slidesToShow: 2,
             slidesToScroll: 1,
-            centerPadding: 50
+            className: 'theatre__slider'
+            
         };
         return (
             <div>
@@ -78,18 +79,19 @@ componentDidMount(){
 
 
                 <div className="theatre__paddock-pass">
+                <h2 className="theatre__title">Paddock Pass</h2>
                 <Slider {...settings}>
                 {
                 playlists.map(items =>
                     <div className="theatre__video" key={items.id}>
-                    <p>{items.snippet.title}</p>
+                    
+                    <p className="theatre__video-title"><strong>{items.snippet.title}</strong></p>
                    
-                    
-                    
                     <Iframe
                     title='Test'
                     src={items.contentDetails.videoId}
                     allowFullScreen
+                    className="theatre__video-iFrame"
                      />
                     
                    </div>
@@ -100,10 +102,11 @@ componentDidMount(){
                </Slider>
                 </div>
                 <div className="theatre__race-highlights">
-              
+                <h2 className="theatre__title">2018 Race Highlights</h2>
                 
                 </div>
                 <div className="theatre__circuit-guide">
+                <h2 className="theatre__title">Circuit Guides</h2>
                 </div>
             
             </div>
