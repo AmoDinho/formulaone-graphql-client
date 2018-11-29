@@ -4,11 +4,10 @@ import Slider from 'react-slick';
 import '../styles/Theatre.css';
 
 const PATH_BASE = 'https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails,snippet&';
-const PLAYLIST = 'playlistId=PLfoNZDHitwjXFH-NLpwL8eXzmxzJTUV2A&';
+const PLAYLIST = 'playlistId=PLfoNZDHitwjXFH-NLpwL8eXzmxzJTUV2A';
 const HIGHLIGHTS = 'playlistId=PLfoNZDHitwjUUrM4dYe542iCcRpEzS_RX';
 const GUIDES = 'playlistId=PL2vgf11SN4RhB3Lz-eaREjLNERKAqVtoZ'
-const KEY = `key=${process.env.REACT_APP_YOUTUBE_KEY}`
-const KEY_II = `key=${process.env.REACT_APP_YOUTUBE_KEY_II}`
+const KEY = `&key=${process.env.REACT_APP_YOUTUBE_KEY}`
 
 class Theatre extends Component {
  constructor(props){
@@ -36,10 +35,10 @@ class Theatre extends Component {
 }
 
 fetchGuides(guides){
-    fetch(`${PATH_BASE}${GUIDES}${KEY_II}`)
+    fetch(`${PATH_BASE}${GUIDES}${KEY}`)
     .then(response => response.json())
-    //.then(result => this.setState({guides: result.items}))
-    .then(data => console.log(data))
+    .then(result => this.setState({guides: result.items}))
+    //.then(data => console.log(data))
     .catch(error => error)
 
 }
@@ -47,8 +46,8 @@ fetchGuides(guides){
 fetchHighlights(highlights){
     fetch(`${PATH_BASE}${HIGHLIGHTS}${KEY}`)
     .then(response => response.json())
-    //.then(result => this.setState({highlights: result.items}))
-    .then(result => console.log(result))
+    .then(result => this.setState({highlights: result.items}))
+    //.then(result => console.log(result))
     .catch(error => error)
 
 }
@@ -57,12 +56,12 @@ componentDidMount(){
 
    this.fetchPlaylists();
    this.fetchGuides();
-  // this.fetchHighlights();
+   this.fetchHighlights();
 }
 
     render(){
 
-        const {playlists} = this.state;
+        const {playlists,highlights,guides} = this.state;
         console.log(playlists)
         const settings = {
             dots: false,
@@ -75,9 +74,7 @@ componentDidMount(){
         };
         return (
             <div>
-                <h1>Theatre</h1>
-
-
+                
                 <div className="theatre__paddock-pass">
                 <h2 className="theatre__title">Paddock Pass</h2>
                 <Slider {...settings}>
@@ -88,7 +85,7 @@ componentDidMount(){
                     <p className="theatre__video-title"><strong>{items.snippet.title}</strong></p>
                    
                     <Iframe
-                    title='Test'
+                    title='paddock'
                     src={items.contentDetails.videoId}
                     allowFullScreen
                     className="theatre__video-iFrame"
@@ -103,10 +100,37 @@ componentDidMount(){
                 </div>
                 <div className="theatre__race-highlights">
                 <h2 className="theatre__title">2018 Race Highlights</h2>
+                <Slider {...settings}>
+                {highlights.map(items => 
+                  <div className="theatre__video" key={items.id}>
+                 <p className="theatre__video-title"><strong>{items.snippet.title}</strong></p>
+                   <Iframe
+                    title='highlights'
+                    src={items.contentDetails.videoId}
+                    allowFullScreen
+                    className="theatre__video-iFrame_highlights"
+                     />
+                  </div>
+                
+                )}
+                </Slider>
                 
                 </div>
                 <div className="theatre__circuit-guide">
                 <h2 className="theatre__title">Circuit Guides</h2>
+                <Slider {...settings}>
+                {guides.map(items => 
+                  <div className="theatre__video" key={items.id}>
+                 <p className="theatre__video-title"><strong>{items.snippet.title}</strong></p>
+                   <Iframe
+                    title='guides'
+                    src={items.contentDetails.videoId}
+                    allowFullScreen
+                    className="theatre__video-iFrame_circuits"
+                     />
+                  </div>
+                )}
+                </Slider>
                 </div>
             
             </div>
