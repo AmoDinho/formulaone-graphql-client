@@ -5,16 +5,92 @@ export const LINKS_PER_PAGE = 5;
 export const emojis= [
     {
         country: 'China',
-        url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/flag-for-china_1f1e8-1f1f3.png'
+        url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-china_1f1e8-1f1f3.png'
     },
+    {
+      country: 'Germany',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-germany_1f1e9-1f1ea.png'
+    }
 
     {
         country: 'Russia',
         url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/flag-for-russia_1f1f7-1f1fa.png'
     },
     {
-        country: 'AZERBAIJAN',
+        country: 'Azerbaijan',
         url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/flag-for-azerbaijan_1f1e6-1f1ff.png'
+    },
+    {
+      country: 'France',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-france_1f1eb-1f1f7.png'
+    },
+    {
+      country: 'United Kingdom',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-united-kingdom_1f1ec-1f1e7.png'
+    },
+    {
+      country: 'Italy',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-italy_1f1ee-1f1f9.png'
+    },
+    {
+      country: 'Singapore',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-singapore_1f1f8-1f1ec.png'
+    },
+    {
+      country: 'Australia',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-australia_1f1e6-1f1fa.png'
+    },
+    {
+      country: 'Austria',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-austria_1f1e6-1f1f9.png'
+    },
+    {
+      country: 'Bahrain',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-bahrain_1f1e7-1f1ed.png'
+    },
+    {
+      country: 'Spain',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-spain_1f1ea-1f1f8.png'
+    },
+    {
+      country: 'United States',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-united-states_1f1fa-1f1f8.png'
+    },
+    {
+      country: 'Brazil',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-brazil_1f1e7-1f1f7.png'
+    },
+    {
+      country: 'Mexico',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-mexico_1f1f2-1f1fd.png'
+    },
+    {
+      country: 'Monaco',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-monaco_1f1f2-1f1e8.png'
+    },
+    {
+      country: 'Japan',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-mexico_1f1f2-1f1fd.png'
+    },
+    {
+      country: 'England',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-united-kingdom_1f1ec-1f1e7.png'
+    }
+    {
+      country: 'Canada',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-canada_1f1e8-1f1e6.png'
+    },
+    {
+      country: 'Belgium',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-belgium_1f1e7-1f1ea.png'
+    },
+    {
+      country: 'United Arab Emirates',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-united-arab-emirates_1f1e6-1f1ea.png'
+    },
+    {
+      country: 'Hungary',
+      url:'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-hungary_1f1ed-1f1fa.png'
     }
 ]
 
