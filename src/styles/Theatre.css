@@ -2,3 +2,15 @@
     margin-left:20px;
     margin-right:20px;
 }
+
+.theatre__video-iFrame{
+    margin-left:80px;
+}
+
+.theatre__title{
+    text-align: start;
+}
+
+.theatre__slider{
+    width: 135vh;
+}
