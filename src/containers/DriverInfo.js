@@ -161,7 +161,7 @@ class DriverInfo extends Component {
     render(){
         const id = this.props.match.params.id;
         const authToken = localStorage.getItem(AUTH_TOKEN);
-        console.log(id);
+        
         const {
             name,
             team,

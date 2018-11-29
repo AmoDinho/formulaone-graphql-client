@@ -10,7 +10,7 @@ export const emojis= [
     {
       country: 'Germany',
       url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-germany_1f1e9-1f1ea.png'
-    }
+    },
 
     {
         country: 'Russia',
@@ -75,7 +75,7 @@ export const emojis= [
     {
       country: 'England',
       url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-united-kingdom_1f1ec-1f1e7.png'
-    }
+    },
     {
       country: 'Canada',
       url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-canada_1f1e8-1f1e6.png'

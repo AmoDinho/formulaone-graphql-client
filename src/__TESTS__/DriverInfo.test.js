@@ -175,7 +175,8 @@ it('should update the driver successfully', () =>{
  });
 
 
- it('deletes the driver', ()=>{
+ it('deletes the driver', ()=> {
+    
     const deletedDriver = { 
         id: 1234, 
         name: 'Amo',
@@ -207,16 +208,21 @@ it('should update the driver successfully', () =>{
 
        </MockedProvider>
     );
-
+   
+    /*
     expect(wrapper.find('ModalPopUp'));
     const dom = wrapper.find('.delete_button');
     expect(dom.length).toBe(1);
 
     dom.simulate('click');
-    
+    */
+
+   expect(wrapper.find('PrimaryButton').simulate('click'));
+   console.log(wrapper.debug());
+  
+
+    });
 
 
 
-    
- });
 })
