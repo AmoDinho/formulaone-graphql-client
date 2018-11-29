@@ -155,7 +155,7 @@ class DriverInfo extends Component {
     render(){
         const id = this.props.match.params.id;
         const authToken = localStorage.getItem(AUTH_TOKEN);
-
+        console.log(id);
         const {
             name,
             team,
@@ -216,7 +216,9 @@ class DriverInfo extends Component {
                     handleClose={this.hideModal}
                     >
 
-                    <Mutation mutation={UPDATE_DRIVER_MUTATION} key={id}>
+                    <Mutation 
+                    mutation={UPDATE_DRIVER_MUTATION} 
+                    key={id}>
                     {(updateDriver,{data}) =>{
                         
                     if (data) return <p>Updated!</p>;
@@ -335,21 +337,25 @@ class DriverInfo extends Component {
                        handleClose={this.hideModalPopUp}>
                              <p>Are you sure you want to delete {driver.name}?</p>
                              <Mutation 
-                             key={id}  
+                              
                              mutation={DELETE_DRIVER_MUTATION}
                              update={this.update}
-                             variables={id}
+                             errorPolicy="all"
+                             variables={{id}}
                              onCompleted={() => this.props.history.push('/new/1')}
                              >
-                                {(deleteDriver) =>{
+                                {(deleteDriver, {error}) =>{
                                     return(
-                                       
-                                        <button 
-                                        className="delete_button"
-                                        onClick={deleteDriver}
-                                        >
-                                        Delete
-                                        </button> 
+                                        <div>
+                                        <pre>
+                                        {error && <p>{error.message.replace('GraphQL error:', '')}</p>
+                                        }
+                                        </pre>
+                                        <PrimaryButton
+                                        onClick={deleteDriver }
+                                        text="Delete Driver"
+                                    />
+                                        </div>
                                     
                                 )
                                 }}

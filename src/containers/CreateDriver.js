@@ -26,6 +26,7 @@ const DRIVER_MUTATION = gql`
  $team: String!,
  $points: Int!,
  $pictureURL: String!,
+ $number: Int!,
  $podiums: Int!,
  $championshipWins: Int!,
  $country: String!) {
@@ -34,6 +35,7 @@ const DRIVER_MUTATION = gql`
          team: $team,
          points: $points,
          pictureURL: $pictureURL,
+         number: $number,
          podiums: $podiums,
          championshipWins: $championshipWins,
          country:$country
@@ -44,6 +46,7 @@ const DRIVER_MUTATION = gql`
             team
             points
             pictureURL
+            number
             podiums
             championshipWins
             country
@@ -62,15 +65,16 @@ class CreateDriver extends Component {
         pictureURL: '',
         podiums:0,
         championshipWins: 0,
-        country:''
+        country:'',
+        number:0
     }
 
-    /*
-    onChange = event => {
+    
+    handleChange = name => event =>{
         this.setState({
-            [event.target.id]: event.target.value
+            [name]: event.target.value
         });
-    } */
+    } 
 
 
     validateForm(){
@@ -78,6 +82,7 @@ class CreateDriver extends Component {
         && this.state.team.length > 0 
         && this.state.points > 0
         && this.state.pictureURL.length > 0
+        && this.state.number.length > 0
         && this.state.podiums > 0
         && this.state.championshipWins > 0
         && this.state.country.length > 0;
@@ -112,9 +117,10 @@ class CreateDriver extends Component {
             pictureURL,
             podiums,
             championshipWins,
-            country
+            country,
+            number
         } = this.state
-
+      console.log(this.state)
         return(
             <div>
                 
@@ -126,7 +132,7 @@ class CreateDriver extends Component {
                 <input 
                   className=""
                   value={name}
-                  onChange={e => this.setState({ name: e.target.value })}
+                  onChange={this.handleChange('name')}
                   type="text"
                   required
                   placeholder="Name of your driver"
@@ -139,7 +145,7 @@ class CreateDriver extends Component {
                   className=""
                   value={team}
                   required
-                  onChange={e => this.setState({ team: e.target.value })}
+                  onChange={this.handleChange('team')}
                   type="text"
                   placeholder="Name of the driver's team"
                   /></label>
@@ -151,7 +157,19 @@ class CreateDriver extends Component {
                   className="points  "
                   value={points}
                   required
-                  onChange={e => this.setState({ points: e.target.value })}
+                  onChange={this.handleChange('points')}
+                  type="text"
+                  placeholder="1"
+                  min="0"
+                  /></label>
+                    </div>
+                    <div className="form_row_number ">
+                  <label htmlFor="number">Race Number:
+                   <input 
+                  className="number  "
+                  value={number}
+                  required
+                  onChange={this.handleChange('number')}
                   type="text"
                   placeholder="1"
                   min="0"
@@ -164,7 +182,7 @@ class CreateDriver extends Component {
                   className=""
                   value={pictureURL}
                   required
-                  onChange={e => this.setState({ pictureURL: e.target.value })}
+                  onChange={this.handleChange('pictureURL')}
                   type="text"
                   placeholder="picture url"
                   /></label>
@@ -176,7 +194,7 @@ class CreateDriver extends Component {
                   className=""
                   value={country}
                   required
-                  onChange={e => this.setState({ country: e.target.value })}
+                  onChange={this.handleChange('country')}
                   type="text"
                   placeholder="Origin Country"
                   /></label>
@@ -188,7 +206,7 @@ class CreateDriver extends Component {
                   className="podiums"
                   value={podiums}
                   required
-                  onChange={e => this.setState({ podiums: e.target.value })}
+                  onChange={this.handleChange('podiums')}
                   type="text"
                   placeholder="1"
                   min="0"
@@ -200,7 +218,7 @@ class CreateDriver extends Component {
                   <input 
                   className="championshipWins"
                   value={championshipWins}
-                  onChange={e => this.setState({ championshipWins: e.target.value })}
+                  onChange={this.handleChange('championshipWins')}
                   type="text"
                   required
                   placeholder="1"
@@ -221,7 +239,9 @@ class CreateDriver extends Component {
             pictureURL,
             podiums,
             championshipWins,
-            country}}
+            country,
+            number
+           }}
             onCompleted={() => this.props.history.push('/new/1')}
             update={this.update}
             >
