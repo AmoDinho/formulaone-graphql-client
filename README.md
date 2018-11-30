@@ -1,4 +1,4 @@
-# FanBoost🏎
+# Fan Boost🏎
 
 
 This is the front-end for FanBoost. It is written in React and uses Apollo as it's bindings to a GraphQL server. FanBoost allows users to create Formula One Circuits and Drivers. Users can also 'fan-boost' drivers to see which drivers have the most boosts. Users can also enjoy curated F1 video content. Users' accounts are secured using JWTs. 
