@@ -45,3 +45,5 @@ The following resources were used to create this app:
 * [Advanced React](https://github.com/wesbos/Advanced-React)
 * [Boilerplate for a Fullstack GraphQL App with React & Prisma](https://github.com/alan345/naperg)
 * [How to GraphQL:React-Apollo](https://github.com/howtographql/react-apollo)
+* [React-Apollo Docs](https://www.apollographql.com/docs/react/)
+* [GraphQL Docs](https://graphql.org/)
