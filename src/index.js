@@ -17,10 +17,10 @@ import {getMainDefinition} from 'apollo-utilities';
 require('dotenv').config({ path: '.env' });
 
 
-
+const config = process.env.REACT_APP_STAGE === 'prod'
 //Our URI
 const httpLink = createHttpLink({
-    uri: 'http://localhost:4000'
+    uri: config ? 'https://fan-boost-two-48a9866683.herokuapp.com/fan-two/dev' : 'http://localhost:4000'
 })
 
 
@@ -40,7 +40,7 @@ const authLink = setContext((_, {headers}) => {
 
 //Instance of a new WebSocket Connection
 const wsLink = new WebSocketLink({
-    uri: `ws://localhost:4000`,
+    uri: config ? 'wss://fan-boost-two-48a9866683.herokuapp.com/fan-two/dev' : `ws://localhost:4000`,
     options:{
         reconnect:true,
         connectionParams: {
