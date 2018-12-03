@@ -20,7 +20,7 @@ require('dotenv').config({ path: '.env' });
 const config = process.env.REACT_APP_STAGE === 'prod'
 //Our URI
 const httpLink = createHttpLink({
-    uri: config ? 'https://fan-boost-two-48a9866683.herokuapp.com/fan-two/dev' : 'http://localhost:4000'
+    uri: config ? 'https://fan-boost-two-48a9866683.herokuapp.com/' : 'http://localhost:4000'
 })
 
 
