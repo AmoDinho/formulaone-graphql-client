@@ -124,6 +124,13 @@ handleFlyChange = (flyAway) => {
     console.log(`option:`,flyAway);
 }
 
+handleChange = name => event =>{
+    this.setState({
+        [name]: event.target.value
+    });
+} 
+
+
 validateForm(){
     return this.state.name.length > 0  
     && this.state.description.length > 0
@@ -335,8 +342,7 @@ validateForm(){
 <label htmlFor="name">
 Name:  </label><input 
 type="text"
-onChange={e => this.setState({name: e.target.value})}
-
+onChange={this.handleChange('name')}
 defaultValue={circuit.name}
 placeholder="Name of the circuit"/>
 
@@ -363,7 +369,7 @@ placeholder="Name of the circuit"/>
      placeholder="Laps"
      className="create__nummber-input"
      defaultValue={circuit.numOfLaps}
-     onChange={e => this.setState({numOfLaps: e.target.value})}
+     onChange={this.handleChange('numOfLaps')}
      />
 
      
@@ -376,7 +382,7 @@ placeholder="Name of the circuit"/>
  defaultValue={circuit.description}
 className="create__textbox"
      placeholder="Describe the track"
-     onChange={e => this.setState({description:e.target.value})}
+     onChange={this.handleChange('description')}
      />
      </div>
 
@@ -387,7 +393,7 @@ className="create__textbox"
      type="number"
      defaultValue={circuit.raceDistance}
      placeholder="eg: 140.987 secs:mill secs"
-     onChange={e => this.setState({raceDistance:e.target.value})}
+     onChange={this.handleChange('raceDistance')}
      />
      </div>
 
@@ -398,7 +404,7 @@ className="create__textbox"
  defaultValue={circuit.lapRecord}
  type="number"
      placeholder="eg: 103.764 secs:mill secs"
-     onChange={e => this.setState({lapRecord:e.target.value})}
+     onChange={this.handleChange('lapRecord')}
      />
      </div>
 
@@ -411,7 +417,7 @@ className="create__textbox"
      type="number"
      defaultValue={circuit.circuitLength}
      placeholder="How long is it in kms?"
-     onChange={e => this.setState({circuitLength:e.target.value})}
+     onChange={this.handleChange('circuitLength')}
      />
      </div>
 
@@ -423,7 +429,7 @@ className="create__textbox"
  defaultValue={circuit.address}
  className="create__textbox"
      placeholder="Street Address"
-     onChange={e => this.setState({address:e.target.value})}
+     onChange={this.handleChange('address')}
      />
      </div>
 
@@ -435,7 +441,7 @@ className="create__textbox"
  defaultValue={circuit.latitude}
  type="number"
      placeholder="eg: 47.219722"
-     onChange={e => this.setState({latitude:e.target.value})}
+     onChange={this.handleChange('latitude')}
      />
      </div>
 
@@ -446,7 +452,7 @@ className="create__textbox"
  defaultValue={circuit.longitude}
  type="number"
      placeholder="eg: 14.764722"
-     onChange={e => this.setState({longitude:e.target.value})}
+     onChange={this.handleChange('longitude')}
      />
      </div>
 
@@ -472,7 +478,7 @@ onChange={this.handleFlyChange}
  defaultValue={circuit.trackMap}
  type="text"
      placeholder="Image URL"
-     onChange={e => this.setState({trackMap:e.target.value})}
+     onChange={this.handleChange('trackMap')}
      />
      </div>
 
@@ -483,7 +489,7 @@ onChange={this.handleFlyChange}
  defaultValue={circuit.trackImage}
  type="text"
      placeholder="Image URL"
-     onChange={e => this.setState({trackImage:e.target.value})}
+     onChange={this.handleChange('trackImage')}
      />
      </div>
 
