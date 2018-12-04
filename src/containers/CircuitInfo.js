@@ -36,9 +36,8 @@ export const CIRCUIT_QUERY = gql`
 `
 
 export const UPDATE_CIRCUIT_MUTATION = gql`
- mutation 
- UPDATE_CIRCUIT_MUTATION(
-     $id:ID!,
+ mutation UPDATE_CIRCUIT_MUTATION(
+    $id:ID!,
     $name:String!,
     $description: String!,
     $raceDistance: Float!,
@@ -70,6 +69,19 @@ export const UPDATE_CIRCUIT_MUTATION = gql`
     trackImage:$trackImage
      ){
           id
+          name
+          description
+          raceDistance
+          country
+          numOfLaps
+          circuitLength
+          lapRecord
+          address
+          longitude
+          latitude
+          flyAway
+          trackMap
+          trackImage
      }
  }
 `
@@ -465,7 +477,7 @@ onChange={this.handleFlyChange}
      </div>
 
      <div className="update__circuit-form_row">
-     <label html="trackImage"> Track Iamge:
+     <label html="trackImage"> Track Image:
      </label>
      <input 
  defaultValue={circuit.trackImage}

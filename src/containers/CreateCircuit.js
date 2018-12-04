@@ -79,6 +79,14 @@ handleFlyChange = (flyAway) => {
 }
 
 
+handleChange = name => event =>{
+    this.setState({
+        [name]: event.target.value
+    });
+} 
+
+
+
 update = (store,{data:{circuit}}) => {
     const first = LINKS_PER_PAGE
     const skip = 0
@@ -158,7 +166,7 @@ validateForm(){
              <label htmlFor="name">
              Name:  </label><input 
              type="text"
-             onChange={e => this.setState({name: e.target.value})}
+             onChange={this.handleChange('name')}
              value={name}
              placeholder="Name of the circuit"/>
            
@@ -186,7 +194,7 @@ validateForm(){
                   min="0"
                   className="create__nummber-input"
                   value={numOfLaps}
-                  onChange={e => this.setState({numOfLaps: e.target.value})}
+                  onChange={this.handleChange('numOfLaps')}
                   />
   
                   
@@ -199,7 +207,7 @@ validateForm(){
                   value={description}
                   className="create__textbox"
                   placeholder="Describe the track"
-                  onChange={e => this.setState({description:e.target.value})}
+                  onChange={this.handleChange('description')}
                   />
                   </div>
 
@@ -211,7 +219,7 @@ validateForm(){
                   value={raceDistance}
                   min="0"
                   placeholder="eg: 140.987 secs:mill secs"
-                  onChange={e => this.setState({raceDistance:e.target.value})}
+                  onChange={this.handleChange('raceDistance')}
                   />
                   </div>
 
@@ -223,7 +231,7 @@ validateForm(){
                   min="0"
                   type="number"
                   placeholder="eg: 103.764 secs:mill secs"
-                  onChange={e => this.setState({lapRecord:e.target.value})}
+                  onChange={this.handleChange('lapRecord')}
                   />
                   </div>
 
@@ -237,7 +245,7 @@ validateForm(){
                   min="0"
                   value={circuitLength}
                   placeholder="How long is it in kms?"
-                  onChange={e => this.setState({circuitLength:e.target.value})}
+                  onChange={this.handleChange('circuitLength')}
                   />
                   </div>
 
@@ -249,7 +257,7 @@ validateForm(){
                   value={address}
                   className="create__textbox"
                   placeholder="Street Address"
-                  onChange={e => this.setState({address:e.target.value})}
+                  onChange={this.handleChange('address')}
                   />
                   </div>
 
@@ -261,7 +269,7 @@ validateForm(){
                   value={latitude}
                   type="number"
                   placeholder="eg: 47.219722"
-                  onChange={e => this.setState({latitude:e.target.value})}
+                  onChange={this.handleChange('latitude')}
                   />
                   </div>
 
@@ -272,7 +280,7 @@ validateForm(){
                   value={longitude}
                   type="number"
                   placeholder="eg: 14.764722"
-                  onChange={e => this.setState({longitude:e.target.value})}
+                  onChange={this.handleChange('longitude')}
                   />
                   </div>
 
@@ -298,7 +306,7 @@ validateForm(){
                   value={trackMap}
                   type="text"
                   placeholder="Image URL"
-                  onChange={e => this.setState({trackMap:e.target.value})}
+                  onChange={this.handleChange('trackMap')}
                   />
                   </div>
 
@@ -309,7 +317,7 @@ validateForm(){
                   value={trackImage}
                   type="text"
                   placeholder="Image URL"
-                  onChange={e => this.setState({trackImage:e.target.value})}
+                  onChange={this.handleChange('trackImage')}
                   />
                   </div>
 
