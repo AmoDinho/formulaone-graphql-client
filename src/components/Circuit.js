@@ -6,7 +6,7 @@ import img from '../1f1eb-1f1f7.png';
 
 function lookUpURL(country, prop){
     console.log(country)
-    let nation = emojis.find((x) => x.country === country)
+    let nation = emojis.find((x) => x.country.toLowerCase() === country.toLowerCase())
     console.log(nation)
     return nation ? nation.hasOwnProperty(prop) ? nation[prop] : 'no such prop' : 'no such country'
     

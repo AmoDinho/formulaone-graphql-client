@@ -14,11 +14,11 @@ export const emojis= [
 
     {
         country: 'Russia',
-        url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/flag-for-russia_1f1f7-1f1fa.png'
+        url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-russia_1f1f7-1f1fa.png'
     },
     {
         country: 'Azerbaijan',
-        url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/155/flag-for-azerbaijan_1f1e6-1f1ff.png'
+        url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-azerbaijan_1f1e6-1f1ff.png'
     },
     {
       country: 'France',
