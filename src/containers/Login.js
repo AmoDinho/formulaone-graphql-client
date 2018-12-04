@@ -46,6 +46,13 @@ class Login extends Component {
     validateForm(){
         return this.state.email.length > 0 && this.state.password.length > 0;
     }
+
+    handleChange = name => event =>{
+        this.setState({
+            [name]: event.target.value
+        });
+    } 
+
     render(){
         const {
             login, 
@@ -67,7 +74,7 @@ class Login extends Component {
                 <input 
                 className="name_input"
                 value={this.state.name}
-                onChange={e => this.setState({name: e.target.value})}
+                onChange={this.handleChange('name')}
                 type="text"
                 placeholder="Your Name"
                 />
@@ -79,7 +86,7 @@ class Login extends Component {
 
             <input 
             value={this.state.email}
-            onChange={e => this.setState({email: e.target.value})}
+            onChange={this.handleChange('email')}
             type="email"
             placeholder="name@example.io"
             />
@@ -88,7 +95,7 @@ class Login extends Component {
       <label htmlFor="password"> Password
             <input 
             value={this.state.password}
-            onChange={e => this.setState({password: e.target.value})}
+            onChange={this.handleChange('password')}
             type="password"
             required
             placeholder="Choose a safe password"
@@ -96,21 +103,30 @@ class Login extends Component {
             </label>
             
             </div>
-            {login &&(
-                   <Link to="/requestReset" className="mr7 grow dtc underline ">
-                   <a>Forgot Password</a>
-                      </Link>
-            )}
-           
-            <div className="flex mt3">
-           
-            
             <Mutation
               mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
               variables={{email,password, name}}
               onCompleted={data => this._confirm(data)}>
-             {mutation => (
-
+             {(mutation,{error}) => (
+                 <div>
+            {login &&(
+                   <Link to="/requestReset" className="mr7 grow dtc underline ">
+                   <p>Forgot Password</p>
+                      </Link>
+            )}
+               <div>
+                {error && 
+                <p>
+                {error.message.replace('GraphQL error:','')}
+                </p>
+                }
+               </div>
+                
+            <div className="flex mt3">
+           
+            
+             
+             
                  <PrimaryButton
                  className="pointer mr2 "
                  onClick={mutation}
@@ -118,10 +134,11 @@ class Login extends Component {
               login={this.state.login}
               text={!login ? 'Sign Up' : ''}
                />
+            
 
-             )}
+            
               
-            </Mutation>
+            
             <SecondaryButton
             className="pointer secondary_button"
             login={this.state.login}
@@ -130,6 +147,10 @@ class Login extends Component {
             />
 
             </div>
+            </div>
+             )}
+             
+            </Mutation>
             </div>
 
         )
