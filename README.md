@@ -1,7 +1,19 @@
-# Formula One App 🏎
+# Fan Boost🏎
 
 
-This is the front-end for a GraphQL Forumla One App. It is written in React and uses Apollo as it's bindings to a GraphQL server.
+This is the front-end for FanBoost. It is written in React and uses Apollo as it's bindings to a GraphQL server. FanBoost allows users to create Formula One Circuits and Drivers. Users can also 'fan-boost' drivers to see which drivers have the most boosts. Users can also enjoy curated F1 video content. Users' accounts are secured using JWTs. 
+
+Most of the typical GraphQL use cases are explored in this project such as Queries, Mutations and Subscriptions. The app is an SPA which lives on Netlify. If you're looking to learn how to use GraphQL on the front-end then you have landed in the right place! 
+
+
+## Features
+
+* React-Apollo: Helps you connect to a GraphQL server and access `<Query/>` and `<Mutation/>` components to send and recieve data from your GraphQL API.
+* Tachyons: A CSS-Framework.
+* CSS Grid: A spec for creating grid layouts natiely.
+* Jest & Enzyme: Tooling for writting tests.
+* Maps Interagtiong: This is powered by Google Maps
+
 
 The back-end repo is [here](https://github.com/AmoDinho/formulaone-graphql/blob/master/README.md)
 
@@ -34,6 +46,17 @@ $ yarn start
 
 Your backend server should be running on `localhost://3000`, create-react-app will default to `localhost://3001` for you.
 
+# Deployment Instructrions
+
+**TO BE DONE**
 
 
 The Design System is on [Figma](https://www.figma.com/file/CmYEyRWOtCuT2fgiTZrsNsMp/F1-App?node-id=0%3A1). 
+
+The following resources were used to create this app: 
+
+* [Advanced React](https://github.com/wesbos/Advanced-React)
+* [Boilerplate for a Fullstack GraphQL App with React & Prisma](https://github.com/alan345/naperg)
+* [How to GraphQL:React-Apollo](https://github.com/howtographql/react-apollo)
+* [React-Apollo Docs](https://www.apollographql.com/docs/react/)
+* [GraphQL Docs](https://graphql.org/)
