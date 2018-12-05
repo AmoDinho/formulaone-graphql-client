@@ -217,8 +217,8 @@ it('should update the driver successfully', () =>{
     dom.simulate('click');
     */
 
-   expect(wrapper.find('PrimaryButton').simulate('click'));
-   console.log(wrapper.debug());
+   expect(wrapper.find('.modal_form').find('.mofal_button').at(1).simulate('click'));
+   console.log(wrapper.text());
   
 
     });
