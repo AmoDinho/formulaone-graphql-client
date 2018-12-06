@@ -373,6 +373,13 @@ _search = async (e, client) => {
         const pageIndex = this.props.match.params.page
            ? (this.props.match.params.page -1) * LINKS_PER_PAGE
            : 0 
+
+        if(!driversToRender.length){
+            return <Empty
+            to='/create-driver'
+            text='drivers'
+            />
+        } else {
        
         return(
             <Fragment>
@@ -411,7 +418,7 @@ _search = async (e, client) => {
                </div>
             )}
             </Fragment>
-      )}}
+      )}}}
             </Query>
             </div>
 

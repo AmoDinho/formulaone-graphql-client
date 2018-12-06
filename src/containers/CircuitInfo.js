@@ -11,6 +11,7 @@ import {countries} from '../constants';
 import * as Icon from 'react-feather';
 import PrimaryButton from '../components/PrimaryButton';
 import TRACK_QUERY from './CircuitInfo';
+import Spinner from '../components/Spinner';
 
 
 
@@ -221,7 +222,7 @@ validateForm(){
                 >
                     
                     {({error,loading,data}) =>{
-                        if (loading) return <div>Fetching</div>
+                        if (loading) return <div className="mt4"><Spinner/></div>
                         if (error) return <div>Error</div>;
 
                         const circuit = data.circuit;

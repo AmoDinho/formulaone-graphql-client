@@ -10,6 +10,7 @@ import ModalPopUp from '../components/ModalPopUp';
 import {FEED_QUERY} from '../containers/DriverList';
 import {LINKS_PER_PAGE} from '../constants';
 import PropTypes from 'prop-types';
+import Spinner from '../components/Spinner';
 
 const propTypes = {
     driver: PropTypes.shape({
@@ -179,7 +180,7 @@ class DriverInfo extends Component {
                 id
             }}>
             { ({error,loading,data}) =>{
-                if (loading) return <div>Fetching</div>
+                if (loading) return <div className="mt4"><Spinner/></div>
                 if (error) return <div>Error</div>;
 
                 const driver = data.driver;
