@@ -369,6 +369,7 @@ class DriverInfo extends Component {
                                         </pre>
                                         <PrimaryButton
                                         onClick={deleteDriver }
+                                        data-testid="delete"
                                         className="delete__driver"
                                         text="Delete Driver"
                                     />

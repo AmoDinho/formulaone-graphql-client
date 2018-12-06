@@ -5,12 +5,12 @@ const wait = require('waait');
 import {mount,configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import localStorage from './localStorage';
+import {render,fireEvent} from 'react-testing-library';
 
 import 
 DriverInfo, 
 {DRIVER_QUERY, UPDATE_DRIVER_MUTATION,DELETE_DRIVER_MUTATION} from "../containers/DriverInfo";
 import { wrap } from 'module';
-import ModalPopUp from '../components/ModalPopUp';
 
 //Configure Enzyme Adpater
 configure({adapter: new Adapter()});
@@ -203,12 +203,14 @@ it('should update the driver successfully', () =>{
         }
     ];
 
+
+    /*
     const wrapper = mount(
         <MockedProvider mocks={mocks} addTypename={false}>
         <DriverInfo {...defaultProps}/>
 
        </MockedProvider>
-    );
+    );*/
    
     /*
     expect(wrapper.find('ModalPopUp'));
@@ -220,13 +222,26 @@ it('should update the driver successfully', () =>{
 
   // expect(wrapper.find('div.delete__driver').at(1).simulate('click'));
   //expect(wrapper.find(ModalPopUp).closest('.delete__driver')).to.have.length(1)
-  expect(wrapper.children(ModalPopUp).find('.delete__button').at(0).simulate('click'));
+  //expect(wrapper.children(ModalPopUp).find('.delete__button').at(0).simulate('click'));
   //console.log(wrapper.find('.delete__driver').length);
+
+
+
   console.log(wrapper.text());
   
 
     });
 
+    test('class onClick on Primary Button', ()=>{
+        const onClick = jest.fn();
+        const {getByText} = render(
+            <MockedProvider mocks={mocks} addTypename={false}>
+            <DriverInfo {...defaultProps}/>
+    
+           </MockedProvider>
+        )
 
+        fireEvent.click(getByText('Delete Driver'));
+    })
 
 })
