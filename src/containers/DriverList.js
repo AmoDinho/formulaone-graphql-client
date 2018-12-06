@@ -9,6 +9,8 @@ import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
 import PropTypes from 'prop-types';
 import Downshift from 'downshift';
+import Spinner from '../components/Spinner';
+import Empty from '../components/Empty';
 
 const propTypes = {
     _updateCacheAfterBoost: PropTypes.func, 
@@ -360,7 +362,7 @@ _search = async (e, client) => {
    variables={this._getQueryVariables()}
    >
     {({loading, error, data, subscribeToMore}) => {
-        if (loading) return <div>Fetching</div>
+        if (loading) return <Spinner/>
         if (error) return <div>Error</div>
 
         this._subscribeToNewDrivers(subscribeToMore)

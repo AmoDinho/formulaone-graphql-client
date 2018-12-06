@@ -7,6 +7,8 @@ import Circuit from '../components/Circuit';
 import PrimaryButton from '../components/PrimaryButton';
 import SecondaryButton from '../components/SecondaryButton';
 import Downshift from 'downshift';
+import Empty from '../components/Empty';
+import Spinner from '../components/Spinner';
 import '../styles/CircuitList.css';
 
 
@@ -215,7 +217,7 @@ _previousPage = () => {
                 variables={this._getQueryVariables()}
                 >
                 {({loading, error, data, subscribeToMore }) =>{
-                 if (loading) return <div>Fetching...</div>
+                 if (loading) return <Spinner/>
                  if (error) return <div>Something went wrong</div>
                  
                  this._subscribeToNewCircuits(subscribeToMore)
@@ -225,9 +227,16 @@ _previousPage = () => {
                  const pageIndex = this.props.match.params.page
                    ? (this.props.match.params.page -1) * LINKS_PER_PAGE : 0
                  console.log(`this is ${pageIndex}`)
+                 if(!circuitsToRender.length){
+                     return <Empty
+                             to='/create-circuit'
+                             text='circuits'
+                             />
+                 } else {
                    return (
                     <div className="circuit_list" >
                   {circuitsToRender.map((circuit,index) => (
+                
                   <Link 
                   className="Link black"
                    to={`/circuit/${circuit.id}`} 
@@ -261,13 +270,13 @@ _previousPage = () => {
              
                </div>
                 )}
-
+            
                     </div>
-                    
+                 
                     
                     
                  )}}
-                
+                }
                 
                 </Query>
             
