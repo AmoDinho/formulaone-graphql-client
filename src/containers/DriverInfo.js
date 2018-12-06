@@ -350,10 +350,10 @@ class DriverInfo extends Component {
 
                        <ModalPopUp
                        show={this.state.showPop}
-                       handleClose={this.hideModalPopUp}>
+                       handleClose={this.hideModalPopUp}
+                       >
                              <p>Are you sure you want to delete {driver.name}?</p>
-                             <Mutation 
-                              
+                             <Mutation  
                              mutation={DELETE_DRIVER_MUTATION}
                              update={this.update}
                              errorPolicy="all"
@@ -369,6 +369,7 @@ class DriverInfo extends Component {
                                         </pre>
                                         <PrimaryButton
                                         onClick={deleteDriver }
+                                        className="delete__driver"
                                         text="Delete Driver"
                                     />
                                         </div>
