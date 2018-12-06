@@ -10,6 +10,7 @@ import
 DriverInfo, 
 {DRIVER_QUERY, UPDATE_DRIVER_MUTATION,DELETE_DRIVER_MUTATION} from "../containers/DriverInfo";
 import { wrap } from 'module';
+import ModalPopUp from '../components/ModalPopUp';
 
 //Configure Enzyme Adpater
 configure({adapter: new Adapter()});
@@ -217,8 +218,11 @@ it('should update the driver successfully', () =>{
     dom.simulate('click');
     */
 
-   expect(wrapper.find('.modal_form').find('.modal_button').at(0).simulate('click'));
-   console.log(wrapper.text());
+  // expect(wrapper.find('div.delete__driver').at(1).simulate('click'));
+  //expect(wrapper.find(ModalPopUp).closest('.delete__driver')).to.have.length(1)
+  expect(wrapper.children(ModalPopUp).find('.delete__button').at(0).simulate('click'));
+  //console.log(wrapper.find('.delete__driver').length);
+  console.log(wrapper.text());
   
 
     });
