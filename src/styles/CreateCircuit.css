@@ -9,20 +9,43 @@
   border: 2px solid #C4C4C4;
 }
 
-.select__control,.select__menu{
+.css-10nd86i{
+    width: 500px;
+}
+.select-container{
+display: flex;
+}
+
+.select__control{
     width: 500px;
     height: 20px;
     margin-left:400px;
     margin-top: 20px;
     margin-bottom: 20px;
+}
 
+
+.select__menu{
+    width: 100px;
+    height: 90px;
+    margin-left:400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+
+}
+
+.select__menu-list,.select__option{
+    height:80px;
+    width:500px;
 }
 
 
 
-.select__menu-list,.select__option{
+
+.select__menu-portal{
     height:50px;
-    width:500px;
+
 }
 .create__circuit-form{
     text-align: center;

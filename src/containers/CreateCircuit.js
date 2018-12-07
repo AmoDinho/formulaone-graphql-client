@@ -48,7 +48,6 @@ export const CREATE_CIRCUIT_MUTATION = gql`
 
 
 
-
 class CreateCircuit extends Component {
    state = {
     name:'',
@@ -175,13 +174,17 @@ validateForm(){
              <div className="create__circuit-form_row">
               <label htmlFor="country">
               Country:</label>
+            
+           
               <Select 
               options={options}  
               value={country}
               classNamePrefix="select"
               onChange={this.handleCountryChange}
-            />
+              />
               
+           
+            
              </div>
 
                   <div className="create__circuit-form_row">
