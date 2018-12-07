@@ -57,6 +57,10 @@ export const emojis= [
       url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-united-states_1f1fa-1f1f8.png'
     },
     {
+      country: 'United States of America',
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-united-states_1f1fa-1f1f8.png'
+    },
+    {
       country: 'Brazil',
       url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-brazil_1f1e7-1f1f7.png'
     },
@@ -70,7 +74,7 @@ export const emojis= [
     },
     {
       country: 'Japan',
-      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-mexico_1f1f2-1f1fd.png'
+      url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/emojione/151/flag-for-japan_1f1ef-1f1f5.png'
     },
     {
       country: 'England',

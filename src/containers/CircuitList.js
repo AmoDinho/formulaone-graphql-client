@@ -101,14 +101,21 @@ class CircuitList extends Component {
 
 
     //the query variables that allow for pagination
-    _getQueryVariables = data => {
+    _getQueryVariables = () => {
         const isCircuitPage = this.props.location.pathname.includes('circuits')
         const page = parseInt(this.props.match.params.page, 10)
         console.log(`many ${page}`)
-        const first = isCircuitPage ? LINKS_PER_PAGE : 100
         const skip = isCircuitPage ? (page - 1) * LINKS_PER_PAGE : 0
+        const first = isCircuitPage ? LINKS_PER_PAGE : 100
         const orderBy = isCircuitPage ? 'createdAt_DESC' : null 
         return {first,skip,orderBy}   
+    }
+
+    _getCircuitsToRender = data => {
+        const isCircuitPage = this.props.location.pathname.includes('circuits');
+        if (isCircuitPage){
+            return data.tracks.circuits
+        }
     }
 
     /*the following to methods help us go to 
@@ -222,17 +229,17 @@ _previousPage = () => {
                  
                  this._subscribeToNewCircuits(subscribeToMore)
 
-                 const circuitsToRender = data.tracks.circuits
+                 const circuitsToRender = this._getCircuitsToRender(data)
                  const isCircuitPage = this.props.location.pathname.includes('circuits')
                  const pageIndex = this.props.match.params.page
                    ? (this.props.match.params.page -1) * LINKS_PER_PAGE : 0
                  console.log(`this is ${pageIndex}`)
                  if(!circuitsToRender.length){
-                     return <Empty
-                             to='/create-circuit'
-                             text='circuits'
-                             />
-                 } else {
+                    return <Empty
+                            to='/create-circuit'
+                            text='circuits'
+                            />
+                } else {
                    return (
                     <div className="circuit_list" >
                   {circuitsToRender.map((circuit,index) => (
@@ -275,8 +282,7 @@ _previousPage = () => {
                  
                     
                     
-                 )}}
-                }
+                 )}}}
                 
                 </Query>
             
