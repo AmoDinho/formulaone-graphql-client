@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {Query, ApolloConsumer,withApollo} from 'react-apollo';
 import {Link} from 'react-router-dom';
 import gql from 'graphql-tag';
@@ -21,6 +21,7 @@ export const TRACK_QUERY =gql`
           country
           trackImage
          }
+         count
       }
   }
 `
@@ -62,7 +63,7 @@ class CircuitList extends Component {
    filter: '',
    circuits:[],
    loading:false
-    };
+    }
 
     _search = async (e, client) => {
         const {filter} = this.state
@@ -102,12 +103,12 @@ class CircuitList extends Component {
 
     //the query variables that allow for pagination
     _getQueryVariables = () => {
-        const isCircuitPage = this.props.location.pathname.includes('circuits')
+        const isNewPage = this.props.location.pathname.includes('circuits')
         const page = parseInt(this.props.match.params.page, 10)
         console.log(`many ${page}`)
-        const skip = isCircuitPage ? (page - 1) * LINKS_PER_PAGE : 0
-        const first = isCircuitPage ? LINKS_PER_PAGE : 100
-        const orderBy = isCircuitPage ? 'createdAt_DESC' : null 
+        const skip = isNewPage ? (page - 1) * LINKS_PER_PAGE : 0
+        const first = isNewPage ? LINKS_PER_PAGE : 100
+        const orderBy = isNewPage ? 'createdAt_DESC' : null 
         return {first,skip,orderBy}   
     }
 
@@ -231,6 +232,7 @@ _previousPage = () => {
 
                  const circuitsToRender = this._getCircuitsToRender(data)
                  const isCircuitPage = this.props.location.pathname.includes('circuits')
+                 console.log(isCircuitPage)
                  const pageIndex = this.props.match.params.page
                    ? (this.props.match.params.page -1) * LINKS_PER_PAGE : 0
                  console.log(`this is ${pageIndex}`)
@@ -242,6 +244,7 @@ _previousPage = () => {
                 } else {
                    return (
                     <div className="circuit_list" >
+                    <Fragment>
                   {circuitsToRender.map((circuit,index) => (
                 
                   <Link 
@@ -258,12 +261,8 @@ _previousPage = () => {
                 ))}
                     {isCircuitPage && (
                <div className="flex ml4 mv3 center gray pagination_container">
-             
-
-              
-
              <SecondaryButton
-              onClick={() => this._previousPage()}
+              onClick={this._previousPage}
               text="Previous"
               className="pointer"
              />
@@ -277,7 +276,7 @@ _previousPage = () => {
              
                </div>
                 )}
-            
+            </Fragment>
                     </div>
                  
                     

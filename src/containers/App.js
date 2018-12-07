@@ -32,7 +32,7 @@ class App extends Component {
          <Route exact path="/requestReset" component={RequestReset}/>
          <Route exact path="/resetPassword/:resetURL" component={ResetPassword}/>
          <Route exact path="/deactivate" component={DeactivateAcc}/>
-         <Route exact path="/circuits" component={CircuitList}/>
+         <Route exact path="/circuits" render={()=> <Redirect to="/circuits/1"/>}/>
          <Route exact path="/circuits/:page" component={CircuitList}/>
          <Route exact path="/circuit/:id" component={CircuitInfo}/>
          <Route exact path="/create" component={Create}/>
