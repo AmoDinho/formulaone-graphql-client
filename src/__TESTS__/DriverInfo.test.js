@@ -44,6 +44,8 @@ const mocks = [
 
 const defaultProps = {
     match: {params: {id:1234}},
+    
+
 };
 
 describe('<DriverInfo/>', () => {
@@ -176,7 +178,7 @@ it('should update the driver successfully', () =>{
  });
 
 
- it('deletes the driver', ()=> {
+ it('deletes the driver', async ()=> {
     
     const deletedDriver = { 
         id: 1234, 
@@ -204,13 +206,19 @@ it('should update the driver successfully', () =>{
     ];
 
 
-    /*
+    
     const wrapper = mount(
         <MockedProvider mocks={mocks} addTypename={false}>
         <DriverInfo {...defaultProps}/>
+        </MockedProvider>
+    );
 
-       </MockedProvider>
-    );*/
+    await wait();
+    wrapper.update();
+
+    wrapper.setState({showPop: true});
+    expect(wrapper.find('ModalPopUp').find('.delete__driver').at(0).simulate('click'));
+
    
     /*
     expect(wrapper.find('ModalPopUp'));
@@ -227,7 +235,7 @@ it('should update the driver successfully', () =>{
 
 
 
-  console.log(wrapper.text());
+  console.log(wrapper);
   
 
     });
