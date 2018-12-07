@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import gql from 'graphql-tag';
 import {Mutation} from 'react-apollo';
 import {FEED_QUERY} from './DriverList';
-import {LINKS_PER_PAGE} from '../constants';
+import {LINKS_PER_PAGE,countries} from '../constants';
 import PropTypes from 'prop-types';
 import '../styles/CreateDriver.css';
+import Select from 'react-select';
+import PrimaryButton from '../components/PrimaryButton';
+
 
 
 const propTypes = {
@@ -69,6 +72,13 @@ class CreateDriver extends Component {
         number:0
     }
 
+    handleCountryChange = (country,options) => {
+        this.setState({country: country.value });
+        console.log(`option:`, country.value);
+    }
+    
+    
+    
     
     handleChange = name => event =>{
         this.setState({
@@ -121,6 +131,13 @@ class CreateDriver extends Component {
             number
         } = this.state
       console.log(this.state)
+      Object.keys(countries).map(
+        (object) => {
+         countries[object]['label'] = `${countries[object].value}`;
+         return countries;
+        }) 
+
+    const options = countries;
         return(
             <div>
                 
@@ -128,7 +145,7 @@ class CreateDriver extends Component {
                     <h1  >Create a new Driver</h1>
                 <form className="mt3  container">
                 <div className="form_row">
-                 <label htmlFor="name">Name:
+                 <label htmlFor="name">Name:</label>
                 <input 
                   className=""
                   value={name}
@@ -136,11 +153,11 @@ class CreateDriver extends Component {
                   type="text"
                   required
                   placeholder="Name of your driver"
-                  /></label>
+                  />
                       </div>
 
-                                 <div className="form_row">
-                  <label htmlFor="team"> Team:
+                  <div className="form_row">
+                  <label htmlFor="team"> Team:</label>
                    <input 
                   className=""
                   value={team}
@@ -148,11 +165,15 @@ class CreateDriver extends Component {
                   onChange={this.handleChange('team')}
                   type="text"
                   placeholder="Name of the driver's team"
-                  /></label>
+                  />
                   </div>
 
             <div className="form_row_points ">
-                  <label htmlFor="points">Points:
+                  <label 
+                  className="label-points"
+                  htmlFor="points">
+                  Points:
+                  </label>
                    <input 
                   className="points  "
                   value={points}
@@ -161,10 +182,10 @@ class CreateDriver extends Component {
                   type="text"
                   placeholder="1"
                   min="0"
-                  /></label>
+                  />
                     </div>
                     <div className="form_row_number ">
-                  <label htmlFor="number">Race Number:
+                  <label htmlFor="number">Race Number:</label>
                    <input 
                   className="number  "
                   value={number}
@@ -173,11 +194,11 @@ class CreateDriver extends Component {
                   type="text"
                   placeholder="1"
                   min="0"
-                  /></label>
+                  />
                     </div>
 
                 <div className="form_row">
-                  <label htmlFor="picture">Picture:
+                  <label htmlFor="picture">Picture:</label>
                     <input 
                   className=""
                   value={pictureURL}
@@ -185,23 +206,21 @@ class CreateDriver extends Component {
                   onChange={this.handleChange('pictureURL')}
                   type="text"
                   placeholder="picture url"
-                  /></label>
+                  />
                    </div>
 
-                <div className="form_row">
-                   <label htmlFor="country">Country:
-                   <input 
-                  className=""
-                  value={country}
-                  required
-                  onChange={this.handleChange('country')}
-                  type="text"
-                  placeholder="Origin Country"
-                  /></label>
-                  </div>
+                   <label htmlFor="country">Country: </label>
+                   <Select 
+                   options={options}  
+                   value={country}
+                   classNamePrefix="select"
+                   onChange={this.handleCountryChange}
+                   />
+                 
+                
 
                 <div className="form_row">
-                <label htmlFor="podiums">Podiums:
+                <label htmlFor="podiums">Podiums:</label>
                   <input 
                   className="podiums"
                   value={podiums}
@@ -210,11 +229,11 @@ class CreateDriver extends Component {
                   type="text"
                   placeholder="1"
                   min="0"
-                  /></label>
+                  />
                   </div>
 
                 <div className="form_row">
-                  <label htmlFor="championships">Championships:
+                  <label htmlFor="championships">Championships:</label>
                   <input 
                   className="championshipWins"
                   value={championshipWins}
@@ -223,7 +242,7 @@ class CreateDriver extends Component {
                   required
                   placeholder="1"
                   min="0"
-                  /></label>
+                  />
                   </div>
 
                   </form>
@@ -247,15 +266,15 @@ class CreateDriver extends Component {
             >
 
             {driverMutation =>
-                <button 
-                className="primary_create mt5"
+               
+                <PrimaryButton
                 onClick={driverMutation}
-                disabled={!this.validateForm()}
-                >
-                Create New Driver
-                </button> 
+                //disabled={!this.validateForm()}
+                className="create_primary"
+                text="Create Driver"
+                />
             }
-                
+                g
                 </Mutation>
             </div>
         )
