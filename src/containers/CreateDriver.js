@@ -212,8 +212,8 @@ class CreateDriver extends Component {
                    <label htmlFor="country">Country: </label>
                    <Select 
                    options={options}  
-                   value={country}
                    classNamePrefix="select"
+                   defaultValue={country}
                    onChange={this.handleCountryChange}
                    />
                  
@@ -249,7 +249,7 @@ class CreateDriver extends Component {
                 </div>
 
 
-                <Mutation 
+            <Mutation 
             mutation={DRIVER_MUTATION} 
             variables={{
             name,
@@ -266,15 +266,14 @@ class CreateDriver extends Component {
             >
 
             {driverMutation =>
-               
                 <PrimaryButton
                 onClick={driverMutation}
-                //disabled={!this.validateForm()}
+                disabled={!this.validateForm()}
                 className="create_primary"
                 text="Create Driver"
                 />
             }
-                g
+                
                 </Mutation>
             </div>
         )

@@ -11,6 +11,7 @@
 
 .css-10nd86i{
     width: 500px;
+    
 }
 
 
@@ -25,16 +26,20 @@
 
 .select__menu{
     width: 100px;
-    height: 90px;
+    height: 200px;
     margin-left:400px;
     margin-top: 20px;
     margin-bottom: 20px;
-    overflow: hidden;
+    
 
 }
 
-.select__menu-list,.select__option{
-    height:80px;
+.select__menu-list{
+    height:200px;
+}
+
+.select__option{
+    height:40px;
     width:500px;
 }
 
