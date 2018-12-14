@@ -1,0 +1,9 @@
+.error__container{
+    text-align: center;
+}
+
+.error__image{
+    border-radius:20px;
+    height:300px;
+    width: 500px;
+}

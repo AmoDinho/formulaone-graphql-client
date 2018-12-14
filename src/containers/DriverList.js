@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import Downshift from 'downshift';
 import Spinner from '../components/Spinner';
 import Empty from '../components/Empty';
+import Error from '../components/Error';
+
 
 const propTypes = {
     _updateCacheAfterBoost: PropTypes.func, 
@@ -363,7 +365,7 @@ _search = async (e, client) => {
    >
     {({loading, error, data, subscribeToMore}) => {
         if (loading) return <Spinner/>
-        if (error) return <div>Error</div>
+        if (error) return <Error/>
 
         this._subscribeToNewDrivers(subscribeToMore)
         this._subscribeToNewBoosts(subscribeToMore)

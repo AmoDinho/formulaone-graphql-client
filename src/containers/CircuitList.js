@@ -10,6 +10,7 @@ import Downshift from 'downshift';
 import Empty from '../components/Empty';
 import Spinner from '../components/Spinner';
 import '../styles/CircuitList.css';
+import Error from '../components/Error';
 
 
 export const TRACK_QUERY =gql`
@@ -226,7 +227,7 @@ _previousPage = () => {
                 >
                 {({loading, error, data, subscribeToMore }) =>{
                  if (loading) return <Spinner/>
-                 if (error) return <div>Something went wrong</div>
+                 if (error) return <Error/>
                  
                  this._subscribeToNewCircuits(subscribeToMore)
 
